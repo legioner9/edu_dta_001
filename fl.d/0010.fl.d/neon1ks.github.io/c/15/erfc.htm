@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция erfc - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#15">Содержание</a> | <a href="15.htm#00">Глава 15</a><hr>
+<h1>Функция erfc</h1>
+<pre>
+#include &lt;math.h&gt;
+float erfcf(float <em>arg</em>);
+double erfc(double <em>arg</em>);
+long double erfcl(long double <em>arg</em>);
+</pre>
+<p class="tj">Функции <kbd>erfc()</kbd>, <kbd>erfcf()</kbd> и <kbd>erfcl()</kbd> добавлены в версии С99.
+<p class="tj">Каждая функция семейства <kbd>erfс()</kbd> возвращает функцию ошибок дополнительную<sup><a href="erfc.htm#11" id="1">[1]</a></sup> от аргумента <em>arg</em>.
+<h2>Зависимые функции</h2>
+<a href="erf.htm">erf()</a>
+<p><img src="../work/sup.bmp" alt="----------">
+<blockquote>
+<p class="tj"><sup><a href="erfc.htm#1" id="11">[1]</a></sup><em>Дополнительный интеграл вероятности</em>:
+<pre>
+                  &#8734;
+             2    /
+erfc(x) = ------- | e<sup>-t<sup>2</sup></sup>dt = 1 - erf(x).
+          sqrt(п) /
+                  x
+</pre>
+</blockquote>
+<hr><a href="../main.htm#15">Содержание</a> | <a href="15.htm#00">Глава 15</a>
+
+
+</body>
+</html>

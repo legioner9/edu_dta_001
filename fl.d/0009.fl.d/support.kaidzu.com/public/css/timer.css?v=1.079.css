@@ -1,0 +1,65 @@
+/* Убрать форму настройки
+#timeset{display:none;}
+#timer_form #task_table_container{display:none;}
+*/
+
+#bar{height: 4ex; border-radius: 1ex; }
+#bar_container{text-align: left;}
+#hour_value, #minute_value, #second_value, #font_size{width: 2em; font-size: 200%; text-align: right;}
+#pause_btn{background-color: yellow;}
+#save_img_container{
+    display: inline-block;
+    height: 3ex;
+    border-color:blue;
+    border-style:solid;
+    border-width: 1px;
+    padding: 0.5ex;
+    border-radius: 0.5ex;
+    background-color: aliceblue;
+}
+#save_img_container:hover{
+    border-color:black;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+#start_btn{
+    background-color: green;
+    cursor: pointer;
+}
+#start_btn:hover{
+    background-color: darkgreen;
+}
+#task_btn{
+    border-color:blue;
+    background-color: aliceblue;
+}
+#task_btn:hover{
+    border-color:black;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+#task_btn:active{
+    background-color: #FF9999;
+}
+.task_img{max-height: 64px; max-width: 64px;border: 2px solid transparent; border-radius: 5px;}
+.task_img:hover{border: 2px solid gold; background-color: lightgoldenrodyellow;}
+#task_image_container{position:absolute; width:100%; height: 100%; background-color: #fff; display: none;}
+#task_table{border-collapse: collapse; font-size: 80%;}
+#task_table td{border:solid 1px black;}
+#task_table_container{display: grid;}
+.template a{display:inline-block;  font-size: 90%; height: 2ex; padding: 1ex; background-color: #d8dfe6; border:solid 1px gray; border-radius: 1ex; margin: 0.5ex; vertical-align: middle; }
+.template a:hover{background-color: goldenrod;}
+.template img{width: 2ex;}
+.template_name{}
+#time{font-family: fantasy; text-align: center; height:1.3ex;}
+#time span{display: initial; }
+.time_control{height:4ex; width:10em; font-size: 200%; border-radius: 1ex; margin:1ex 0;}
+#timer_btn_add_picture{background: #ffe; background: linear-gradient(to top, #fff, #fd0); border-radius: 5px; border: solid 1px black; text-align: center;}
+#timer_btn_add_picture img{max-height: 20px;}
+#timer_template_text{text-align: left; display: inline-block; max-width: 800px;}
+#timer_text_container{margin-bottom: 4ex;}
+#timeset input, #timeset select{height:4ex; width: 95%; border-radius: 5px;}
+#timeset input[type=checkbox]{}
+#timeset tr{vertical-align: baseline;}
+#tr_selected{background-color: bisque;}
+.td_repeat{background-color: white;};

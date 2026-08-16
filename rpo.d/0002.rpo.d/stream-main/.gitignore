@@ -1,0 +1,8 @@
+l
+*.swp
+*.run
+*.o
+*.a
+.vscode
+*.hex
+*.out

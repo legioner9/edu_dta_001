@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция wctomb - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция wctomb</h1>
+<pre>
+#include &lt;stdlib.h&gt;
+int wctomb(char *<em>out</em>, wchar_t <em>in</em>);
+</pre>
+<p class="tj">Функция <kbd>wctomb()</kbd> преобразует двухбайтовый символ, содержащийся в параметре <em>in</em>, в его многобайтовый эквивалент и помещает результат в массив, адресуемый параметром <em>out</em>. Массив, адресуемый параметром <em>out</em>, должен иметь длину не меньше <kbd>MB_CUR_MAX</kbd> символов.
+<p class="tj">При успешном выполнении функция <kbd>wctomb()</kbd> возвращает количество байтов, содержащихся в многобайтовом символе. При возникновении ошибки возвращается значение -1.
+<p class="tj">Если параметр <em>out</em> равен нулю, функция <kbd>wctomb()</kbd> возвращает ненулевое значение в случае, когда многобайтовый символ имеет кодировку, зависящую от территориально-языковых особенностей. В противном случае возвращается нуль.
+<h2>Зависимые функции</h2>
+<a href="https://neon1ks.github.io/c/18/wcstomb.htm">wcstomb()</a>  <a href="mbstowcs.htm">mbstowcs()</a>
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

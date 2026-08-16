@@ -1,0 +1,1 @@
+/home/st/edu_dta/rpo.d/0002.rpo.d/home/op/esp/esp-idf/components/mbedtls/mbedtls/library/psa_crypto_driver_wrappers_no_static.c

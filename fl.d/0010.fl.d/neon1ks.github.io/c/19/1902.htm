@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функции ввода-вывода двухбайтовых символов - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#19">Содержание</a> | <a href="1901.htm">&lt;&lt;&lt;</a> | <a href="1903.htm">&gt;&gt;&gt;</a><hr>
+<h1>Функции ввода-вывода двухбайтовых символов</h1>
+<p class="tj">Некоторые функции ввода-вывода, описанные в <a href="../13/13.htm">главе 13</a>, имеют реализации, ориентированные на работу с двухбайтовыми символами. Эти функции (они перечислены в табл. 19.2) используют заголовок <kbd>&lt;wchar.h&gt;</kbd>. Обратите внимание на то, что функции <kbd>swprintf()</kbd> и <kbd>vswprintf()</kbd> требуют передачи дополнительного параметра, в котором не нуждаются соответствующие им функции для типа <kbd>char</kbd>.</p>
+<table class="table table-bordered">
+<caption><strong>Таблица 19.2. Функции ввода/вывода для двухбайтовых символов и соответствующие им функции для типа <kbd>char</kbd></strong></caption>
+<tr><th><em>Функция</em><th><em>Соотвествующая функция для типа <kbd>char</kbd></em>
+<tr><td><pre>wint_t fgetwc(FILE *<em>stream</em>)</pre><td><kbd>fgetc()</kbd>
+<tr><td><pre>wchar_t *fgetws(
+  wchar_t *<em>str</em>,
+  int <em>num</em>,
+  FILE *<em>stream</em>)</pre><td class="t"><kbd>fgets()</kbd><br>В версии С99 к параметрам <em>str</em> и <em>stream</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>wint_t fputwc(
+  wchar_t <em>ch</em>,
+  FILE *<em>stream</em>)</pre><td><kbd>fputc()</kbd>
+<tr><td><pre>int fputws(
+  const wchar_t *<em>str</em>,
+  FILE *<em>stream</em>)</pre><td class="t"><kbd>fputs()</kbd><br>В версии С99 к параметрам <em>str</em> и <em>stream</em> примененквалификатор <kbd>restrict</kbd>
+<tr><td><pre>int fwprintf(
+  FILE *<em>stream</em>,
+  const wchar_t *<em>fmt</em>,
+  ...)</pre><td class="t"><kbd>fprintf()</kbd><br>В версии С99 к параметрам <em>stream</em> и <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>int fwscanf(
+  FILE *<em>stream</em>,
+  const wchar_t *<em>fmt</em>,
+  ...)</pre><td class="t"><kbd>fscanf()</kbd><br>В версии С99 к параметрам <em>stream</em> и <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>wint_t getwc(FILE *<em>stream</em>)</pre><td><kbd>getc()</kbd>
+<tr><td><pre>wint_t getwchar(void)</pre><td><kbd>getchar()</kbd>
+<tr><td><pre>wint_t putwc(
+  wchar_t <em>ch</em>,
+  FILE	*<em>stream</em>)</pre><td><kbd>putc()</kbd>
+<tr><td><pre>wint_t putwchar(wchar_t <em>ch</em>)</pre><td><kbd>putchar()</kbd>
+<tr><td><pre>int swprintf(
+  wchar_t *<em>str</em>,
+  size_t <em>num</em>,
+  const wchar_t *<em>fmt</em>,
+  ...)</pre><td class="t"><kbd>sprintf()</kbd><br>Обратите внимание на то, что добавлен параметр <em>num</em> который ограничивает количество символов, записываемых в массив <em>str</em>. В версии С99 к параметрам <em>str</em> и <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>int swscanf(
+  const wchar_t *<em>str</em>,
+  const wchar t *<em>fmt</em>,
+  ...)</pre><td class="t"><kbd>sscanf()</kbd><br>В версии С99 к параметрам <em>str</em> и <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>wint_t ungetwc(
+  wint_t <em>ch</em>,
+  FILE *<em>stream</em>)</pre><td><kbd>ungetc()</kbd>
+<tr><td><pre>int vfwprintf(
+  FILE *<em>stream</em>,
+  const wchar_t *<em>fmt</em>,
+  va_list <em>arg</em>)</pre><td class="t"><kbd>vfprintf()</kbd><br>В версии С99 к параметру <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>int vfwscanf(
+  FILE * restrict <em>stream</em>,
+  const wchar_t * restrict <em>fmt</em>,
+  va_list <em>arg</em>)</pre><td class="t"><kbd>vfscanf()</kbd><br>(Добавлена в версии С99)
+<tr><td><pre>int vswprintf(
+  wchar_t *<em>str</em>,
+  size_t <em>num</em>,
+  const wchar_t *<em>fmt</em>,
+  va_list <em>arg</em>)</pre><td class="t"><kbd>vsprintf()</kbd><br>Обратите внимание на то, что добавлен параметр <em>num</em>, который ограничивает количество символов, записываемых в массив <em>str</em>. В версии С99 к параметрам <em>str</em> и <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>int vswscanf(
+  const wchar_t * restrict <em>str</em>,
+  const wchar_t * restrict <em>fmt</em>,
+  va_list <em>arg</em>)</pre><td class="t"><kbd>vsscanf()</kbd><br>(Добавлена в версии С99)
+<tr><td><pre>int vwprintf(
+  const wchar_t *<em>fmt</em>,
+  va_list <em>arg</em>)</pre><td class="t"><kbd>vprintf()</kbd><br>В версии С99 к параметру <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>int vwscanf(
+  const wchar_t * restrict <em>fmt</em>,
+  va_list <em>arg</em>)</pre><td class="t"><kbd>vscanf()</kbd><br>(Добавлена в версии С99)
+<tr><td><pre>int wprintf(
+  const wchar_t *<em>fmt</em>,
+  ...)</pre><td class="t"><kbd>printf()</kbd><br>В версии С99 к параметру <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+<tr><td><pre>int wscanf(
+  const wchar_t *<em>fmt</em>,
+  ...)</pre><td class="t"><kbd>scanf()</kbd><br>В версии С99 к параметру <em>fmt</em> применен квалификатор <kbd>restrict</kbd>
+</table>
+<p class="tj">Дополнительно к функциям, показанным в таблице, добавлена следующая функция, ориентированная на работу с двухбайтовыми символами:
+<pre>int fwide(FILE *<em>stream</em>, int <em>how</em>);</pre>
+<p class="tj">Если значение параметра <em>how</em> положительно, функция <kbd>fwide()</kbd> делает поток <em>stream</em> потоком двухбайтовых символов. Если же значение параметра <em>how</em> отрицательно, то функция <kbd>fwide()</kbd> превращает поток <em>stream</em> в поток объектов типа <kbd>char</kbd>. А если значение <em>how</em> равно нулю, на поток <em>stream</em> никакого воздействия не оказывается. Если этот поток уже был ориентирован либо на двухбайтовые, либо на обычные символы, он изменяться не будет. Функция возвращает положительное значение, если поток рассматривается как содержащий двухбайтовые символы. Отрицательное значение возвращается, если он рассматривается как содержащий символы типа <kbd>char</kbd>. В случае, когда поток еще не ориентирован, функция возвращает нуль. Ориентация потока также определяется его первым использованием.
+<hr><a href="../main.htm#19">Содержание</a> | <a href="1901.htm">&lt;&lt;&lt;</a> | <a href="1903.htm">&gt;&gt;&gt;</a>
+
+
+</body>
+</html>

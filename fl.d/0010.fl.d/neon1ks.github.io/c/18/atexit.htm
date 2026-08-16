@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция atexit - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция atexit</h1>
+<pre>
+#inelude &lt;stdlib.h&gt;
+int atexit(void (*<em>func</em>) (void));
+</pre>
+<p class="tj">Функция <kbd>atexit()</kbd> регистрирует функцию, на которую указывает <em>func</em>, как функцию, вызываемую при нормальном завершении программы. (Иными словами, при нормальном завершении программы будет вызвана функция, адресуемая параметром <em>func</em>.) Функция <kbd>atexit()</kbd> возвращает нуль, если задаваемая функция успешно зарегистрирована в качестве функции завершения, а в противном случае она возвращает ненулевое значение.
+<p class="tj">Вообще может быть зарегистрировано до 32 функций завершения, которые будут вызываться в порядке, обратном порядку регистрации (т.е. функция, зарегистрированная последней, выполнится первой).
+<h2>Пример</h2>
+<p class="tj">Эта программа печатает на экране при ее завершении:<pre>Привет здесь</pre>
+<pre>
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+void done(void);
+int main(void)
+{
+  if(atexit(done)) printf("Ошибка в atexit().");
+  return 0;
+}
+void done(void)
+{
+  printf("Привет здесь");
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="exit.htm">exit()</a>  <a href="abort.htm">abort()</a>
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strncmp - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strncmp</h1>
+<pre>
+#include &lt;string.h&gt;
+int strncmp(const char *<em>str1</em>, const char *<em>str2</em>, size_t <em>count</em>);
+</pre>
+<p class="tj">Функция <kbd>strncmp()</kbd> сравнивает в лексикографическом порядке не более <em>count</em> символов из двух строк, заканчивающихся символом конца строки, и возвращает целое значение, зависящее от результата сравнения следующим образом:</p>
+<table class="table table-bordered">
+<tr><th><em>Значение</em><th><em>Результат сравнения</em>
+<tr><td>Меньше нуля<td><em>str1</em> меньше <em>str2</em>
+<tr><td>Нуль<td><em>str1</em> равен <em>str2</em>
+<tr><td>Больше нуля<td><em>str1</em> больше <em>str2</em>
+</table>
+<p class="tj">Если в какой-нибудь из заданных строк меньше <em>count</em> символов, сравнение заканчивается при обнаружении первого нулевого символа.
+<h2>Пример</h2>
+<p class="tj">Следующая функция сравнивает первые восемь символов двух своих аргументов, взятых из командной строки, и выдает сообщение в случае их равенства.
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+int main(int argc, char *argv[])
+{
+  if(argc!=3) {
+    printf("Неверное количество аргументов.");
+    exit(1);
+  }
+  if(!strncmp(argv[1], argv[2], 8))
+    printf("Строки одинаковые.\n");
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strcmp.htm">strcmp()</a>  <a href="https://neon1ks.github.io/c/14/strnchr.htm">strnchr()</a>  <a href="strncpy.htm">strncpy()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

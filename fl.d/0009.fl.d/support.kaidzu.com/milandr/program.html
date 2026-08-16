@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Прошивка микроконтроллера К1986ВЕ92QI через UART и SWD</title>
+<meta name='description' content='Прошивка микроконтроллера К1986ВЕ92QI на отладочной плате LDM-K1986BE92QI через UART и SWD с использованием ST-LINK'><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='../c/main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='../cpp/main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='../python/main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='keil.html' class = "row_a">1 Настройка Keil</a><br><a href='program.html' class = "row_a sel">2 Прошивка МК</a><br><a href='bit_operation.html' class = "row_a">3 Битовые операции</a><br><a href='gpio.html' class = "row_a">4 GPIO</a><br><a href='interrupt.html' class = "row_a">5 Прерывания</a><br><a href='clock.html' class = "row_a">6 Тактирование</a><br><a href='uart.html' class = "row_a">7 UART</a><br></div>
+<div id=storage_content>
+<h1>Прошивка микроконтроллера К1986ВЕ92QI через UART и SWD с использованием ST-LINK</h1>
+<p> Отладочная плата <a href='https://ldm-systems.ru/product/19002' target = _blank >LDM-K1986BE92QI</a> содержим микроконтроллер Миландр К1986ВЕ92QI (или MDR32F9Q2I). Способы прошивки МК (загрузки прошивки в ПЗУ) описаны в разделе 8 <a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Spec_Seriya_1986BE9x.pdf' target = _blank >спецификации</a>. Рассмотрим 2 способа прошивки микроконтроллера на данной плате.
+
+<h2>Прошивка микроконтроллера Миландр с помощью COM-порта</h2>
+<p>Для прошивки с помощью СОМ-порта не требуются внешние программаторы. 
+<p>Прошивкой с помощью СОМ-порта можно оживить микроконтроллер если, например, заблокированы ПО выводы JTAG (SWD) и прошивка программатором становится невозможной. 
+<p> При прошивке с помощью COM порта МК ожидает загрузки кода с интерфейса UART и запуск любого некорректного кода из других мест недоступен.
+<p> Для программирования МК через UART необходимо выполнить следующие действия:<br>
+
+<p>1) Подключить mini-USB кабель к верхнему левому соединителю на отладочной плате LDM-K1986BE92QI, он подписан как "USB A USB UART". Включить питание платы и убедиться что в ОС Windows в диспетчере устройств. При необходимости установить <a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/CP210x_VCP_Windows.zip' target = _blank >драйвер USB-UART</a>. В соответствии с рисунком 1, в системе подключенная отладочная плата должна определиться как СОМ-порт, например, на рисунке 1 это COM6, вы должны запомнить свой номер; <br>
+
+<img src='https://support.kaidzu.com/milandr/\public\img\storage\milandr\2_1_uart.png'><br>
+<p>Рисунок 1. Подключенная к ПК отладочная плата (к соединителю USB-A) должна определиться как COM-порт. <br>
+
+<p>2) На отладочной плате LDM-K1986BE92QI выставляем тремя большими черными переключателями с подписью "UDM mode M2...M0 101" значение 101, это крайние переключатели вверх, средний вниз. Когда переключатель включен вверх над ним загорается соответствующий светодиод. Данные переключатели определяют откуда будет загружаться программа МК.
+
+<p>3) Открываем программу <a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/USB-UART_Download.zip' target = _blank >USB-UART загрузчик</a> и устанавливаем путь к прошивке *.hex, параметры COM-порта и режимы загрузки в соответствии с рисунком 2.<br>
+
+<img src='https://support.kaidzu.com/milandr/\public\img\storage\milandr\2_2_1986WSD.png'><br>
+<p>Рисунок 2. Настройки программы 1986WSD для прошивки МК через UART (COM-порт).
+
+<p>4) Нажимаем кнопку "Start+Run" должна зашиться в МК прошивка, он должен автоматически стартовать и загрузиться с ней. У меня получается успешно прошить далеко не с первого раза, если не помогает, нужно нажать кнопку с надписью "RESET" на отладочной плате (или выключить и включить питание кнопкой питания) и затем кнопку "Start+Run" в ПО 1986WSD. На рисунке 3 ниже показано неудачная и удачная прошивка МК.<br>
+
+<img src='https://support.kaidzu.com/milandr/\public\img\storage\milandr\2_3_program.png'><br>
+<p>Рисунок 3. Примеры неудачной и удачной прошивки МК.
+
+<p> После успешной прошивки МК должен моргать светодиод VD5 на отладочной плате LDM-K1986BE92QI<br>
+
+
+<h2>Прошивка микроконтроллера Миландр с помощью SWD и ST-Link</h2>
+<p> Более продвинутый способ прошивки МК чем через интерфейс UART является прошивка через интерфейс JTAG или SWD, дающие следующие преимущества в сравнении с использованием UART: <br>
+1) Прошивка МК занимает гораздо меньше времени, так как SWD, по умолчанию работают на частоте 4 МБит/сек, а UART 115200 Бит/сек.<br>
+2) Прошивка происходит прямо из среды разработки Keil, нажимаем клавишу F7 для сборки проекта и клавишу F8 для прошивки МК - бинго! <br>
+<p>Для подключения интерфейса JTAG необходимо подключить к программатору 6 проводов, а для подключения интерфейса SWD всего 3 провода. Поэтому мы будем использовать интерфейс SWD и один из самых распространенных и дешевых отладчиков и программаторов ST-Link, приведенный на рисунке 4. <br>
+
+<img src='https://support.kaidzu.com/milandr/\public\img\storage\milandr\2_5_st-link.png'><br>
+<p>Рисунок 4. Программатор ST-Link для прошивки и отладки микроконтроллеров Миландр через интерфейс JTAG или SWD (цвет корпуса может быть любым).
+
+<p>После подключения ST_LINK к ПК и установке драйверов он должен быть отображен в диспетчере устройств в соответствии с рисунком 5.<br>
+<img src='https://support.kaidzu.com/milandr/\public\img\storage\milandr\2_7_st_lilk_device.png'><br>
+<p>Рисунок 5. ST_LINK в диспетчере устройств Windows. 
+
+<p> У МК К1986ВЕ92QI два JTAG(SWD) интерфейса. Приведем таблицу с необходимыми соединениями отладчика и МК (отладочной платы LDM-K1986BE92QI). <br>
+<table>
+<tr><th>ST-Link <th>JTAG A <br> UDM MODE[2:0] = 001<th>JTAG B <br> UDM MODE[2:0] = 000
+<tr><td>SWCLK <br>(вывод 2) <td>TCK <br> (вывод 9 XS5) <td>TCK <br> (вывод 9 XS6) 
+<tr><td>SWDIO <br>(вывод 4) <td>TMS <br> (вывод 7 XS5) <td>TMS <br> (вывод 7 XS6) 
+<tr><td>GND <br>(вывод 6) <td>GND <br> (вывод 4, 6, 8, 10, 12, 14, 16, 18, 20 XS5) <td>GND <br> (вывод 4, 6, 8, 10, 12, 14, 16, 18, 20 XS6) 
+</table>
+<p> Нумерация выводов соединителей на отладочной плате LDM-K1986BE92QI приведено на рисунке 5. <br>
+
+<img src='https://support.kaidzu.com/milandr/\public\img\storage\milandr\2_6_pinout.png'><br>
+<p>Рисунок 6. Нумерация соединителей и выводов на отладочной плате LDM-K1986BE92QI. 
+
+<p>Следует учитывать что выводы связанные с интерфейсами JTAG (SWD) также являются портами ввода-вывода и ряда периферийных устройств и нужно решать что использовать -  JTAG (SWD) или периферию.
+
+<p>Заблокировать порты JTAG (SWD) можно если писать в их порты не единицы, что указано во втором абзаце пункта 16 <a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Spec_Seriya_1986BE9x.pdf' target = _blank >спецификации</a> микроконтроллеров серии 1986ВЕ9х и К1986ВЕ9х. Так, например, используя для прошивки МК интерфейс SWD от JTAG A мы блокируем только порты PB2 (TCK) и PB1 (TMS), но ниже приведенная запись в порт PB0, который не используется в SWD сделает невозможной дальнейшую прошивку или отладку.<br>
+
+<pre class='language-C'><code>
+MDR_PORTB-&gt;RXTX ^= (1 &lt;&lt; 0); // Запись в PB0 заблокирует SWD использующий PB1 и PB2 т.к. если в них были при чтении регистра 1, то и записываться будут 1 - ЧТО ЗАПРЕЩЕНО!
+</code></pre>
+
+<p> Если такое произошло, исправляем программу, переключаем UDM MODE в UART (101) и перешиваем МК через UART. А что? Дурак и должен жить плохо!
+<p> Перепишем нашу программу с учетом защиты SWD от блокировок.
+
+<pre class='language-C'><code>
+#include &quot;MDR32F9Q2I.h&quot;
+
+#define PIN_LED 3	// Номер вывода светодиода
+
+int main (void){
+  uint32_t val_b; // Переменная для хранения значения регистра B
+  for(int i = 0; i &lt; 1000000; i++){} // Задержка	которая даст нам время на прошивку через SWD, код блокирующий интерфейс может быть только дальше
+  
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 22); // Разрешение тактирования порта B (п.14.7.8)
+
+// Инициализация вывода со светодиодом, порта B как выхода.
+  MDR_PORTB-&gt;OE |= (1 &lt;&lt; PIN_LED); // Вывод является выходом (п.16.1.2). Обязательно устанавливать в 1.
+  MDR_PORTB-&gt;ANALOG |= ((1 &lt;&lt; PIN_LED)); // Режим работы - цифровой (п.16.1.4) Обязательно устанавливать в 1.
+  MDR_PORTB-&gt;PWR |= (1 &lt;&lt; PIN_LED * 2); // Включить передатчик. Скорость фронта вывода - медленная (п.16.1.7). Обязательно устанавливать в 1, 2 или 3.
+	
+  	
+  while(1){
+    for(int i = 0; i &lt; 100000; i++){} // Задержка
+      
+    val_b = MDR_PORTB-&gt;RXTX; // Считываем значение регистра B
+    val_b &amp;= ~((1u &lt;&lt; 1) | (1u &lt;&lt; 2)); // Сбросить 1й и 2й бит в 0 (выводы SWD PB1 и PB2)
+    val_b ^= (1 &lt;&lt; PIN_LED); // Инвертировать значение бита порта B со светодиодом 
+    MDR_PORTB-&gt;RXTX = val_b; // Записываем значение в регистр. Теперь мы уверены что в PB1 и PB2 будут писаться нули, независимо от того что в них было при чтении.
+  }
+}
+</code></pre>
+
+<p> Выше приведен пример программы с мигающим светодиодом и защиты порта SWD (JTAG A) от блокировки. Тут применено 2 вида защиты: <br>
+1) Сразу в начале функции main() идет задержка перед любым кодом и возможным блокированием порта SWD, дающая пару секунд на нажатие клавиши F8 (прошивки МК). Из минусов на те же пару секунд задерживается выполнение программы при старте.<br>
+2) В цикле while() применено принудительное зануление значений битов соответствующих SWD. Из минусов -  код более громоздкий и медленный, но -  всё чего-то стоит..<br>
+Поменяем бит со светодиодом на 2
+
+<pre class='language-C'><code>
+#define PIN_LED 3	// Номер вывода светодиода
+</code></pre>
+Компилируем прошиваем. Теперь мы точно блокируем вывод PB2(TCK) и интерфейс SWD. <br>
+Пробуем еще раз прошить МК - и у нас ничего не получается!<br>
+Нажимаем на отладочной плате кнопку RESET (в нижнем правом углу) и сразу же нажимаем F8 - должен успешно прошиться МК и таким образом работает защита №1.<div id=storage_date>  2024-04-28</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="program.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="clock.html" class = "row_a">Управление тактовой частотой микроконтроллера Миландр К1986ВЕ92QI (MDR32F9Q2I) </a> <br><a href="gpio.html" class = "row_a">Работа с портами ввода-вывода (GPIO) микроконтроллера Миландр на CMSIS</a> <br><a href="interrupt.html" class = "row_a">Прерывания в микроконтроллерах Миландр. Системный таймер.</a> <br><a href="keil.html" class = "row_a">Настройка среды разработки для микроконтроллеров Миландр (К1986ВЕ92QI)</a> <br><a href="program.html" class = "row_a sel">Прошивка микроконтроллера К1986ВЕ92QI на отладочной плате LDM-K1986BE92QI через UART и SWD с использованием ST-LINK</a> <br><a href="uart.html" class = "row_a">Работа с UART микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) </a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/milandr/program' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

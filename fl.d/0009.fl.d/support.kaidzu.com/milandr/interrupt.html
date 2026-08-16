@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Прерывания в микроконтроллерах Миландр. Системный таймер.</title>
+<meta name='description' content='Прерывания в микроконтроллерах Миландр. Системный таймер.'><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='../c/main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='../cpp/main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='../python/main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='keil.html' class = "row_a">1 Настройка Keil</a><br><a href='program.html' class = "row_a">2 Прошивка МК</a><br><a href='bit_operation.html' class = "row_a">3 Битовые операции</a><br><a href='gpio.html' class = "row_a">4 GPIO</a><br><a href='interrupt.html' class = "row_a sel">5 Прерывания</a><br><a href='clock.html' class = "row_a">6 Тактирование</a><br><a href='uart.html' class = "row_a">7 UART</a><br></div>
+<div id=storage_content>
+<h1>Прерывания в микроконтроллерах Миландр. Системный таймер.</h1>
+<p>На примере микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) и отладочной платы <a href='https://ldm-systems.ru/product/19002' target = _blank >LDM-K1986BE92QI</a> рассмотрим применение прерываний и системного таймера, описанных в пунктах 12, 29 и 30 <a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Spec_Seriya_1986BE9x.pdf' target = _blank >спецификации на МК</a>. 
+<p>В предыдущих примерах мы моргали светодиодом делая задержку пустым вращением цикла for. Это не есть хорошо, так как ресурсы процессора можно и нужно использовать для более полезных вещей.
+<p>Тут нам на помощь приходят прерывания - механизм вызова функции, которая вызывается по каким-то внешним или внутренним событиям. Таким образом, до прихода события, процессор может заниматься выполнением полезной работы, как только событие произойдет, процессор сохраняет свой контекст (значения) и выполняет функцию прерывания. По завершении выполнения функции прерывания, процессор продолжает выполнять свою полезную работу, как будто ничего его и не прерывало (ну кроме задержки на выполнения функции прерывания).
+<p> Для включения механизма прерываний нужно:<br>
+1) Вызывать функцию NVIC_EnableIRQ(), в качестве единственного параметра которой передать ей одно из предопределенных макроопределений с индексом прерывания.<br>
+2) Определить функцию предопределенного обработчика прерываний. <br>
+3) Настроить периферию МК, в приведенном ниже коде примера, это делается в функции init_SysTick() и там же выполняется пункт 1 - вызов NVIC_EnableIRQ().
+<p>Алгоритм поиска нужных наименований:<br>
+1) Вариант 1. В IDE Keil нажать Ctrl + F и в появившемся диалоговом окне поиска в поле "Find what:" вставить SysTick_IRQn, а в поле "Look in" выбрать в списке "Current Project"  и нажимая кнопку "Find Next" поискать рядом подходящие прерывания и обработчики. Повторить поиск для "SysTick_Handler".<br>
+2) Вариант2. Воспользоваться таблицей ниже.
+
+<p> Таблица 1. Наименования для вызова всех имеющихся прерываний МК К1986ВЕ92QI (MDR32F9Q2I). <br>
+<table>
+<tr><th>id <th>Макроопределение прерывания<br> параметр NVIC_EnableIRQ() <th>Функция обработчика прерывания
+<tr><td> <td>  <td>__initial_sp             
+<tr><td> <td>  <td>Reset_Handler           
+<tr><td> -14  <td>NonMaskableInt_IRQn <td>NMI_Handler           
+<tr><td> -13  <td>HardFault_IRQn <td>HardFault_Handler     
+<tr><td> -12  <td>MemoryManagement_IRQn <td>MemManage_Handler     
+<tr><td> -11  <td>BusFault_IRQn <td>BusFault_Handler      
+<tr><td> -9 (-10?)  <td>UsageFault_IRQn <td>UsageFault_Handler     
+<tr><td> -5  <td>SVCall_IRQn <td>SVC_Handler            
+<tr><td> -4  <td> <td>DebugMon_Handler       
+<tr><td> -2  <td>PendSV_IRQn <td>PendSV_Handler         
+<tr><td> -1  <td>SysTick_IRQn <td>SysTick_Handler        
+<tr><td> 0  <td>CAN1_IRQn <td>CAN1_IRQHandler         
+<tr><td> 1  <td>CAN2_IRQn <td>CAN2_IRQHandler         
+<tr><td> 2  <td>USB_IRQn <td>USB_IRQHandler          
+<tr><td> 5  <td>DMA_IRQn <td>DMA_IRQHandler          
+<tr><td> 6  <td>UART1_IRQn <td>UART1_IRQHandler        
+<tr><td> 7  <td>UART2_IRQn <td>UART2_IRQHandler        
+<tr><td> 8  <td>SSP1_IRQn <td>SSP1_IRQHandler         
+<tr><td> 10  <td>I2C_IRQn <td>I2C_IRQHandler         
+<tr><td> 11  <td>POWER_IRQn <td>POWER_IRQHandler       
+<tr><td> 12  <td>WWDG_IRQn <td>WWDG_IRQHandler        
+<tr><td> 14  <td>Timer1_IRQn <td>Timer1_IRQHandler      
+<tr><td> 15  <td>Timer2_IRQn <td>Timer2_IRQHandler      
+<tr><td> 16  <td>Timer3_IRQn <td>Timer3_IRQHandler     
+<tr><td> 17  <td>ADC_IRQn <td>ADC_IRQHandler        
+<tr><td> 19  <td>COMPARATOR_IRQn <td>COMPARATOR_IRQHandler 
+<tr><td> 20  <td>SSP2_IRQn <td>SSP2_IRQHandler       
+<tr><td> 27  <td>BACKUP_IRQn <td>BACKUP_IRQHandler      
+<tr><td> 28  <td>EXT_INT1_IRQn <td>EXT_INT1_IRQHandler    
+<tr><td> 29  <td>EXT_INT2_IRQn <td>EXT_INT2_IRQHandler   
+<tr><td> 30  <td>  <td>EXT_INT3_IRQHandler   
+<tr><td> 31  <td>EXT_INT4_IRQn <td>EXT_INT4_IRQHandler   
+</table>
+
+<p>Пример программы использующей прерывание по системному таймеру для моргания светодиодом.<br>
+
+<pre class='language-C'><code>
+// Моргаем светодиодом по прерыванию
+#include &quot;MDR32F9Q2I.h&quot; // Заголовок с наименованиями CMSIS
+
+#define PIN_LED 3	// Номер вывода светодиода
+#define PORT_LED MDR_PORTB	// Порт светодиода
+
+void SysTick_Handler(void); // Прототип обработчика прерывания (чтобы убрать предупреждения Keil)
+
+static void init_GPIO(void){ // Инициализация порта
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 22); // Разрешение тактирования порта B (п.14.7.8)
+
+  PORT_LED-&gt;OE |= (1 &lt;&lt; PIN_LED); // Вход или выход. 0 - вход, 1 - выход (п.16.1.2)
+  PORT_LED-&gt;ANALOG |= (1 &lt;&lt; PIN_LED); // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_LED-&gt;PWR |= (1 &lt;&lt; PIN_LED * 2); // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+}
+
+static void init_SysTick(void){ // Инициализация системного таймера SysTick  
+  SysTick-&gt;CTRL = ( // Параметры системного таймера (п.12.1.1)
+     (1 &lt;&lt; 0x00) // Работа таймера. 0 - отключен, 1 - включен 
+    |(1 &lt;&lt; 0x01) // Разрешение прерывания по достижению счетчика. 0 - запрещено, 1 - разрешено
+    |(1 &lt;&lt; 0x02) // Источник тактового сигнала. 0 - LSI (внутренний RC 40 кГц), 1 - HCLK (системная частота)
+  ); 
+  SysTick-&gt;LOAD = 8000000 - 1; // Загружаем значение счетчика (для 1 секунды, исходя из тактовой частоты 8 МГц) (п.12.1.2)
+  
+  NVIC_EnableIRQ(SysTick_IRQn); // Разрешаем прерывание от SysTick
+}
+
+int main(void)
+{
+  init_GPIO(); // Инициализация порта
+  init_SysTick(); // Инициализация системного таймера SysTick 
+
+  while(1){ // Основной бесконечный цикл. В нем делаем полезную работу.
+    
+  }
+}
+
+void SysTick_Handler(void){ // Обработчик прерывания
+  PORT_LED-&gt;RXTX ^= (1 &lt;&lt; PIN_LED); // Инвертировать значение вывода (п.16.1.1)
+}
+</code></pre>
+
+<h2>Обработка нескольких временных отсчетов с помощью одного таймера</h2>
+<p> На практике, в программе, требуются множество различных временных отсчетов, а таймеров в МК не так много. Один из подходов это настроить таймер на достаточно маленький отсчет времени, например 1 мс, а в обработчике прерывания таймера проверять требуемые отсчеты времени использую счетчики или операцию деления по модулю.
+<p> В программе ниже я приведу оба этих метода. Следует помнить что в часе 3600 секунд, а в сутках 3600 * 24 = 86 400 секунд (или  86 400 000 миллисекунд). Максимальное значение счетчика типа unsigned int 4 294 967 295 и примерно через 49 суток непрерывной работы ПО возникнет переполнение счетчика - переход через максимальное значение и опять счет от нуля, в этот момент времени могут возникать неправильные интервалы времени. А при использовании в ПО значений счетчика, с последующим их вычитанием для получения интервала времени и более грубые ошибки.
+
+<pre class='language-C'><code>
+// Моргаем четырьмя светодиодами с разной частотой по прерыванию системного таймера
+#include &quot;MDR32F9Q2I.h&quot; // Заголовок с наименованиями CMSIS
+
+// Макроопределения портов и выводов светодиодов. Если нужно будет их поменять, это достаточно будет сделать здесь, а не лазить по всему коду.
+#define PIN_LED_1 0	// Номер вывода светодиода 1
+#define PORT_LED_1 MDR_PORTB	// Порт светодиода 1
+#define PIN_LED_2 1	// Номер вывода светодиода 2
+#define PORT_LED_2 MDR_PORTB	// Порт светодиода 2
+#define PIN_LED_3 2	// Номер вывода светодиода 3
+#define PORT_LED_3 MDR_PORTB	// Порт светодиода 3
+#define PIN_LED_4 3	// Номер вывода светодиода 4
+#define PORT_LED_4 MDR_PORTB	// Порт светодиода 4
+
+static uint32_t systick_counter = 1; // Счетчик миллисекунд. Ставим в 1 чтобы не было срабатывания при опереции % в первом прерывании. 
+const static uint16_t TIME_LED_1 = 100; // Через сколько миллисекунд менять цвет светодиода 1
+const static uint16_t TIME_LED_2 = 230; // Через сколько миллисекунд менять цвет светодиода 2
+const static uint16_t TIME_LED_3 = 410; // Через сколько миллисекунд менять цвет светодиода 3
+const static uint16_t TIME_LED_4 = 670; // Через сколько миллисекунд менять цвет светодиода 4
+
+void SysTick_Handler(void); // Прототип обработчика прерывания (чтобы убрать предупреждения Keil)
+
+static void init_GPIO(void){ // Инициализация порта
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 22); // Разрешение тактирования порта B (п.14.7.8)
+
+  PORT_LED_1-&gt;OE |= (1 &lt;&lt; PIN_LED_1); // Вход или выход. 0 - вход, 1 - выход (п.16.1.2)
+  PORT_LED_1-&gt;ANALOG |= (1 &lt;&lt; PIN_LED_1); // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_LED_1-&gt;PWR |= (1 &lt;&lt; PIN_LED_1 * 2); // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+  
+  PORT_LED_2-&gt;OE |= (1 &lt;&lt; PIN_LED_2); // Вход или выход. 0 - вход, 1 - выход (п.16.1.2)
+  PORT_LED_2-&gt;ANALOG |= (1 &lt;&lt; PIN_LED_2); // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_LED_2-&gt;PWR |= (1 &lt;&lt; PIN_LED_2 * 2); // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+  
+  PORT_LED_3-&gt;OE |= (1 &lt;&lt; PIN_LED_3); // Вход или выход. 0 - вход, 1 - выход (п.16.1.2)
+  PORT_LED_3-&gt;ANALOG |= (1 &lt;&lt; PIN_LED_3); // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_LED_3-&gt;PWR |= (1 &lt;&lt; PIN_LED_3 * 2); // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+  
+  PORT_LED_4-&gt;OE |= (1 &lt;&lt; PIN_LED_4); // Вход или выход. 0 - вход, 1 - выход (п.16.1.2)
+  PORT_LED_4-&gt;ANALOG |= (1 &lt;&lt; PIN_LED_4); // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_LED_4-&gt;PWR |= (1 &lt;&lt; PIN_LED_4 * 2); // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+}
+
+static void init_SysTick(void){ // Инициализация системного таймера SysTick  
+  SysTick-&gt;CTRL = ( // Параметры системного таймера (п.12.1.1)
+     (1 &lt;&lt; 0x00) // Работа таймера. 0 - отключен, 1 - включен 
+    |(1 &lt;&lt; 0x01) // Разрешение прерывания по достижению счетчика. 0 - запрещено, 1 - разрешено
+    |(1 &lt;&lt; 0x02) // Источник тактового сигнала. 0 - LSI (внутренний RC 40 кГц), 1 - HCLK (системная частота)
+  ); 
+  SysTick-&gt;LOAD = 8000 - 1; // Загружаем значение счетчика (для 1 миллисекунды, исходя из тактовой частоты 8 МГц) (п.12.1.2)
+  
+  NVIC_EnableIRQ(SysTick_IRQn); // Разрешаем прерывание от SysTick
+}
+
+int main(void)
+{
+  init_GPIO(); // Инициализация порта
+  init_SysTick(); // Инициализация системного таймера SysTick 
+
+  while(1){ // Основной бесконечный цикл. В нем делаем полезную работу.
+    
+  }
+}
+
+void SysTick_Handler(void){ // Обработчик прерывания
+  static uint16_t cnt_led_1 = 0; // Счетчик миллисекунд для светодиода 1
+  static uint16_t cnt_led_2 = 0; // Счетчик миллисекунд для светодиода 2
+  
+  cnt_led_1++; // Инкрементируем счетчик светодиода 1
+  cnt_led_2++; // Инкрементируем счетчик светодиода 2
+  
+  if(cnt_led_1 == TIME_LED_1){ // Настало время смены цвета светодиода 1
+    PORT_LED_1-&gt;RXTX ^= (1 &lt;&lt; PIN_LED_1); // Меняем цвет светодиода 1 (п.16.1.1)
+    cnt_led_1 = 0; // Сбрасываем счетчик
+  }
+  
+  if(cnt_led_2 == TIME_LED_2){ // Настало время смены цвета светодиода 2
+    PORT_LED_2-&gt;RXTX ^= (1 &lt;&lt; PIN_LED_2); // Меняем цвет светодиода 2 (п.16.1.1)
+    cnt_led_2 = 0; // Сбрасываем счетчик
+  }
+  
+  if(systick_counter % TIME_LED_3 == 0){ // Настало время смены цвета светодиода 3
+    PORT_LED_3-&gt;RXTX ^= (1 &lt;&lt; PIN_LED_3); // Меняем цвет светодиода 3 (п.16.1.1)
+  }
+  
+  if(systick_counter % TIME_LED_4 == 0){ // Настало время смены цвета светодиода 3
+    PORT_LED_4-&gt;RXTX ^= (1 &lt;&lt; PIN_LED_4); // Меняем цвет светодиода 3 (п.16.1.1)
+  }
+  
+  systick_counter++; // Инкрементируем счетчик миллисекунд
+}
+</code></pre><div id=storage_date>  2024-04-26</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="interrupt.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="clock.html" class = "row_a">Управление тактовой частотой микроконтроллера Миландр К1986ВЕ92QI (MDR32F9Q2I) </a> <br><a href="gpio.html" class = "row_a">Работа с портами ввода-вывода (GPIO) микроконтроллера Миландр на CMSIS</a> <br><a href="interrupt.html" class = "row_a sel">Прерывания в микроконтроллерах Миландр. Системный таймер.</a> <br><a href="keil.html" class = "row_a">Настройка среды разработки для микроконтроллеров Миландр (К1986ВЕ92QI)</a> <br><a href="program.html" class = "row_a">Прошивка микроконтроллера К1986ВЕ92QI на отладочной плате LDM-K1986BE92QI через UART и SWD с использованием ST-LINK</a> <br><a href="uart.html" class = "row_a">Работа с UART микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) </a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/milandr/interrupt' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

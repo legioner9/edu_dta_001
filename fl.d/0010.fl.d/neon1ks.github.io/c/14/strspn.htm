@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strspn - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strspn</h1>
+<pre>
+#include &lt;string.h&gt;
+size_t strspn(const char *<em>str1</em>, const char *<em>str2</em>);
+</pre>
+<p class="tj">Функция <kbd>strspn()</kbd> возвращает длину начальной подстроки строки, адресуемой параметром <em>str1</em>, которая состоит только из символов, содержащихся в строке, адресуемой параметром <em>str2</em>. Другими словами, функция <kbd>strspn()</kbd> возвращает индекс первого символа в строке <em>str1</em>, который не совпадает ни с одним из символов в строке <em>str2</em><sup><a href="strspn.htm#11" id="1">[1]</a></sup>.
+<h2>Пример</h2>
+<p class="tj">Эта программа выводит число <pre>11</pre>
+<pre>
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  int len;
+  len = strspn("это строка из примера", "акортэ с");
+  printf("%d", len);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strpbrk.htm">strpbrk()</a>  <a href="strrchr.htm">strrchr()</a>  <a href="strstr.htm">strstr()</a>  <a href="strtok.htm">strtok()</a>
+<p><img src="../work/sup.bmp" alt="----------">
+<blockquote>
+<p class="tj"><sup><a href="strspn.htm#1" id="11">[1]</a></sup>Или (что то же самое) функция <kbd>strspn()</kbd> возвращает индекс первого символа в строке <em>str1</em>, который не входит в строку <em>str2</em>.
+</blockquote>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

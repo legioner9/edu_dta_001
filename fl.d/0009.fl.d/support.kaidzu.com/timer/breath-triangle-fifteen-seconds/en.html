@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../../public/css/timer.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+
+<script>
+var data_lang = [
+'Start',
+'Stop',
+'Pause',
+'Pause in',
+'Start in',
+'continued in',
+'completion in',
+'Proceed',
+'Enter the name of the task to save',
+'Task drawing',
+'Direct countdown',
+'Countdown',
+'<td>Hour<td>Min<td>Sec<td>Font<td>Dir<td>Pic<td>Sound<td>Knock<td>Name<td>Contr<td>Repeat<td>Round',
+'My timer',
+'Are you sure you want to permanently delete the timer?',
+'Add task',
+'No',
+'Move below',
+'Move higher',
+'Delete task',
+'Apply to task',
+];
+</script> 
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../../public/js/jscolor.js'></script>
+<script src='../../public/js/timer.js%3Fv=1.079'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Breathing in a triangle online with an interval of 15 seconds.</title>
+<meta name='description' content='Breathing triangle online for 15 seconds. Timer with sound counts and comments.'><link href='../../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Main page' href='../../en.html'><img src='../../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Timers' href='../en.html'><img src='../../public/img/timer.svg' alt='timer'>Timers</a><a id='menu_ru' title='Russian version of the site' href='../dyhanie-treugolnikom-pyatnadcat-sekund.html'><img src='../../public/img/flag_ru.svg' alt='Russian flag'>Ru</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><h1>Breathing in a triangle online with an interval of 15 seconds.</h1><span id = 'timer_template_text'>
+1) Click the big green <b> Start </b> button at the bottom of the page. <br>
+2) Follow the prompts and countdown on the screen: <br>
+3) Uniform inhalation for 15 seconds; <br>
+4) Holding the breath for 15 seconds; <br>
+5) Uniform exhalation for 15 seconds. <br>
+6) Repeat steps 3-5 10 times, following the on-screen directions and audio counts. <br>
+7) Feel the surge of strength and energy! <br>
+<img src='../../public/img/timer/triangle_en.svg' alt='Breathing in a triangle'>
+</span><div id='task_image_container'></div>
+<form id='timer_form'>
+<input type='hidden' id='timer_id' name='timer_id' value='11'><table id='timeset'>
+    <tr>
+        <td><input id='hour_value' name='hour' type='number' max='24' min='0'  value='00' title='Set the timer clock value'><br>
+            Hours<br>
+            <input id='hour_visible' name='hour_visible' type='checkbox' title='Show hour'><br><br>
+        <td><input id='minute_value' name='minutes' type='number' max='60' min='0'  value='00' title='Setting the timer minute value'>
+            <br>Minutes<br>
+            <input id='minute_visible' type='checkbox' checked title='Show minutes'><br><br>
+        <td><input id='second_value' name='second' type='number' max='60' min='0'  value='04' title='Setting the timer seconds'>
+            <br>Seconds<br>
+            <input id='second_visible' type='checkbox' checked title='Show seconds'><br><br>
+        <td><input id='font_size' name='font_size' type='number' max='3000' min='10'  value='700' title='Timer font size'> 
+            <br>Font %<br>
+            <input type='checkbox' name='forward' checked id='forward' title='Direct or countdown'>
+            <label for='forward' id='forward_text'>Direct countdown</label>
+	<tr>
+		<td><input class='jscolor' id='hour_color' value='b00000' title='Watch color'>
+		<td><input class='jscolor' id='minute_color' value='00b000' title='Minute color'>
+		<td><input class='jscolor' id='second_color' value='0000b0' title='Seconds color'>
+        <td id='timer_btn_add_picture'>Task drawing	<tr>
+		<td>
+            <input id='tick_repeat' name='flick' type='number' max='1000' min='0' value='2' title='Task drawing'>
+        <td>Number of knocks		<td>
+			<select id='tick_sound' class='flick' title='Sound tick'>
+				<option value='Tick'>Knock</option>
+				<option value='Tick1'>Knock1</option>
+				<option value='Tick2'>Knock2</option>
+				<option value='Tick3'>Knock3</option>
+				<option value='Whistle'>Whistling</option>
+				<option value='Whistle2'>Whistling1</option>
+			</select>
+        <td><img src='../../public/img/play.svg' id='flick_btn' class='icon' title='Listen to the knock'>
+			<label for='tick_sound' class='flick'>Knock before task end</label>	
+	<tr>
+		<td><input id='task_name' title='Task name' value=''><br>
+		<td>Task name        <td id='sound_container' title='Alarm'>
+			<select id='sound' name='sound'>
+				<option value='0'>Soundless</option>
+				<option value='Clock' >Watch</option>
+				<option value='Message'>Message</option>
+				<option value='Ring' >Call</option>
+				<option value='Ring1' >Call1</option>
+				<option value='Ring3' >Gong</option>
+				<option value='Ring2' >Gong1</option>
+				<option value='Sound' >Melody</option>
+				<option value='Sound1' >Melody1</option>
+				<option value='Sound2' >Melody2</option>
+				<option value='Sound3' >Melody3</option>
+				<option value='Sound4' >Melody4</option>
+				<option value='Tweeters'>Twitter</option>
+				<option value='Whistle1' selected>Whistle</option>
+				<option value='Count'>Count</option>
+				<option value='Count5'>Count x5</option>
+				<option value='Count10'>Count x10</option>
+			</select>
+		<td><img src='../../public/img/play.svg' id='sound_btn' class='icon' title='Task completion sound'>
+            <span id='tick_player_container'><audio id='tick_player' src='../../public/sound/Tick.mp3'></audio></span>
+        <label for='sound'>Task completion sound</label>
+    <tr>
+        <td id='task_repetitions_container'>
+            <input id='task_repeat' name='task_repeat' type='number' max='1000' min='1'  value='1' title='The number of task repetitions'>      
+        <td>Task repetitions        <td><select  id='task_group' name='task_group' title='Group previous tasks'>
+            <option value='0' selected>No grouping</option>
+            </select>
+		<td>Group previous tasks    <tr>
+		<td colspan='4'><input type='button' id='task_btn' value='Add task' title='Добавляет задачу в таблицу для выполнения'>	
+    <tr><td id="all_repetitions_container">
+            <input id='all_repeat' name='all_repeat' type="number" max="1000" min="1"  value="1" title="Round">       
+        <td><label for='all_repeat'>Round</label> 
+        <td>
+        <td>
+    <tr><td colspan='3'><input type='text' id='timers_name_input' value='Дыхание треугольником 15 секунд'>
+    <td>Timers name    <tr><td colspan='4'><span id='save_img_container' title='Save tasks to your profile'>
+        <img src='../../public/img/save.svg' class='icon' alt='save_picture'>Save        </span>
+</table>
+    <span id="timer_save_msg"></span>
+    <div id="task_table_container"></div>
+	<input type=hidden id=hid value='251218144'>    <div id="timer_text_container"></div>
+	<div id="timer_img_container"></div>
+	<div id="time">
+		<span id='hour_digit'></span><span id='minute_digit'></span><span id='second_digit'></span>
+	</div>
+    <div id="bar_container"><div id="bar"></div></div>
+	<input type="button" value='Start' class='time_control' id='start_btn' title='Запустить таймер'>
+	<audio id='end_player' src='../../public/sound/Whistle1.mp3'></audio>
+</form>
+	<div id='endform'></div>
+	<div id='info'></div>
+	<br><br><hr>
+<div id ='description'>
+</div>
+    
+
+<br><b><i>Понравилась страница? <br><a href="en.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=en></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+
+<script>
+obj = JSON.parse('{"0":{"hour_value":"00","minute_value":"00","second_value":"15","font_size":"700","hour_visible":false,"minute_visible":false,"second_visible":true,"forward":true,"hour_color":"B00000","minute_color":"00B000","second_color":"B00000","tick_repeat":"1","tick_sound":"Tick","task_img":"","task_name":"Inhale","task_sound":"0","task_repeat":"10","task_group":0},"1":{"hour_value":"00","minute_value":"00","second_value":"15","font_size":"700","hour_visible":false,"minute_visible":false,"second_visible":true,"forward":true,"hour_color":"B00000","minute_color":"00B000","second_color":"00B000","tick_repeat":"2","tick_sound":"Tick","task_img":"","task_name":"Holding breath","task_sound":"0","task_repeat":"10","task_group":0},"2":{"hour_value":"00","minute_value":"00","second_value":"15","font_size":"700","hour_visible":false,"minute_visible":false,"second_visible":true,"forward":true,"hour_color":"B00000","minute_color":"00B000","second_color":"0000B0","tick_repeat":"3","tick_sound":"Tick","task_img":"","task_name":"Exhalation","task_sound":"Count","task_repeat":"10","task_group":2},"3":{"hour_value":"00","minute_value":"00","second_value":"01","font_size":"700","hour_visible":false,"minute_visible":false,"second_visible":true,"forward":true,"hour_color":"B00000","minute_color":"00B000","second_color":"0000B0","tick_repeat":"0","tick_sound":"Tick","task_img":"","task_name":"Completion","task_sound":"Whistle1","task_repeat":"1","task_group":0},"timer_id":"11","timer_name":"Дыхание треугольником 15 секунд","all_repeat":"1"}');
+timer.name = obj['timer_name'];
+all_repeat = obj['all_repeat'];
+document.getElementById('all_repeat').value = all_repeat;
+delete obj['timer_name'];
+delete obj['timer_id'];
+delete obj['all_repeat'];
+task_ar = obj;
+draw_table_task();
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Message from page /timer/breath-triangle-fifteen-seconds/en' title='Write to administrator admin@kaidzu.com'>Write to administrator kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

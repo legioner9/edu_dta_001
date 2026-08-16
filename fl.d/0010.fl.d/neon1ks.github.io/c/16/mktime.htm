@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция mktime - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#16">Содержание</a> | <a href="16.htm#00">Глава 16</a><hr>
+<h1>Функция mktime</h1>
+<pre>
+#include &lt;time.h&gt;
+time_t mktime(struct tm *<em>time</em>);
+</pre>
+<p class="tj">Функция <kbd>mktime()</kbd> возвращает календарный эквивалент времени, хранящийся в разделенном на компоненты виде в структуре, которая адресуется параметром-указателем <em>time</em>. Элементы <kbd>tm_wday</kbd> и <kbd>tm_yday</kbd> устанавливаются самой функцией, поэтому их не нужно определять при ее вызове.
+<p class="tj">Если <kbd>mktime()</kbd> не может представить информацию в виде допустимого календарного времени, возвращается -1.
+<h2>Пример</h2>
+<p class="tj">Эта программа сообщает день недели 3 января 2005 года:
+<pre>
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  struct tm t;
+  time_t t_of_day;
+  t.tm_year = 2005-1900;
+  t.tm_mon = 0;
+  t.tm_mday = 3;
+  t.tm_hour = 0;  /* Час, минута, секунда не имеют значения */
+  t.tm_min = 0;   /* если только они не определяют переход  */
+  t.tm_sec = 1;   /* на новую дату                          */
+  t.tm_isdst = 0;
+  t_of_day = mktime(&t);
+  printf(ctime(&t_of_day));
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="time.htm">time()</a>  <a href="gmtime.htm">gmtime()</a>  <a href="asctime.htm">asctime()</a>  <a href="ctime.htm">ctime()</a>
+<hr><a href="../main.htm#16">Содержание</a> | <a href="16.htm#00">Глава 16</a>
+
+
+</body>
+</html>

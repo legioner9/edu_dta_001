@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strstr - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strstr</h1>
+<pre>
+#include &lt;string.h&gt;
+char *strstr(const char *<em>str1</em>, const char *<em>str2</em>);
+</pre>
+<p class="tj">Функция <kbd>strstr()</kbd> возвращает указатель на первое вхождение подстроки, адресуемой параметром <em>str2</em>, в строку, адресуемую параметром <em>str1</em>. Если совпадение не обнаружено, возвращается нулевой указатель.
+<h2>Пример</h2>
+<p class="tj">Данная программа выводит сообщение <pre>от невпроворот</pre>
+<pre>
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char *p;
+  p = strstr("хлопот невпроворот", "от");
+  printf(p);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strchr.htm">strchr()</a>  <a href="strcspn.htm">strcspn()</a>  <a href="strpbrk.htm">strpbrk()</a>  <a href="strspn.htm">strspn()</a>  <a href="strtok.htm">strtok()</a>  <a href="strrchr.htm">strrchr()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

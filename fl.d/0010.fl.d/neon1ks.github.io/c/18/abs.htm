@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция abs - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция abs</h1>
+<pre>
+#include &lt;stdlib.h&gt;
+int abs(int <em>num</em>);
+</pre>
+<p class="tj">Функция <kbd>abs()</kbd> возвращает абсолютное значение целочисленного аргумента <em>num</em>.
+<h2>Пример</h2>
+<p class="tj">Эта функция преобразует введенное пользователем число в его абсолютное значение:
+<pre>
+int get_abs(void)
+{
+  char num[80];
+  gets(num);
+  return abs(atoi(num));
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="../15/fabs.htm">fabs()</a>
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

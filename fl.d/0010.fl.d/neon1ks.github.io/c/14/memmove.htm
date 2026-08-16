@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция memmove - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция memmove</h1>
+<pre>
+#include &lt;string.h&gt;
+void *memmove(void *<em>to</em>, const void *<em>from</em>, size_t <em>count</em>);
+</pre>
+<p class="tj">Функция <kbd>memmove()</kbd> копирует <em>count</em> символов из массива, адресуемого параметром <em>from</em>, в массив, адресуемый параметром <em>to</em>. Если заданные массивы перекрываются, процесс копирования проходит корректно, т.е. соответствующее содержимое будет помещено в массив <em>to</em>, но содержимое массива <em>from</em> при этом изменится.
+<p class="tj">Функция <kbd>memmove()</kbd> возвращает значение указателя <em>to</em>.
+<h2>Пример</h2>
+<p class="tj">Данная программа сдвигает содержимое массива <kbd>str</kbd> на 10 позиций в сторону младших адресов и выводит результат на дисплей.
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#define SIZE 80
+int main(void)
+{
+  char str[SIZE], *p;
+  strcpy(str, "Когда, в случае если...");
+  p = str + 10;
+  memmove(str, p, SIZE);
+  printf("результат сдвига: %s", str);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="memcpy.htm">memcpy()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

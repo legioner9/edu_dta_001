@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция isblank - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция isblank</h1>
+<pre>
+#include &lt;ctype.h&gt;
+int isblank(int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>isblank()</kbd> добавлена в версии С99.
+<p class="tj">Она возвращает ненулевое значение, если ее аргумент <em>ch</em> является символом, для которого функция <kbd>isspace()</kbd> возвращает значение "истина". Этот символ используется в качестве разделителя слов. Так, для английского языка пробельными символами являются пробел и символ горизонтальной табуляции.
+<h2>Пример</h2>
+<p class="tj">Данная программа проверяет все символы, прочитанные из стандартного входного потока <kbd>stdin</kbd>, и выдает сообщение о каждом пробельном символе.
+<pre>
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char ch;
+  for(;;) {
+  ch = getchar();
+  if(ch == '.') break;
+  if(isblank(ch)) printf("%c является разделителем слов\n", ch);
+  }
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="isalnum.htm">isalnum()</a>  <a href="isalpha.htm">isalpha()</a>  <a href="iscntrl.htm">iscntrl()</a>  <a href="isdigit.htm">isdigit()</a>  <a href="isgraph.htm">isgraph()</a>  <a href="ispunct.htm">ispunct()</a>  <a href="isspace.htm">isspace()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

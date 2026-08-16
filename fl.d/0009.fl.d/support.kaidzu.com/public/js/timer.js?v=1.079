@@ -1,0 +1,923 @@
+var timer= {
+    'id': 0, // id таймера после вызова setInterval()
+    'name': data_lang[13],    //Название таймера
+    'state_start': false, // запущен ли таймер
+    'state_pause': false, // приостановлен ли таймер
+    'state_sound': false, // играет ли звук (по кнопке)
+    'state_tick_sound': false, // играет ли звук (по кнопке)
+    'task_edit_num': -1,  // -1 если задача не редактируется и индекс из task_ar если редактируется
+    'table_groop_ar': [], // массив со значениями для отображения группировки в таблице задач
+    'task_run_cur': 0, // индекс текущей запущенной задачи
+    'task_repeat_cur': 0, // номер текущего повторения задач (групы задач)
+    'task_repeat_all_cur': 0, // номер текущего повторения всех задач
+    'task_num': 0, // количество задач в таймере (из task_ar)
+    //'id_in_db': 0, // id таймера в таблице timer_task
+}
+var sound_count = 1; // Счетчик звуковых файлов (при опции звука = Счет)
+var set_in_sec;	// установленное время в секундах
+var hour = 0; // текущий час
+var minute = 0;	// текущая минута
+var second  = 0;	// текущая секунда
+var statistic = ''; // вывод данных по задачам
+var statistic_temp = ''; // Статистика для формирования первой строки (старт - стоп, пауза - старт и т.д)
+var task_img_added = false; // Флаг установки картинки задачи
+var form = { // структура таймера
+    'hour_value' : 0, // установленный час
+    'minute_value' : 0, // установленные минуты
+    'second_value' : 0, // установленные секунды
+    'font_size': 0, // размер шрифта
+    'hour_visible'  :true, // отображать часы
+    'minute_visible' : true, // отображать минуты
+    'second_visible' : true, // отображать секунды
+    'forward' : true,  // направление отсчета true=прямой
+    'hour_color' : '', // цвет часов
+    'minute_color' : '',  // цвет минут
+    'second_color' : '',  // цвет секунд
+    'tick_repeat' : 0, // количество отсчетов метронома перед завершением задачи
+    'tick_sound' : '', // значение <selector> звука отсчета
+    'task_img' : '', // картинка к задаче
+    'task_name' : '',  // название задачи
+    'task_sound' : '',    // значение <selector> звука завершения
+    'task_repeat' : 0, // количество повторений задания
+    'task_group' : 0, // количество группируемых заданий
+};
+var task_ar={};//задачи таймера
+
+document.addEventListener("DOMContentLoaded", ready);
+function ready(){
+    if ('wakeLock' in navigator){ // Не отключаем экран при работе на смартфоне
+        navigator.wakeLock.request('screen');
+    }
+    
+    save_task = readCookie('save_task'); // проверяем есть ли сохраненные куки для записи в БД (при сохранении таймера и переадерсации на логинзу)
+    if(save_task){
+        data = JSON.parse(save_task);
+        timer.task_repeat_all = data['all_repeat'];
+        delete data['all_repeat']; 
+        task_ar = data;
+        if(is_login){
+            save_task_to_db();
+            document.cookie = "save_task=''; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;"; // delete coockie
+        }
+    }
+    read_form();
+    draw_time(form);
+    task_group_process();
+    write_form();
+    
+    var el = document.querySelectorAll('#hour_value, #minute_value, #second_value');
+    for(i = 0; i < el.length; i++){
+        el[i].onchange = function(){
+            if (this.value.length == 1) {
+                this.value = '0' + this.value;
+            }
+        }
+    } 
+    
+    var el = document.getElementsByClassName('delete'); // Удаляем шаблон
+    for(i = 0; i < el.length; i++){
+        el[i].onclick = function(evt){
+            evt.preventDefault(); // Отменяем переход
+            if (confirm(data_lang[14] +' \"' + this.previousElementSibling.previousElementSibling.innerHTML + '\"')){
+                obj = this;
+                name = this.getAttribute('name');
+                var xhr = new XMLHttpRequest(); 
+                xhr.open('GET', '/timer/delete/' + name); 
+                xhr.withCredentials = true;
+                xhr.onload = function (e) {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        if(xhr.responseText == 'OK'){
+                            alert("Timer deleted!");
+                            window.location = window.location.href
+                        }
+                    }
+                }
+                xhr.send(null); 
+            }
+        }
+    } 
+    
+    timer_btn_add_picture.addEventListener( "click" , function(){ // add picture to task
+        task_img_added = false; // Сбрасываем флаг установки картинки
+        task_image_container.innerHTML = "";
+        task_image_container.style.display = 'block';
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", '/public/img/timer/task_data.html', false);
+        xmlhttp.send();
+        if (xmlhttp.status == 200) {
+            task_image_container.innerHTML = xmlhttp.responseText;
+            el = document.getElementsByClassName('task_img');
+            for(i = 0; i < el.length; i++){
+                el[i].addEventListener( "click" , function(){ 
+                    timer_btn_add_picture.innerHTML = "<img src='" + this.src + "' id=task_img>"; 
+                    timer_img_container.innerHTML = "<img src='" + this.src + "'>";
+                    task_img_added = true; // Устанавливаем флаг 
+                });
+            }
+        }
+    });
+    
+        
+    
+    task_image_container.addEventListener( "click" , function(){ // add picture to task
+        this.style.display = 'none';
+        if(!task_img_added){ // Убираем картинку задания
+            timer_btn_add_picture.innerHTML = 'Task img';
+            timer_img_container.innerHTML = '';
+            task_img_added = false; // Сбрасываем флаг
+        }
+    });
+   
+    document.getElementById('save_img_container').addEventListener( "click" , function(){ //save task
+        if(is_login){
+            save_task_to_db();
+        }else{
+            task_to_save = Object.assign({}, task_ar); // clone object
+            task_to_save['all_repeat'] = timer.task_repeat_all;
+            data_to_save = JSON.stringify(task_to_save);
+            document.cookie = 'save_task=' + data_to_save;
+            document.getElementById("menu_login").click();
+        }
+    });
+
+    document.getElementById('task_btn').onclick = function task_btn(){
+        read_form(); //
+        if(timer.task_repeat_cur >= 100){
+            return;
+        }
+        add_task();
+        draw_table_task();
+        timer.task_edit_num = -1;
+        document.getElementById('task_btn').value = data_lang[15];
+    }
+
+    document.getElementById('start_btn').onclick = function start_btn(){
+        
+        
+        if (!timer.state_start) {//таймер был не запущен
+            if(host == 'kaidzu.net' || host == 'kaidzu.com'){
+                start();
+            }            
+        }
+        else {//нажата кнопка стоп
+            stop();
+        }
+        if(timer.task_repeat_cur == 0){//новый отсчет
+            document.getElementById('endform').innerHTML = '';
+        }
+    } 
+
+    document.getElementById('task_name').addEventListener('keydown', function() {
+        this.dispatchEvent(new Event('change'));
+    });
+
+    sound_btn.onclick = function sound_btn(){
+        if(timer.state_sound){ // играет музыка
+            this.src = '/public/img/play.svg';
+            end_player.pause();
+        }
+        else{
+            this.src = '/public/img/stop.svg';
+            var soundname = document.getElementById('sound').value;
+            if(soundname != '0'){//выбрана мелодия
+                document.getElementById('end_player').src = '/public/sound/' + soundname + '.mp3';
+                end_player.play();
+                end_player.onended = function(){//event end play
+                    document.getElementById('sound_btn').dispatchEvent(new Event('click'));
+                }
+            }
+        }
+        timer.state_sound = !timer.state_sound;
+    }
+
+    document.getElementById('flick_btn').onclick = function flick_btn(){ 
+        if(timer.state_sound){//если запущено другое прослушивание
+            document.getElementById('sound_btn').dispatchEvent(new Event('click'));
+        }
+        if(timer.state_tick_sound){//играет музыка
+            this.src ='/public/img/play.svg';
+            tick_player.pause();
+        }
+        else{
+            this.src = '/public/img/stop.svg';
+            var soundname = document.getElementById('tick_sound').value;
+            if(soundname != '0'){//выбрана мелодия
+                tick_player.src = '/public/sound/' + soundname + '.mp3';
+                tick_player.play();
+                tick_player.onended = function(){//event end play
+                    if(timer.state_tick_sound){//не обрабатываем обработчик если звук играется не с кнопки
+                        document.getElementById('flick_btn').dispatchEvent(new Event('click'));
+                    }
+                }
+            }
+        }
+        timer.state_tick_sound = !timer.state_tick_sound;
+    }
+
+    document.getElementById('all_repeat').onchange = function(){
+        var td_repeat = document.getElementById('td_repeat');
+        timer.task_repeat_all = this.value;
+        if(td_repeat){
+            td_repeat.innerHTML = this.value;
+        }
+    }
+    
+    document.getElementById('hour_color').onchange = function(){
+        document.getElementById('hour_digit').style.color = '#' + this.value;
+        document.getElementById('bar').style.backgroundColor  = '#' + this.value;
+    }
+    
+    document.getElementById('minute_color').onchange = function(){
+        document.getElementById('minute_digit').style.color = '#' + this.value;
+    }
+    
+    document.getElementById('second_color').onchange = function(){
+        document.getElementById('second_digit').style.color = '#' + this.value;
+    }
+    
+    document.getElementById('hour_visible').onchange = function(){
+        if(this.checked){
+            document.getElementById('hour_digit').style.display = 'inline';
+        }else{
+            document.getElementById('hour_digit').style.display = 'none';        
+        }
+    }
+    
+    document.getElementById('minute_visible').onchange = function(){
+        if(this.checked){
+            document.getElementById('minute_digit').style.display = 'inline';
+        }else{
+            document.getElementById('minute_digit').style.display = 'none';        
+        }
+    }
+    
+    document.getElementById('second_visible').onchange = function(){
+        if(this.checked){
+            document.getElementById('second_digit').style.display = 'inline';
+        }else{
+            document.getElementById('second_digit').style.display = 'none';        
+        }
+    }
+    
+    document.getElementById('font_size').onchange = function(){
+        document.getElementById('time').style.fontSize = this.value + '%';
+    }
+    
+    document.getElementById('task_repeat').onchange = function(){
+        if(this.value > 1){
+            task_group.removeAttribute("disabled");
+        }else{
+            task_group.setAttribute("disabled", "true");
+        }
+    }
+    
+    document.getElementById('task_name').onkeyup = function(){
+        document.getElementById('timer_text_container').innerHTML = '<h1>' + this.value + '</h1>';
+    }
+    
+    document.getElementById('forward').onchange = function(){
+        if(this.checked){
+            document.getElementById('forward_text').innerHTML = data_lang[10];
+        }else{
+            document.getElementById('forward_text').innerHTML = data_lang[11];
+        }
+    }
+}
+
+function draw_table_task(){//выводит таблицу с задачами из массива task_ar
+    timer.task_num = Object.keys(task_ar).length;//кол-во задач
+    var table = "<table id='task_table'><tr><td>№" + data_lang[12];
+    for(i = 0; i < timer.task_num; i++){
+        var tr_selected = '';//строка с активной задачей (для подсветки)
+        var all_repeat = '';//столбец с кол-вом повторений задач 
+        if(i == timer.task_run_cur && timer.id){//подсвечиваем строку с активной задачей при запущенном таймере
+            tr_selected = ' id = tr_selected ';
+        }
+        if(i == 0){//выводим только в первую строку т.к. rowspan
+            all_repeat = '<td class="td_repeat" rowspan=' + timer.task_num + '>' + timer.task_repeat_all;
+        }
+        var direction = '&#8592;';
+        if(task_ar[i].forward){
+            direction = '&#8594;';
+        }
+        var img = '';
+        if(task_ar[i].task_img){
+            img = "<img src='" + task_ar[i].task_img + "' class=icon>";
+        }
+        var invisible_style = 'text-decoration:line-through; font-size:70%; ';
+        var visible_style = 'text-decoration:none;';
+        var hour_style = visible_style;
+        var min_style = visible_style;
+        var sec_style = visible_style;
+        if(! task_ar[i].hour_visible){
+            hour_style = invisible_style;
+        }
+        if(! task_ar[i].minute_visible){
+            min_style = invisible_style;
+        }
+        if(! task_ar[i].second_visible){
+            sec_style = invisible_style;
+        }
+        var task_hour = "<span style='" + hour_style + " font-weight:bold; color:#" + task_ar[i].hour_color + ";'>" + task_ar[i].hour_value + "</span>";
+        var task_min = "<span style='" + min_style + " font-weight:bold; color:#" + task_ar[i].minute_color + ";'>" + task_ar[i].minute_value + "</span>";
+        var task_sec = "<span style='" + sec_style + " font-weight:bold; color:#" + task_ar[i].second_color + ";'>" + task_ar[i].second_value + "</span>";
+        var task_sound_text =  task_ar[i].task_sound;
+        //tsk_repeat = "<td>" + task_ar[i].task_repeat;
+        var tsk_repeat = '';
+        var group = timer.table_groop_ar[i];
+        if(group == 1){// задача без групировки
+            tsk_repeat = "<td>" + task_ar[i].task_repeat;
+        }else if(group > 1){ // задача с группировкой
+            tsk_repeat = "<td class='td_repeat' rowspan=" + group + ">" + task_ar[i + group - 1].task_repeat;
+        }
+        if(task_sound_text == 0){
+            task_sound_text = data_lang[16];
+        }			
+        var down = "<img src=/public/img/down.svg title='" + data_lang[17] + "' class='task_down icon'>";
+        var up = "<img src=/public/img/up.svg title='" + data_lang[18] + "' class='task_up icon'>";
+        if(i == 0){//не рисуем вверх на первой строке
+            up = '';
+        }
+        if(i == timer.task_num - 1){//не рисуем вниз на последней строке
+            down = '';
+        }
+        table = table + '<tr' + tr_selected + '>\n\
+        <td>' + (i+1) + '\
+        <td>' + task_hour + '\
+        <td>' + task_min + '\
+        <td>' + task_sec + '\
+        <td>' + task_ar[i].font_size + '%\
+        <td>' + direction + '\
+        <td>' + img + '\
+        <td>' + task_sound_text + '\
+        <td>' + task_ar[i].tick_repeat + '\
+        <td>' + task_ar[i].task_name + '\
+        <td id=\'task_action\'><img src=/public/img/delete.svg title=\'' + data_lang[19] + '\' class=\'task_delete icon\'>\
+            <img src=/public/img/edit.svg title=\'' + data_lang[20] + '\' class=\'task_edit icon\'>' + down + up + tsk_repeat + all_repeat;
+    }
+    table = table + '</table>';
+    if(timer.task_num != 0){
+        document.getElementById('task_table_container').innerHTML = table;
+        document.getElementById('task_repetitions_container').style.visibility = 'visible';
+    }
+    else{
+        document.getElementById('task_table_container').innerHTML = '';
+    }
+
+    var el = document.getElementsByClassName('task_delete');
+    if(el !== null){
+        for(i = 0; i < el.length; i++){
+            el[i].addEventListener('click' , function(){
+                task_delete(this);
+            });
+        }
+    }
+
+    var el = document.getElementsByClassName('task_edit');
+    if(el !== null){
+        for(i = 0; i < el.length; i++){
+            el[i].addEventListener("click" , function(){
+                task_edit(this);
+            });
+        }
+    }
+
+    var el = document.getElementsByClassName('task_down');
+    if(el !== null){
+        for(i = 0; i < el.length; i++){
+            el[i].addEventListener("click", function(){
+                task_down(this);
+            });
+        }
+    }
+
+    var el = document.getElementsByClassName('task_up');
+    if(el !== null){
+        for(i = 0; i < el.length; i++){
+            el[i].addEventListener("click" , function(){
+                task_up(this);
+            });
+        }
+    }
+}
+
+function draw_time(obj) {
+    var h = hour;
+    var m = minute;
+    var s = second;
+    if(!obj.forward){
+        s = obj.second_value - second;
+        m = obj.minute_value - minute;
+        h = obj.hour_value - hour;
+        if(s < 0){
+            s =  60 + s;
+            m--;
+        }
+        if(m < 0){
+            m = 60 + m;
+            h--;
+        }
+        if(h < 0){
+            h = 0;
+        }
+    }
+    hs = ''; //hour separator :
+    ms = ''; //minute separator :
+    if (s.toString().length == 1) {
+        s = '0' + s;
+    }
+    if (m.toString().length == 1) {
+            m = '0' + m;
+    }
+    if (h.toString().length == 1) {
+        h = '0' + h;
+    }
+    if (!obj.second_visible) {
+        s = '';
+    }
+    if (!obj.minute_visible) {
+        m = '';
+    } else {
+        if (obj.second_visible) {
+                ms = ':';
+        }
+    }
+    if (!obj.hour_visible) {
+        h = '';
+    } else {
+        if (obj.minute_visible) {
+            hs = ':';
+        } else {
+            if (obj.second_visible) {
+                hs = ':';
+            }
+        }
+    }
+    var cur_sec = 3600 * hour + 60 * minute + second;
+    var bar;
+    if(obj.forward){ // вычисляем положение прогресс бара для прямого отсчета
+        bar= (cur_sec / set_in_sec) * 100;				
+    }
+    else{ // вычисляем положение прогресс бара для обратного отсчета
+        bar= ((set_in_sec - cur_sec) / set_in_sec) * 100;
+    }
+    document.getElementById('bar').style.width  = bar + '%';
+    document.getElementById('hour_digit').innerHTML  = h + hs;
+    document.getElementById('minute_digit').innerHTML  = m + ms;
+    document.getElementById('second_digit').innerHTML  = s;
+    if(second < 1 && Object.keys(task_ar).length){ // Отрисовываем стиль времени первые секунды
+        document.getElementById('hour_digit').style.color = '#' + obj.hour_color;
+        document.getElementById('minute_digit').style.color = '#' + obj.minute_color;
+        document.getElementById('second_digit').style.color = '#' + obj.second_color;
+        document.getElementById('time').style.fontSize   = obj.font_size +  '%';
+        document.getElementById('timer_text_container').innerHTML = '<h1>' + obj.task_name + '</h1>';
+        var img = '';
+        if(obj.task_img){
+            img = "<img src='" + obj.task_img + "'>";
+        }
+        document.getElementById('timer_img_container').innerHTML = img;
+    }
+}
+
+function timeout() {
+    var sound_name = task_ar[timer.task_run_cur].task_sound;
+    if(sound_name != 0){
+        switch (sound_name) {
+            case "Count": // Счет
+                end_player.src = '/public/sound/num/' + sound_count + '.mp3';
+                sound_count = sound_count + 1;
+                break;
+            case "Count5": // Счет через 5
+                end_player.src = '/public/sound/num/' + (sound_count * 5) + '.mp3';
+                sound_count = sound_count + 1;
+                break;
+            case "Count10": // Счет через 10
+                end_player.src = '/public/sound/num/' + (sound_count * 10) + '.mp3';
+                sound_count = sound_count + 1;
+                break;
+            default:
+                end_player.src = '/public/sound/' + sound_name + '.mp3';
+                break;
+        }
+        end_player.play();
+    }
+    hour = 0; // сбрасываем время
+    minute = 0;
+    second  = 0;
+    var date=new Date();
+    statistic_temp += ', ' + data_lang[6] + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + '<br>';//вывод статистики
+    
+    var task_is_groop = true; // Задача групповая
+    if(timer.table_groop_ar[timer.task_run_cur] == 1){
+        task_is_groop = false; // Задача одиночная
+    }
+    if(task_is_groop){ // Задача групповая
+        if(task_ar[timer.task_run_cur].task_group){// последняя задача группы
+            timer.task_repeat_cur++; // увеличиваем номер повторения текущей задачи
+            if(timer.task_repeat_cur ==  task_ar[timer.task_run_cur].task_repeat){// повторы задачи закончились - переходим к следующей
+                timer.task_run_cur++; // увеличиваем номер текущей задачи
+                timer.task_repeat_cur = 0;
+            }else{ // Запускаем повторно группу задач
+                timer.task_run_cur -= task_ar[timer.task_run_cur].task_group;
+            }
+        }else{ // Задача внутри группы
+            timer.task_run_cur++; // Переходим к следующей задаче
+        }        
+    }else{ // Задача одиночная
+        timer.task_repeat_cur++; // увеличиваем номер повторения текущей задачи
+        if(timer.task_repeat_cur ==  task_ar[timer.task_run_cur].task_repeat){// повторы задачи закончились - переходим к следующей
+            timer.task_run_cur++; // увеличиваем номер текущей задачи
+            timer.task_repeat_cur = 0;
+        }
+    }
+    
+    if(timer.task_run_cur == timer.task_num){// задачи закончились. Проверяем следующий повтор
+        timer.task_repeat_all_cur++; // учеличиваем номер текущего повтора задач
+        if(timer.task_repeat_all_cur == timer.task_repeat_all){//нет больше повторов
+            stop();
+            return; // выходим из функции до увеличения задач
+        }
+        else{ // еще есть повторы всех задач
+            timer.task_run_cur = 0; // запускаем на новый круг
+        }
+    }
+    draw_table_task();
+    draw_time(task_ar[timer.task_run_cur]);
+    statistic = statistic_temp + statistic;
+    statistic_temp = (timer.task_run_cur + 1) + '.' + (timer.task_repeat_cur + 1) + '.' + (timer.task_repeat_all_cur + 1) + ') ' + data_lang[4] + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();//вывод статистики
+    document.getElementById('start_btn').value = data_lang[1] + ' ' + (timer.task_repeat_cur + 1) + ' ' + (timer.task_repeat_all_cur + 1);
+    document.getElementById('info').innerHTML = statistic_temp + '<br>' + statistic;
+    set_in_sec = 3600 * parseInt(task_ar[timer.task_run_cur].hour_value) + 60 * parseInt(task_ar[timer.task_run_cur].minute_value) + parseInt(task_ar[timer.task_run_cur].second_value); // обновляем число секунд
+}
+
+function start(){
+    if(timer.task_num == 0){ //задачи не добавлены, берем данные формы
+        read_form(); // читаем данные формы
+        statistic = ''; //обнуляем статистику при новом запуске
+        statistic_temp = ''; //обнуляем статистику при новом запуске
+        add_task(); // добавляем задачу из данных формы
+        draw_table_task(); // рисуем таблицу с задачей
+    }
+    if(!document.getElementById('pause_btn')){ // если нет кнопки пауза добавляем ее и обработчик нажатия
+        var el = document.getElementById('start_btn');
+        el.insertAdjacentHTML('afterend', "<input type='button' value='" + data_lang[2] + "' class='time_control' id='pause_btn'>");
+        document.getElementById('pause_btn').addEventListener("click", pause_click);
+    }
+    set_in_sec = 3600 * parseInt(task_ar[timer.task_run_cur].hour_value) + 60 * parseInt(task_ar[timer.task_run_cur].minute_value) + parseInt(task_ar[timer.task_run_cur].second_value);
+    timer.id = setInterval(second_interrupt, 1000); // вызываем функцию каждую секунду
+    draw_time(task_ar[timer.task_run_cur]);
+    var date = new Date();
+    statistic_temp += (timer.task_run_cur+ 1) + '.' + (timer.task_repeat_cur + 1) + '.' + (timer.task_repeat_all_cur + 1) + ') ' + data_lang[4] + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();//вывод статистики
+    document.getElementById('info').innerHTML = statistic_temp + statistic;
+    timer.state_start = true;
+    document.getElementById('start_btn').value = data_lang[1] + ' ' + (timer.task_repeat_cur + 1) + ' ' + (timer.task_repeat_all_cur + 1);
+    document.getElementById('start_btn').style.backgroundColor = "red";    
+    draw_table_task();
+    task_table.scrollIntoView();
+    
+    tick_player.src = '/public/sound/Tick.mp3'; // Проигрываем тик, а то тормозит при первом использовании
+    tick_player.play();
+}
+
+function stop() {
+    document.getElementById('start_btn').value = data_lang[0];
+    document.getElementById('start_btn').style.backgroundColor = 'green';
+    timer.state_start = false;
+    document.getElementById('pause_btn').remove();
+    var date=new Date();
+    //statistic_temp = " End at " + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + '<br>' + statistic_temp;
+    document.getElementById('info').innerHTML = statistic_temp + statistic;
+    statistic = '';
+    statistic_temp = '';
+    timer.task_run_cur = 0;
+    timer.task_repeat_cur = 0;
+    timer.task_repeat_all_cur = 0;
+    hour = 0;
+    minute = 0;
+    second  = 0;
+    document.getElementById('bar').style.width = '100%';
+    draw_time(task_ar[timer.task_run_cur]); // Сбрасываем отображение времени
+    clearInterval(timer.id);
+    sound_count = 1; // Сбрасываем счетчик звуковых отсчетов
+}
+
+function read_form() {// считывает данные формы в структуру form
+    form.hour_value = document.getElementById('hour_value').value;
+    form.minute_value = document.getElementById('minute_value').value;
+    form.second_value = document.getElementById('second_value').value;
+    form.font_size = document.getElementById('font_size').value;
+    form.hour_visible = document.getElementById('hour_visible').checked;
+    form.minute_visible = document.getElementById('minute_visible').checked;
+    form.second_visible = document.getElementById('second_visible').checked;
+    form.hour_color = document.getElementById('hour_color').value;
+    form.minute_color = document.getElementById('minute_color').value;
+    form.second_color = document.getElementById('second_color').value;
+    form.forward = document.getElementById('forward').checked;
+    form.task_sound = document.getElementById("sound").value;
+    form.tick_repeat = document.getElementById('tick_repeat').value;
+    form.tick_sound = document.getElementById('tick_sound').value;
+    form.task_name = document.getElementById('task_name').value;
+    form.task_repeat = document.getElementById('task_repeat').value;
+    form.task_group = parseInt(document.getElementById('task_group').value);
+    form.task_img = '';
+    if (typeof task_img !== 'undefined') {
+        form.task_img = task_img.src;
+    }
+    timer.task_repeat_all = document.getElementById('all_repeat').value;
+}
+
+
+
+function write_form(){ // заполняет форму данными из структуры form
+    document.getElementById('hour_digit').style.color = '#' + form.hour_color;
+    document.getElementById('minute_digit').style.color  = '#' + form.minute_color;
+    document.getElementById('second_digit').style.color  = '#' + form.second_color;
+    document.getElementById('hour_color').value = form.hour_color;
+    document.getElementById('minute_color').value = form.minute_color;
+    document.getElementById('second_color').value = form.second_color;
+    document.getElementById('hour_color').style.backgroundColor = '#' + form.hour_color;
+    document.getElementById('minute_color').style.backgroundColor  = '#' + form.minute_color;
+    document.getElementById('second_color').style.backgroundColor  = '#' + form.second_color;
+    document.getElementById('bar').style.backgroundColor  = '#' + form.hour_color;
+    document.getElementById('bar_container').style.borderColor  = '#' + form.hour_color;
+    document.getElementById('time').style.fontSize   = form.font_size +  '%';
+    if(form.forward){
+        document.getElementById('forward_text').innerHTML = data_lang[10];
+    }
+    else{
+        document.getElementById('forward_text').innerHTML = data_lang[11];
+    }
+    document.getElementById('forward').checked = form.forward;
+    document.getElementById('hour_visible').checked = form.hour_visible;
+    document.getElementById('minute_visible').checked = form.minute_visible;
+    document.getElementById('second_visible').checked = form.second_visible;
+    
+    document.getElementById('tick_repeat').value = form.tick_repeat;
+    document.getElementById('tick_sound').value = form.tick_sound;
+    document.getElementById('sound').value = form.task_sound;
+    document.getElementById('task_name').value = form.task_name;
+    document.getElementById('task_repeat').value = form.task_repeat;
+    if(form.task_img){
+        timer_btn_add_picture.innerHTML = "<img id = task_img src='" + form.task_img + "'>";
+    }else{
+        timer_btn_add_picture.innerHTML = data_lang[9];
+    }
+
+    if (form.hour_value.length == 1) {
+        form.hour_value = '0' + form.hour_value;
+    }
+    document.getElementById('hour_value').value = form.hour_value;
+    if (form.minute_value.length == 1) {
+        form.minute_value = '0' + form.minute_value;
+    }
+    document.getElementById('minute_value').value = form.minute_value;
+    if (form.second_value.length == 1) {
+        form.second_value = '0' + form.second_value;
+    }
+    document.getElementById('second_value').value = form.second_value;
+    document.getElementById('all_repeat').value = timer.task_repeat_all;
+    draw_time(form);
+    host = window.location.host;
+    set_in_sec = 3600 * parseInt(form.hour_value) + 60 * parseInt(form.minute_value) + parseInt(form.second_value);
+    document.getElementById('timer_text_container').innerHTML = '<h1>' + form.task_name + '</h1>';
+    var img = '';
+    if(form.task_img){
+        img = "<img src='" + form.task_img + "'>";
+    }
+    document.getElementById('timer_img_container').innerHTML = img;
+    draw_table_task();//перерисовываем таблицу задач       
+}
+
+function index_task(){//меняет ключи таблицы задач на актуальные (после изменения таблицы)
+    timer.task_num = Object.keys(task_ar).length;//кол-во задач
+    var temp_ar = {};//временный объект в который мы скопируем нужные строки
+    for(i = 0; i< timer.task_num; i++){//перебор строк
+        temp_ar[i] = task_ar[Object.keys(task_ar)[i]];
+    }
+    task_ar=temp_ar;//обновляем объект
+}
+
+function add_task(){ // добавляет (изменяет) задачу с данными из form 
+    if(timer.task_num > 1000){ // защита от чрезмерного добавления задач
+        return;
+    }
+    if(timer.task_edit_num != -1){ // задача редактируется а не добавляется
+        timer.task_num = timer.task_edit_num; // присваиваем номер редактируемой задачи
+    }
+    task_ar[timer.task_num] = Object.assign({}, form); // клонируем данные формы
+    timer.task_num = Object.keys(task_ar).length; // кол-во задач обновляем
+    
+    task_group_process(); // Обрабатываем группировку задач
+    
+}
+
+function readCookie(name) { // доступ к Cookie по имени
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return false;
+}
+
+function save_task_to_db(){
+        task_to_send = Object.assign({}, task_ar); // clone object
+        task_to_send['timer_id'] = timer_id.value;
+        task_to_send['timer_name'] = timers_name_input.value;
+        task_to_send['all_repeat'] = timer.task_repeat_all;
+        data_send = JSON.stringify(task_to_send);
+        var xhr = new XMLHttpRequest(); 
+        xhr.open('POST', '/timer/save', true); 
+        xhr.onload = function (e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById("timer_save_msg").innerHTML = xhr.responseText; 
+            }
+        }
+        xhr.send(data_send);
+}
+
+function task_down(img){//двигает задачу на единицу вниз
+    num = 0; // номер удаляемого элемента
+    var el = document.getElementsByClassName('task_down');
+    for(i = 0; i < el.length; i++){
+        if(el[i] === img){
+            num = i;
+        }
+    }
+    var temp_ar = task_ar[num];//for exchange
+    task_ar[num] = task_ar[num + 1];//exchange
+    task_ar[num + 1] = temp_ar;//exchange
+    timer.task_edit_num = -1; //сбрасываем режим редактирования (при наличии)
+    document.getElementById('task_btn').value = data_lang[15];
+    task_group_process();
+    draw_table_task();
+}
+
+function task_up(img){//двигает задачу на единицу вверх
+    num = 0; // номер удаляемого элемента
+    var el = document.getElementsByClassName('task_up');
+    for(i = 0; i < el.length; i++){
+        if(el[i] === img){
+            num = i + 1;
+        }
+    }
+    var temp_ar = task_ar[num];//for exchange
+    task_ar[num] = task_ar[num - 1];//exchange
+    task_ar[num - 1] = temp_ar;//exchange
+    timer.task_edit_num = -1; //сбрасываем режим редактирования (при наличии)
+    document.getElementById('task_btn').value = data_lang[15];
+    task_group_process();
+    draw_table_task();
+}
+
+function task_edit(img){
+    num = 0; // номер удаляемого элемента
+    var el = document.getElementsByClassName('task_edit');
+    for(i = 0; i < el.length; i++){
+        if(el[i] === img){
+            num = i;
+        }
+    }
+    if(timer.task_edit_num === num){ // отмена редактирования повторным нажатием
+        timer.task_edit_num = -1;
+        document.getElementById('task_btn').value = data_lang[15];
+    }
+    else{ // включаем режим редактирования
+        timer.task_edit_num = num;
+        document.getElementById('task_btn').value = data_lang[20] + ' №' + (num + 1);
+        gr = task_ar[num].task_group;
+        form = Object.assign({}, task_ar[num]);
+        write_form();
+        task_group_process();
+        //task_ar[num].task_group = 0;
+        task_group.selectedIndex = gr;
+    }
+}
+
+function task_delete(img){
+    num = 0; // номер удаляемого элемента
+    var el = document.getElementsByClassName('task_delete');
+    for(i = 0; i < el.length; i++){
+        if(el[i] === img){
+            num = i;
+        }
+    }
+    timer.task_edit_num = -1//сбрасываем режим редактирования (при наличии)
+    document.getElementById('task_btn').value = data_lang[15];
+    delete task_ar[num];
+    index_task();
+    task_group_process();
+    draw_table_task();				
+}
+
+function pause_click(){ // вызывается при нажатии на кнопку паузы
+    if (timer.state_pause){ // возобновление таймера
+        timer.id = setInterval(second_interrupt, 1000);
+        timer.state_pause = false;
+        this.value = data_lang[2];
+        this.style.backgroundColor = 'yellow';
+        var date=new Date();
+        statistic_temp += ", " + data_lang[5] + " " + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        document.getElementById('info').innerHTML = statistic_temp + '<br>' + statistic;
+        //statistic = statistic_temp + statistic;
+        //statistic_temp = '';
+    }
+    else { // остановка таймера
+        clearInterval(timer.id);
+        timer.state_pause = true;
+        this.value = data_lang[7];
+        this.style.backgroundColor = 'green';
+        var date=new Date(); // время события
+        statistic_temp += ". " + data_lang[3] + " " + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        document.getElementById('info').innerHTML = statistic_temp + '<br>' + statistic; // обновление вывода информации
+    }
+    beenpause = true;
+}
+
+function second_interrupt() {
+    if (second < 59) { // для отображения секунд
+        second++;
+    }
+    else { // увеличиваем отображение минут
+        second  = 0;
+        if (minute < 59) {
+            minute++;
+        }
+        else { // увеличиваем отображение часов
+            minute = 0;
+            hour++;
+        }
+    }
+    draw_time(task_ar[timer.task_run_cur]);
+    
+    var cur_sec = 3600 * hour + 60 * minute + second; //
+    
+    if(set_in_sec - cur_sec < task_ar[timer.task_run_cur].tick_repeat){//тикаем
+        tick_player.src = '/public/sound/' + task_ar[timer.task_run_cur].tick_sound + '.mp3';
+        tick_player.play();
+    }
+    
+    if (hour >= task_ar[timer.task_run_cur].hour_value && minute >= task_ar[timer.task_run_cur].minute_value && second  >= task_ar[timer.task_run_cur].second_value) {//time is over
+        timeout();
+    }
+}
+
+/* 1) Проверяет правильность повторов, приводит к корректному виду (проход снизу массива task_ar)
+ * 2) Заполняет массив timer.table_groop_ar для построения таблцы  0 = '', 1 = <td>, n = <td rowspan n>)
+ */
+function task_group_process(){ 
+    timer.table_groop_ar = [];
+    var repeat = 1; // Число повторов задач в группе делаем одинаковым
+    var group = 0; // число задач которые нужно группировать
+    for(row = (timer.task_num - 1); row >= 0; row--){// проверяем и редактируем групировку задач
+        if(task_ar[row].task_group > 0){ // Задача с группой
+            if(group == 0){ // нет конфликтов группирования
+                if(task_ar[row].task_group > row){ // Слишком много задач для группировки
+                    task_ar[row].task_group = row;
+                }
+                repeat = task_ar[row].task_repeat;
+                group = task_ar[row].task_group;
+                timer.table_groop_ar[row] = 0; // Данные для пустой сроки (есть предыдущий rowspan)
+                timer.table_groop_ar[row - group] = group + 1; // Данные для <td rowspan = group + 1>
+            }else{ // Есть конфликт, затираем текущую группу
+                task_ar[row].task_group = 0;
+                timer.table_groop_ar[row - group] = 0; // Данные для пустой сроки (есть предыдущий rowspan)
+                group--;
+            }
+        }else{ // Одиночная задача или входит в группу
+            if(group > 0){// Задача входит в группу
+                task_ar[row].task_repeat = repeat; // Присваиваем число повторений как в группе
+                if(group > 1){ // Защита от затирания строки с rowspan
+                    timer.table_groop_ar[row] = 0; // Данные для пустой сроки (есть предыдущий rowspan)
+                }
+                group--;
+            }else{// Одиночная задача
+                timer.table_groop_ar[row] = 1; // Данные для <td>
+            }
+        }
+    }
+    
+    var group_access = 0; // Количество задач доступных для групировки
+    num_opt = task_group.options.length; // Количество options в выпадающем списеке группирования задач
+    for(i = num_opt - 1; i > 0; i--){ // Очищаем select. Удаляем все строки кроме 0
+        task_group.remove(i);
+    }
+    
+    max_group_num = timer.task_num - 1; // Максимальное количество групируемых задач в select
+    edit_mode = false;
+    if(timer.task_edit_num >= 0){ // Режим редактирования ненулевой строки
+        max_group_num = timer.task_edit_num - 1
+        edit_mode = true;
+    }
+    for(i = max_group_num; i >= 0; i--){ // Добавляем в select доступные задачи для групирования
+        if(task_ar[i].task_group == 0 || edit_mode){// Есть предыдущие несгрупированные (доступные) задачи или режим редактирования
+            group_access++;
+            task_group.options[task_group.options.length] = new Option(group_access, group_access);
+            edit_mode = false;
+        }else{
+            break; // Прерываем перебор если дошли до предыдущей группы задачи
+        }
+    }        
+}

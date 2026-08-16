@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/timer.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+
+<script>
+var data_lang = [
+'Start',
+'Stop',
+'Pause',
+'Pause in',
+'Start in',
+'continued in',
+'completion in',
+'Proceed',
+'Enter the name of the task to save',
+'Task drawing',
+'Direct countdown',
+'Countdown',
+'<td>Hour<td>Min<td>Sec<td>Font<td>Dir<td>Pic<td>Sound<td>Knock<td>Name<td>Contr<td>Repeat<td>Round',
+'My timer',
+'Are you sure you want to permanently delete the timer?',
+'Add task',
+'No',
+'Move below',
+'Move higher',
+'Delete task',
+'Apply to task',
+];
+</script> 
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/jscolor.js'></script>
+<script src='../public/js/timer.js%3Fv=1.079'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Online timer for sports</title>
+<meta name='description' content='Online timer for sports'><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Main page' href='../en.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Timers' href='en.html'><img src='../public/img/timer.svg' alt='timer'>Timers</a><a id='menu_ru' title='Russian version of the site' href='../timer.html'><img src='../public/img/flag_ru.svg' alt='Russian flag'>Ru</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><h2>Templates</h2><div class=a_btn><table><tr><td><a href = 'breathing-triangle-five-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 5 seconds.</a><td><td><tr><td><a href = 'breathing-triangle-six-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 6 seconds.</a><td><td><tr><td><a href = 'triangle-breath-seven-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 7 seconds.</a><td><td><tr><td><a href = 'triangle-breathing-for-eight-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 8 seconds.</a><td><td><tr><td><a href = 'breath-triangle-nine-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 9 seconds.</a><td><td><tr><td><a href = 'triangle-breath-for-ten-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 10 seconds.</a><td><td><tr><td><a href = 'triangle-breathing-for-eleven-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 11 seconds.</a><td><td><tr><td><a href = 'breathing-triangle-twelve-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 12 seconds.</a><td><td><tr><td><a href = 'breath-triangle-thirteen-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 13 seconds.</a><td><td><tr><td><a href = 'breath-triangle-fourteen-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 14 seconds.</a><td><td><tr><td><a href = 'breath-triangle-fifteen-seconds/en.html' class = template_name>Breathing in a triangle online with an interval of 15 seconds.</a><td><td><tr><td><a href = 'work-with-punch-bag/en.html' class = template_name>Cyclic work with a boxing bag, shadow or paws.</a><td><td><tr><td><a href = 'plank-exercise/en.html' class = template_name>Plank exercise</a><td><td><tr><td><a href = 'plank-exercise/en.html' class = template_name>5 seconds</a><td><td></table></div><h1>Online timer for sports</h1>Online timer for sports and fitness<div id='task_image_container'></div>
+<form id='timer_form'>
+<input type='hidden' id='timer_id' name='timer_id' value='0'><table id='timeset'>
+    <tr>
+        <td><input id='hour_value' name='hour' type='number' max='24' min='0'  value='00' title='Set the timer clock value'><br>
+            Hours<br>
+            <input id='hour_visible' name='hour_visible' type='checkbox' title='Show hour'><br><br>
+        <td><input id='minute_value' name='minutes' type='number' max='60' min='0'  value='00' title='Setting the timer minute value'>
+            <br>Minutes<br>
+            <input id='minute_visible' type='checkbox' checked title='Show minutes'><br><br>
+        <td><input id='second_value' name='second' type='number' max='60' min='0'  value='04' title='Setting the timer seconds'>
+            <br>Seconds<br>
+            <input id='second_visible' type='checkbox' checked title='Show seconds'><br><br>
+        <td><input id='font_size' name='font_size' type='number' max='3000' min='10'  value='700' title='Timer font size'> 
+            <br>Font %<br>
+            <input type='checkbox' name='forward' checked id='forward' title='Direct or countdown'>
+            <label for='forward' id='forward_text'>Direct countdown</label>
+	<tr>
+		<td><input class='jscolor' id='hour_color' value='b00000' title='Watch color'>
+		<td><input class='jscolor' id='minute_color' value='00b000' title='Minute color'>
+		<td><input class='jscolor' id='second_color' value='0000b0' title='Seconds color'>
+        <td id='timer_btn_add_picture'>Task drawing	<tr>
+		<td>
+            <input id='tick_repeat' name='flick' type='number' max='1000' min='0' value='2' title='Task drawing'>
+        <td>Number of knocks		<td>
+			<select id='tick_sound' class='flick' title='Sound tick'>
+				<option value='Tick'>Knock</option>
+				<option value='Tick1'>Knock1</option>
+				<option value='Tick2'>Knock2</option>
+				<option value='Tick3'>Knock3</option>
+				<option value='Whistle'>Whistling</option>
+				<option value='Whistle2'>Whistling1</option>
+			</select>
+        <td><img src='../public/img/play.svg' id='flick_btn' class='icon' title='Listen to the knock'>
+			<label for='tick_sound' class='flick'>Knock before task end</label>	
+	<tr>
+		<td><input id='task_name' title='Task name' value=''><br>
+		<td>Task name        <td id='sound_container' title='Alarm'>
+			<select id='sound' name='sound'>
+				<option value='0'>Soundless</option>
+				<option value='Clock' >Watch</option>
+				<option value='Message'>Message</option>
+				<option value='Ring' >Call</option>
+				<option value='Ring1' >Call1</option>
+				<option value='Ring3' >Gong</option>
+				<option value='Ring2' >Gong1</option>
+				<option value='Sound' >Melody</option>
+				<option value='Sound1' >Melody1</option>
+				<option value='Sound2' >Melody2</option>
+				<option value='Sound3' >Melody3</option>
+				<option value='Sound4' >Melody4</option>
+				<option value='Tweeters'>Twitter</option>
+				<option value='Whistle1' selected>Whistle</option>
+				<option value='Count'>Count</option>
+				<option value='Count5'>Count x5</option>
+				<option value='Count10'>Count x10</option>
+			</select>
+		<td><img src='../public/img/play.svg' id='sound_btn' class='icon' title='Task completion sound'>
+            <span id='tick_player_container'><audio id='tick_player' src='../public/sound/Tick.mp3'></audio></span>
+        <label for='sound'>Task completion sound</label>
+    <tr>
+        <td id='task_repetitions_container'>
+            <input id='task_repeat' name='task_repeat' type='number' max='1000' min='1'  value='1' title='The number of task repetitions'>      
+        <td>Task repetitions        <td><select  id='task_group' name='task_group' title='Group previous tasks'>
+            <option value='0' selected>No grouping</option>
+            </select>
+		<td>Group previous tasks    <tr>
+		<td colspan='4'><input type='button' id='task_btn' value='Add task' title='Добавляет задачу в таблицу для выполнения'>	
+    <tr><td id="all_repetitions_container">
+            <input id='all_repeat' name='all_repeat' type="number" max="1000" min="1"  value="1" title="Round">       
+        <td><label for='all_repeat'>Round</label> 
+        <td>
+        <td>
+    <tr><td colspan='3'><input type='text' id='timers_name_input' value='My timer'>
+    <td>Timers name    <tr><td colspan='4'><span id='save_img_container' title='Save tasks to your profile'>
+        <img src='../public/img/save.svg' class='icon' alt='save_picture'>Save        </span>
+</table>
+    <span id="timer_save_msg"></span>
+    <div id="task_table_container"></div>
+	<input type=hidden id=hid value='319224419'>    <div id="timer_text_container"></div>
+	<div id="timer_img_container"></div>
+	<div id="time">
+		<span id='hour_digit'></span><span id='minute_digit'></span><span id='second_digit'></span>
+	</div>
+    <div id="bar_container"><div id="bar"></div></div>
+	<input type="button" value='Start' class='time_control' id='start_btn' title='Запустить таймер'>
+	<audio id='end_player' src='../public/sound/Whistle1.mp3'></audio>
+</form>
+	<div id='endform'></div>
+	<div id='info'></div>
+	<br><br><hr>
+<div id ='description'>
+</div>
+    
+
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Message from page /timer/en' title='Write to administrator admin@kaidzu.com'>Write to administrator kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

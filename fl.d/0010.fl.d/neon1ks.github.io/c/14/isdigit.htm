@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция isdigit - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция isdigit</h1>
+<pre>
+#include &lt;ctype.h&gt;
+int isdigit(int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>isdigit()</kbd> возвращает ненулевое значение, если ее аргумент <em>ch</em> является цифрой, т.е. попадает в диапазон 0-9. В противном случае возвращается нуль.
+<h2>Пример</h2>
+<p class="tj">Данная программа проверяет каждый символ, прочитанный из стандартного входого потока <kbd>stdin</kbd>, и выдает сообщение, если этот символ окажется цифрой.
+<pre>
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char ch;
+  for(;;) {
+    ch = getchar();
+    if(ch == '.') break;
+    if(isdigit(ch)) printf("%c является цифрой\n", ch);
+  }
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="isalnum.htm">isalnum()</a>  <a href="isalpha.htm">isalpha()</a>  <a href="iscntrl.htm">iscntrl()</a>  <a href="isgraph.htm">isgraph()</a>  <a href="isprint.htm">isprint()</a>  <a href="ispunct.htm">ispunct()</a>  <a href="isspace.htm">isspace()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

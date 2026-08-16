@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Строки в Python</title>
+<meta name='description' content=''><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='../c/main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='../cpp/main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='../milandr/keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='time.html' class = "row_a">Время выполнения программы</a><br><a href='outtext.html' class = "row_a">Вывод текста</a><br><a href='exception.html' class = "row_a">Исключения</a><br><a href='tuple.html' class = "row_a">Кортежи</a><br><a href='set.html' class = "row_a">Множества</a><br><a href='oop.html' class = "row_a">ООП</a><br><a href='main_page.html' class = "row_a">Плюсы и минусы Python</a><br><a href='syntax.html' class = "row_a">Синтаксис</a><br><a href='dict.html' class = "row_a">Словари</a><br><a href='list.html' class = "row_a">Списки</a><br><a href='string.html' class = "row_a sel">Строки</a><br><a href='types.html' class = "row_a">Типы данных</a><br><a href='file.html' class = "row_a">Файлы</a><br><a href='function.html' class = "row_a">Функции</a><br><a href='loop.html' class = "row_a">Циклы</a><br><a href='numbers.html' class = "row_a">Числа</a><br></div>
+<div id=storage_content>
+<h1>Строки в Python</h1>
+<pre class='language-Python'><code>
+str = &quot;Victor&quot;
+print(len(str)) # 6 Длина строки
+age = 43
+user = f&quot;name: {str}  age: {age}&quot; # Подстановка переменных в строку
+print(user)   # name: Victor  age: 43
+
+for i in str: # Перебор строки посимвольно
+    print(i, end = ' ') # V i c t o r 
+    
+for i in range(len(str)): # Перебор строки посимвольно с доступом по индексу
+    print(str[i], end = ' ') # V i c t o r 
+
+path = &quot;C:\python\name.txt&quot; # Из за наличия типа &quot;управляющих символов&quot; \n будет перенос
+print(path) # C:\python
+            # ame.txt
+path = r&quot;C:\python\name.txt&quot; # r перед строкой устраняет проблему делая строку &quot;сырой&quot;
+print(path) # C:\python\name.txt
+</code></pre>
+
+<h2> Операции над строками</h2>
+
+<pre class='language-Python'><code>
+s1 = 'Привет '
+s2 = 'Виктор'
+print(s1 + s2)     # Привет Виктор (Конкатенация (сложение) строк)
+print(3 * s1)      # Привет Привет Привет (Размножение строк)
+print(s1[2])       # и (Доступ по индексу)
+print(s1[2 : 5])   # иве (Выбор подстроки)
+print(s1[2:])      # ивет 
+print(s2[1 : -1])  # икто 
+print(s2[ : : -1]) # роткиВ (Развернуть строку)
+print(s2[ : : 2])  # Вко (Взять символы через один)
+</code></pre>
+<h2>Форматирование строк</h2>
+
+<pre class='language-Python'><code>
+print('Привет {}!'.format('друг')) # Привет друг!
+print('{}, {}, {}'.format('a', 'b', 'c')) # a, b, c
+print('{0}, {1}, {2}'.format('a', 'b', 'c')) # a, b, c
+print('{2}, {0}, {1}'.format('a', 'b', 'c')) # c, a, b
+print('{1}, {0}, {2}, {0}, {1}'.format('a', 'b', 'c')) # b, a, c, a, b
+print('{2}, {0}, {1}'.format(*'abc')) # c, a, b
+print('point {x}, {y}'.format(x = 2, y = 3.25)) # point 2, 3.25
+</code></pre>
+
+<table><th>Метод <th> Действие 
+<tr><td>S1 + S2 <td> Конкатенация (сложение строк)
+<tr><td>S1 * 3 <td> Размножение строк
+<tr><td>S[i] <td> Обращение по индексу
+<tr><td>S[begin : end : step] <td> Выбор среза строки
+<tr><td>len(S) <td> Длина строки
+<tr><td>S.find(str, [start],[end]) <td> Поиск подстроки в строке. Возвращает номер первого вхождения или -1
+<tr><td>S.rfind(str, [start],[end]) <td> Поиск подстроки в строке. Возвращает номер последнего вхождения или -1
+<tr><td>S.index(str, [start],[end]) <td> Поиск подстроки в строке. Возвращает номер первого вхождения или вызывает ValueError
+<tr><td>S.rindex(str, [start],[end]) <td> Поиск подстроки в строке. Возвращает номер последнего вхождения или вызывает ValueError
+<tr><td>S.replace(шаблон, замена[, maxcount]) <td> Замена шаблона на замену. maxcount ограничивает количество замен
+<tr><td>S.split(символ)	<td> Разбиение строки по разделителю 
+<tr><td>S.isdigit()	<td> Состоит ли строка из цифр 
+<tr><td>S.isalpha()	<td> Состоит ли строка из букв 
+<tr><td>S.isalnum()	<td> Состоит ли строка из цифр или букв 
+<tr><td>S.islower()	<td> Состоит ли строка из символов в нижнем регистре 
+<tr><td>S.isupper()	<td> Состоит ли строка из символов в верхнем регистре 
+<tr><td>S.isspace() <td> Состоит ли строка из неотображаемых символов (пробел, символ перевода страницы ('\f'), "новая строка" ('\n'), "перевод каретки" ('\r'), "горизонтальная табуляция" ('\t') и "вертикальная табуляция" ('\v'))
+<tr><td>S.istitle()	<td> Начинаются ли слова в строке с заглавной буквы 
+<tr><td>S.upper()	<td> Преобразование строки к верхнему регистру 
+<tr><td>S.lower()	<td> Преобразование строки к нижнему регистру 
+<tr><td>S.startswith(str)	<td> Начинается ли строка S с шаблона str 
+<tr><td>S.endswith(str)	<td> Заканчивается ли строка S шаблоном str 
+<tr><td>S.join(список)	<td> Сборка строки из списка с разделителем S 
+<tr><td>ord(символ)	<td> Символ в его код ASCII 
+<tr><td>chr(число)	<td> Код ASCII в символ 
+<tr><td>S.capitalize()	<td> Переводит первый символ строки в верхний регистр, а все остальные в нижний 
+<tr><td>S.center(width, [fill])	<td> Возвращает отцентрованную строку, по краям которой стоит символ fill (пробел по умолчанию) 
+<tr><td>S.count(str, [start],[end])	<td> Возвращает количество непересекающихся вхождений подстроки в диапазоне [начало, конец] (0 и длина строки по умолчанию) 
+<tr><td>S.expandtabs([tabsize]) <td> Возвращает копию строки, в которой все символы табуляции заменяются одним или несколькими пробелами, в зависимости от текущего столбца. Если TabSize не указан, размер табуляции полагается равным 8 пробелам
+<tr><td>S.lstrip([chars])	<td> Удаление пробельных символов в начале строки 
+<tr><td>S.rstrip([chars])	<td> Удаление пробельных символов в конце строки 
+<tr><td>S.strip([chars])	<td> Удаление пробельных символов в начале и в конце строки 
+<tr><td>S.partition(шаблон) <td> Возвращает кортеж, содержащий часть перед первым шаблоном, сам шаблон, и часть после шаблона. Если шаблон не найден, возвращается кортеж, содержащий саму строку, а затем две пустых строки
+<tr><td>S.rpartition(sep)	<td> Возвращает кортеж, содержащий часть перед последним шаблоном, сам шаблон, и часть после шаблона. Если шаблон не найден, возвращается кортеж, содержащий две пустых строки, а затем саму строку
+<tr><td>S.swapcase()	<td> Переводит символы нижнего регистра в верхний, а верхнего – в нижний 
+<tr><td>S.title()	 <td> Первую букву каждого слова переводит в верхний регистр, а все остальные в нижний
+<tr><td>S.zfill(width) <td> 	Делает длину строки не меньшей width, по необходимости заполняя первые символы нулями
+<tr><td>S.ljust(width, fillchar=" ") <td> Делает длину строки не меньшей width, по необходимости заполняя последние символы символом fillchar
+<tr><td>S.rjust(width, fillchar=" ") <td> Делает длину строки не меньшей width, по необходимости заполняя первые символы символом fillchar
+<tr><td>S.format(*args, **kwargs) <td> Форматирование строки
+</table>
+
+
+
+
+
+
+
+<div id=storage_date>  2024-06-29</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="string.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="dict.html" class = "row_a">Словари</a> <br><a href="exception.html" class = "row_a">Исключения</a> <br><a href="file.html" class = "row_a">Файлы</a> <br><a href="function.html" class = "row_a">Функции в Python</a> <br><a href="list.html" class = "row_a">Списки</a> <br><a href="loop.html" class = "row_a">Циклы</a> <br><a href="main_page.html" class = "row_a">Достоинства и недостатки языка Python</a> <br><a href="numbers.html" class = "row_a">Целые, вещественные и комплексные числа в Python</a> <br><a href="oop.html" class = "row_a">ООП</a> <br><a href="outtext.html" class = "row_a">Вывод текста</a> <br><a href="set.html" class = "row_a">Множества</a> <br><a href="string.html" class = "row_a sel">Строки</a> <br><a href="syntax.html" class = "row_a">Синтаксис языка Python</a> <br><a href="time.html" class = "row_a">Время выполнения программы на Python</a> <br><a href="tuple.html" class = "row_a">Кортежи в Python</a> <br><a href="types.html" class = "row_a">Типы данных</a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/python/string' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

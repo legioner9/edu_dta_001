@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция erf - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#15">Содержание</a> | <a href="15.htm#00">Глава 15</a><hr>
+<h1>Функция erf</h1>
+<pre>
+#include &lt;math.h&gt;
+float erff(float <em>arg</em>);
+double erf(double <em>arg</em>);
+long double erfl(long double <em>arg</em>);
+</pre>
+<p class="tj">Функции <kbd>erf()</kbd>, <kbd>erff()</kbd> и <kbd>erfl()</kbd> добавлены в версии С99.
+<p class="tj">Каждая функция семейства <kbd>erf()</kbd> возвращает значение функции ошибок<sup><a href="erf.htm#11" id="1">[1]</a></sup> от аргумента <em>arg</em>.
+<h2>Зависимые функции</h2>
+<a href="erfc.htm">erfc()</a>
+<p><img src="../work/sup.bmp" alt="----------">
+<blockquote>
+<p class="tj"><sup><a href="erf.htm#1" id="11">[1]</a></sup>Интеграл (вероятности) ошибок:
+<pre>
+                 x
+            2    /
+erf(x) = ------- |e<sup>-t<sup>2</sup></sup>dt.
+         sqrt(п) /
+                 0
+</pre>
+<p class="tj">Иногда называется просто <em>интегралом ошибок</em> или <em>интегралом вероятности</em>. В теории вероятности чаще используется не интеграл вероятности, а <em>интеграл вероятности Гаусса</em>, или <em>функция нормального распределения</em>
+<pre>
+       1               x
+Ф(x) = - [ 1 + erf( ------- ) ].
+       2            sqrt(2)
+</pre>
+</blockquote>
+<hr><a href="../main.htm#15">Содержание</a> | <a href="15.htm#00">Глава 15</a>
+
+
+</body>
+</html>

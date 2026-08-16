@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция isxdigit - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция isxdigit</h1>
+<pre>
+#include &lt;ctype.h&gt;
+int isxdigit(int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>isxdigit()</kbd> возвращает ненулевое значение, если аргумент <em>ch</em> является шестнадцатеричной цифрой. В противном случае возвращается нуль. Шестнадцатеричная цифра должна попадать в один из следующих диапазонов: A-F, a-f или 0-9.
+<h2>Пример</h2>
+<p class="tj">Данная программа проверяет все символы, прочитанные из стандартного входного потока <kbd>stdin</kbd>, и выдает сообщение о каждой шестнадцатеричной цифре.
+<pre>
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char ch;
+  for(;;) {
+    ch = getchar();
+    if(ch == '.') break;
+    if(isxdigit(ch)) printf("%c является шестнадцатеричной цифрой\n", ch);
+  }
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="isalnum.htm">isalnum()</a>  <a href="isalpha.htm">isalpha()</a>  <a href="iscntrl.htm">iscntrl()</a>  <a href="isdigit.htm">isdigit()</a>  <a href="isgraph.htm">isgraph()</a>  <a href="ispunct.htm">ispunct()</a>  <a href="isspace.htm">isspace()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

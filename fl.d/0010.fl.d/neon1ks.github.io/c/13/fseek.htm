@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция fseek - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция fseek</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int fseek(FILE *<em>stream</em>, long int <em>offset</em>, int <em>origin</em>);
+</pre>
+<p class="tj">Функция <kbd>fseek()</kbd> устанавливает указатель текущей позиции файла, связанного с потоком <em>stream</em>, в соответствии со значениями начала отсчета <em>origin</em> и смещения <em>offset</em>. Назначение этой функции — поддерживать операции ввода/вывода с произвольным доступом. Параметр <em>offset</em> равен количеству байтов, на которые будет смещен внутренний указатель файла относительно начала отсчета, заданного параметром <em>origin</em>. B качестве значения для параметра <em>origin</em> должен быть взят один из следующих макросов (определенных в заголовке <kbd>&lt;stdio.h&gt;</kbd>).</p>
+<table class="table table-bordered">
+<tr><th><em>Имя</em><th><em>Назначение</em>
+<tr><td><kbd>SEEK_SET</kbd><td>Поиск с начала файла
+<tr><td><kbd>SEEK_CUR</kbd><td>Поиск с текущей позиции
+<tr><td><kbd>SEEK_END</kbd><td>Поиск с конца файла
+</table>
+<p class="tj">Нулевое значение возврата свидетельствует об успешном выполнении функции <kbd>fseek()</kbd>, а ненулевое — о возникновении сбоя.
+<p class="tj">Вообще говоря, функцию <kbd>fseek()</kbd> следует использовать только при работе с двоичными файлами. При использовании же с текстовым файлом параметр <em>origin</em> должен иметь значение <kbd>SEEK_SET</kbd>, а параметр <em>offset</em> — значение, полученное в результате вызова функции <kbd>ftell()</kbd> для того же файла, или нуль (чтобы установить указатель текущей позиции файла на начало).
+<p class="tj">Функция <kbd>fseek()</kbd> очищает признак конца файла, связанный с заданным потоком. Более того, она аннулирует любой символ, ранее возвращенный в тот же поток через вызов функции <kbd>ungetc()</kbd> (см. раздел <kbd>ungetc</kbd>).
+<h2>Пример</h2>
+<p class="tj">Приведенная функция производит поиск заданной структуры, имеющей тип <kbd>addr</kbd>. Обратите внимание на использование оператора <kbd>sizeof</kbd> для получения размера структуры.
+<pre>
+struct addr {
+  char name[40];
+  char street[40];
+  char city[40];
+  char state[3];
+  char zip[10];
+} info;
+void find(long int client_num)
+{
+  FILE *fp;
+  if((fp=fopen("mail", "rb")) == NULL) {
+    printf("Не удается открыть файл.\n");
+    exit(1);
+  }
+  /* поиск подходящей структуры */
+  fseek(fp, client_num*sizeof(struct addr), SEEK_SET);
+  /* считывание данных в память */
+  fread(&info, sizeof(struct addr), 1, fp);
+  fclose(fp);
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="ftell.htm">ftell()</a>  <a href="rewind.htm">rerwind()</a>  <a href="fopen.htm">fopen()</a>  <a href="fgetpos.htm">fgetpos()</a>  <a href="fsetpos.htm">fsetpos()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

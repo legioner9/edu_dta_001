@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция isupper - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция isupper</h1>
+<pre>
+#include &lt;ctype.h&gt;
+int isupper(int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>isupper()</kbd> возвращает ненулевое значение, если аргумент <em>ch</em> является прописной буквой. В противном случае возвращается нуль.
+<h2>Пример</h2>
+<p class="tj">Данная программа проверяет все символы, прочитанные из стандартного входного потока <kbd>stdin</kbd>, и выдает сообщение о каждой прописной букве.
+<pre>
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char ch;
+  for(;;) {
+    ch = getchar();
+    if(ch == '.') break;
+    if(isupper(ch)) printf("%c является прописной буквой\n", ch);
+  }
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="islower.htm">islower()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

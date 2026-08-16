@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция iscntrl - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция iscntrl</h1>
+<pre>
+#include &lt;ctype.h&gt;
+int iscntrl(int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>iscntrl()</kbd> возвращает ненулевое значение, если ее аргумент <em>ch</em> является управляющим символом, значение которого в ASCII-средах лежит в диапазоне между нулем и 0x1F или равно 0x7F (символ DEL). В противном случае возвращается нуль.
+<h2>Пример</h2>
+<p class="tj">Данная программа проверяет все символы, прочитанные из стандартного входного потока <kbd>stdin</kbd>, и выдает сообщение о каждом управляющем символе.
+<pre>
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char ch;
+  for(;;) {
+   ch = getchar( );
+   if(ch == '.') break;
+   if(iscntrl(ch)) printf("%c является управляющим символом\n", ch);
+  }
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="isalnum.htm">isalnum()</a>  <a href="isalpha.htm">isalpha()</a>  <a href="isdigit.htm">isdigit()</a>  <a href="isgraph.htm">isgraph()</a>  <a href="isprint.htm">isprint()</a>  <a href="ispunct.htm">ispunct()</a>  <a href="isspace.htm">isspace()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

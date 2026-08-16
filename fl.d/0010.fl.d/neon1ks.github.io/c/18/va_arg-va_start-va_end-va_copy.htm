@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция va_arg, va_start, va_end, va_copy - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция va_arg, va_start, va_end, va_copy</h1>
+<pre>
+#include &lt;stdarg.h&gt;
+type va_arg(va_list <em>argptr</em>, <em>type</em>);
+void va_copy(va_list <em>target</em>, va_list <em>source</em>);
+void va_end(va_list <em>argptr</em>);
+void va_start(va_list <em>argptr</em>, <em>last_parm</em>);
+</pre>
+<p class="tj">Макрос <kbd>va_copy()</kbd> добавлен в версии С99.
+<p class="tj">Для передачи функции переменного числа аргументов совместно используются макросы <kbd>va_arg</kbd>, <kbd>va_start</kbd> и <kbd>va_end</kbd>. Самым распространенным примером функции, которая принимает переменное число аргументов, является функция <kbd>printf()</kbd>. Тип <kbd>va_list</kbd> определен в заголовке <kbd>&lt;stdarg.h&gt;</kbd>.
+<p class="tj">Общая процедура создания функции, которая может принимать переменное количество аргументов, такова:
+<p class="tj">Функция должна иметь по крайней мере один известный параметр (может и больше), указываемый до переменного списка параметров. (Такие параметры называются также обязательными, а параметры, следующие за ними — необязательными.) Крайний правый известный параметр называется <em>last_parm</em>. (Он предшествует первому необязательному параметру.) Его имя используется в качестве второго параметра в обращении к макросу <kbd>va_start()</kbd>. Чтобы получить доступ к любому дополнительному параметру, сначала необходимо инициализировать указатель-аргумент <em>argptr</em><sup><a href="va_arg-va_start-va_end-va_copy.htm#11" id="1">[1]</a></sup>, обратившись к макросу <kbd>va_start()</kbd>. (Иными словами, необходимо выполнить вызов <kbd>va_start(<em>argptr</em>, &lt;имя <em>last_parm</em>&gt;)</kbd>.) После этого значения параметров возвращаются в результате вызова макроса <kbd>va_arg()</kbd>. В качестве второго аргумента этого макроса (соответствующего параметру <em>type</em>), нужно указать тип следующего параметра<sup><a href="va_arg-va_start-va_end-va_copy.htm#22" id="2">[2]</a></sup>. Наконец, после прочтения всех параметров до возвращения из функции необходимо вызвать макрос <kbd>va_end()</kbd>, чтобы гарантировать корректное восстановление стека. Если макрос <kbd>va_end()</kbd> вызван не будет, высока вероятность аварийного отказа программы.
+<p class="tj">Макрос <kbd>va_copy()</kbd> копирует список аргументов, обозначенный параметром <em>target</em>, в объект, обозначенный параметром <em>source</em>.
+<h2>Пример</h2>
+<p class="tj">Эта программа использует функцию <kbd>sum_series()</kbd>, возвращающую сумму последовательности чисел. Первый аргумент содержит число дополнительно передаваемых аргументов. В этом примере программа суммирует первые пять слагаемых суммы
+<pre>
+1   1   1   1          1
+- + - + - + -- + ... + --
+2   4   8   16         2<sup><em>N</em></sup>
+</pre>
+<p class="tj">Будет выведено<pre>0.968750</pre>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdarg.h&gt;
+double sum_series(int num, ...);
+/* Пример переменного числа аргументов - сумма последовательности. */
+int main(void)
+{
+  double d;
+  d = sum_series(5, 0.5, 0.25, 0.125, 0.0625, 0.03125);
+  printf("Сумма последовательности %f.\n", d);
+  return 0;
+}
+double sum_series(int num, ...)
+{
+  double sum=0.0, t;
+  va_list argptr;
+  /* Инициализация argptr */
+  va_start(argptr, num);
+  /* сумма последовательности */
+  for( ; num; num--) {
+    t = va_arg(argptr, double); /* получить следующий аргумент */
+    sum += t;
+  }
+  /* выполнение корректного выхода */
+  va_end(argptr);
+  return sum;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="../13/vprintf-vfprintf-vsprintf-vsnprintf.htm">vprintf()</a>
+<p><img src="../work/sup.bmp" alt="----------">
+<blockquote>
+<p class="tj"><sup><a href="va_arg-va_start-va_end-va_copy.htm#1" id="11">[1]</a></sup>Он должен быть объявлен, например, так: <pre>va_list <em>argptr</em>;</pre>
+<p class="tj"><sup><a href="va_arg-va_start-va_end-va_copy.htm#2" id="22">[2]</a></sup>Ну где вы видели функцию, которой в качестве аргумента передается служебное слово? Конечно, это возможно именно потому, что <kbd>va_arg()</kbd> — макрос, а не функция языка С. Кроме того, посмотрите на описание <em>type</em><pre>va_arg(va_list <em>argptr</em>, <em>type</em>);</pre><p class="t">Какой же компилятор позволит вам так описывать функцию?!
+</blockquote>
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

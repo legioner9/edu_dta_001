@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция mbstowcs - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция mbstowcs</h1>
+<pre>
+#include &lt;stdlib.h&gt;
+size_t mbstowcs(wchar_t *<em>out</em>, const char *<em>in</em>, size_t <em>size</em>);
+</pre>
+<p class="tj">Функция <kbd>mbstowcs()</kbd> преобразует многобайтовую строку, адресуемую параметром <em>in</em>, в строку, состоящую из двухбайтовых символов, и помещает результат в массив, адресуемый параметром <em>out</em>. В массиве <em>out</em> будет сохранено в памяти только <em>size</em> байтов.
+<p class="tj">В версии С99 к параметрам <em>out</em> и <em>in</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">Функция <kbd>mbstowcs()</kbd> возвращает количество преобразованных многобайтовых символов. При возникновении ошибки функция возвращает значение -1.
+<h2>Пример</h2>
+<p class="tj">Этот оператор преобразует первые четыре символа в многобайтовой строке, адресуемой указателем <em>mb</em>, и помещает результат в <em>str</em>.
+<pre>
+mbstowcs(str, mb, 4);
+</pre>
+<h2>Зависимые функции</h2>
+<a href="wcstombs.htm">wcstombs()</a>  <a href="mbtowc.htm">mbtowc()</a>
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

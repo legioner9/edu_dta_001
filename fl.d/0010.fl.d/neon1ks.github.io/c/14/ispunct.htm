@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция ispunct - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция ispunct</h1>
+<pre>
+#include &lt;ctype.h&gt;
+int ispunct(int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>ispunct()</kbd> возвращает ненулевое значение, если аргумент <em>ch</em> является знаком пунктуации. В противном случае возвращается нуль. Под знаками пунктуации подразумеваются все печатаемые символы за исключением пробела, которые не относятся к алфавитно-цифровым.
+<h2>Пример</h2>
+<p class="tj">Данная программа проверяет все символы, прочитанные из стандартного входного потока <kbd>stdin</kbd>, и выдает сообщение о каждом знаке пунктуации.
+<pre>
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char ch;
+  for(;;) {
+    ch = getchar();
+    if(ispunct(ch)) printf("%c является знаком пунктуации\n", ch);
+    if(ch == '.') break;
+  }
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="isalnum.htm">isalnum()</a>  <a href="isalpha.htm">isalpha()</a>  <a href="iscntrl.htm">iscntrl()</a>  <a href="isdigit.htm">isdigit()</a>  <a href="isgraph.htm">isgraph()</a>  <a href="isspace.htm">isspace()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Настройка среды разработки для микроконтроллеров Миландр (К1986ВЕ92QI)</title>
+<meta name='description' content='Настройка среды разработки для микроконтроллеров Миландр (К1986ВЕ92QI)'><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='../c/main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='../cpp/main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='../python/main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='keil.html' class = "row_a sel">1 Настройка Keil</a><br><a href='program.html' class = "row_a">2 Прошивка МК</a><br><a href='bit_operation.html' class = "row_a">3 Битовые операции</a><br><a href='gpio.html' class = "row_a">4 GPIO</a><br><a href='interrupt.html' class = "row_a">5 Прерывания</a><br><a href='clock.html' class = "row_a">6 Тактирование</a><br><a href='uart.html' class = "row_a">7 UART</a><br></div>
+<div id=storage_content>
+<h1>Настройка среды разработки для микроконтроллеров Миландр (К1986ВЕ92QI)</h1>
+<p>Мы начинаем написание цикла статей по разработке под микроконтроллеры (далее МК) фирмы <a href = 'https://www.milandr.com/' target = _blank >Миландр</a>, а более конкретно - под микроконтроллер К1986ВЕ92QI, являющихся одним из самых дешевых и производительных в линейке данной фирмы. 
+<p>В качестве платы для разработки и отладки мы будем использовать плату <a href='https://ldm-systems.ru/product/19002' target = _blank >LDM-K1986BE92QI</a>. Для изучения микроконтроллера придется затратить человеко-месяцы труда, в сравнении с которыми стоимость платы невелика.
+<p>В качестве среды разработки мы будем использовать <a href='https://www.keil.com/' target = _blank >Keil</a>. По состоянию на 2024 год сайт недоступен для российских пользователей, но пытливый ум всегда найдет возможность.
+<p>Ниже будет представлена последовательность действий, в виде алгоритма, для начала работы с микроконтроллером К1986ВЕ92QI фирмы Миландр.<br>
+
+<p>1)	Заходим на страницу производителя и продавца отладочной платы <a href='https://ldm-systems.ru/product/19002' target = _blank >LDM-K1986BE92QI</a> и на закладке «Документация» скачиваем все файлы: <br>
+
+<p>1.1)	<a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/LDM-K1986BE92QI.pdf' target = _blank >Руководство по эксплуатации отладочной платы LDM-K1986BE92QI</a>; <br>
+
+<p>1.2)	<a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Sch_LDM-K1986BE92QI.pdf' target = _blank>Схема отладочной платы LDM-K1986BE92QI</a>; <br>
+
+<p>1.3)	<a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Spec_Seriya_1986BE9x.pdf' target = _blank >Спецификация микроконтроллеров серии 1986ВЕ9х и К1986ВЕ9х</a>; <br>
+
+<p>1.4)	<a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/USB-UART_Download.zip' target = _blank >USB-UART загрузчик</a>. Данная программа позволит программировать отладочную плату <a href='https://ldm-systems.ru/product/19002' target = _blank >LDM-K1986BE92QI</a> без внешнего программатора, а также может быть полезна если вы завесили ПО микроконтроллера так, что порты JTAG или SWD недоступны (да это возможно если писать в их пины не нули, смотрим второй абзац пункта 16 <a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Spec_Seriya_1986BE9x.pdf' target = _blank >спецификации</a> микроконтроллеров серии 1986ВЕ9х и К1986ВЕ9х; <br>
+
+<p>1.5)	<a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/CP210x_VCP_Windows.zip' target = _blank >Драйвер USB-UART</a>, нужен для определения подключенного USB-A отладочной платы LDM-K1986BE92QI-H как COM-порта в ОС Windows; <br>
+
+<p>1.6)	<a href=' https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/examples.zip ' target = _blank > Примеры проектов </a> от производителя МК; <br>
+
+<p>1.7)	<a href=' https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Milandr_PLLv2.2.zip ' target = _blank > Полезное ПО от AntonAS Milandr_PLLv2.2 </a> содержит кодогенераторы периферии для микроконтроллера Миландр MDR32F9Q2I (K1986BE92QI). Мне не удалось спокойно открыть современными браузерами без проблем приложенные файлы, ругалось на безопасность. Для меня решением проблемы стало запуск данных файлов с отключенной безопасностью браузера Google Chrome, который я использую. Для этого нужно разместить в распакованном архиве, рядом с *.html файлами, bat файл со следующим содержимым и запускать через это bat файл:
+
+<pre class='language-C'><code>
+start chrome &quot;%~dp0index.HTML&quot;  --user-data-dir=&quot;%%~fQ&quot; --disable-web-security
+</code></pre>
+
+<p>1.8)	<a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/BMP_to_HEX_array.exe' target = _blank >Конвертер BMP to HEX array</a> позволяющий из bmp файла размером 64х128 пикселов создать код масива на языке Си для вывода картинки на ЖКИ индикатор <a href = 'https://www.melt.com.ru/shop/mt-12864j-2flb-3v0.html' target=_blank>MT-12864J-2FLB-3V0</a>, размещенный на  отладочной плате. Со страницы индикатора также нужно скачать файлы. Данный конвертер мне показался «недостаточно хорош» и я написал <a href= 'https://support.kaidzu.com/milandr/\public\img\storage\BMP_to_LCD_128x64.zip'  target=_blank>свой конвертер</a> с блэкджеком и плюшками, где изображение 128х64 размещается горизонтально и может быть не однобитовым и не монохромным. Также есть регулировка «контрастности» (выбор порога черный-белый пиксел) для не монохромных изображений. <br>
+
+<p>2)	Скачать и установить IDE <a href='https://www.keil.com/' target = _blank >Keil</a>
+
+<p>2.1)	Скачать и установить пакет «Software pack для Keil MDK 5 для МК К1986ВЕ92QI, К1986ВЕ1QI, К1901ВЦ1QI» 
+
+<p>3)	Создаем проект Keil 
+
+<p>3.1)	Запускаем Keil и создаем проект через меню 'Project->new uVision Project'. В появившемся диалоговом окне "Create New Project", в соответствии с рисунком 1, создаем папку и задаем имя для проекта, например test.<br>
+
+<img src =  'https://support.kaidzu.com/milandr/\public\img\storage\milandr\1_create_project.png'> 
+<p>Рисунок 1. Диалоговое окно создания проекта Keil.
+
+<p>3.2) В появившемся диалоговом окне "Select Device for Target 'Target 1'...", в соответствии с рисунком 2, выбираем наш МК MDR32F9Q2I <br>
+
+<img src='https://support.kaidzu.com/milandr/\public\img\storage\milandr\1_select_device.png'>
+<p>Рисунок 2. Диалоговое окно выбора МК..
+
+<p>3.3) В появившемся диалоговом окне "Manage Run-Time Enviroment", в соответствии с рисунком 3, раскрываем вкладки слева "CMSIS" и "Device" и ставим галочки справа в пунктах "CMSIS-CORE for Cortex-M..." и "System Startup for MDR32F9Q2I".<br> 
+
+<img src =  'https://support.kaidzu.com/milandr/\public\img\storage\milandr\1_components.png'>
+<p>Рисунок 3. Выбор используемых модулей в проекте Keil.
+
+<p>3.4)  Откроется IDE с проектом. В соответствии с рисунком 4, раскрыть узел "Target 1" и выделив дочерний узел "Source Group 1" правым кликом мышки выбрать в контекстном меню "Add New Item to Group 'Source Group 1'..." <br>
+
+<img src =  'https://support.kaidzu.com/milandr/\public\img\storage\milandr\1_add_source.png'> <br>
+<p>Рисунок 4. Добавление файла проект Keil.
+
+<p>3.5) В появившемся диалоговом окне, в соответствии с рисунком 5, выбрать тип файла "C File (.c)" и в поле "Name", задать имя файла, например main. <br>
+
+<img src = 'https://support.kaidzu.com/milandr/\public\img\storage\milandr\1_add_c_file.png'>
+<p>Рисунок 5. Добавление файла на языке Си в проект Keil.
+
+<p>3.6) В созданный файл вставляем содержимое минимального проекта
+<pre class='language-C'><code>
+#include &quot;MDR32F9Q2I.h&quot;
+
+#define PIN_LED 0	// Номер вывода светодиода
+
+int main (void){
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 22); // Разрешение тактирования порта B (п.14.7.8)
+
+// Инициализация вывода 0, порта B (PORTB_0) как выхода. К выводу подключен светодиод VD5.
+  MDR_PORTB-&gt;OE |= (1 &lt;&lt; PIN_LED); // PORTB_0 - выход (п.16.1.2). Обязательно устанавливать в 1.
+  MDR_PORTB-&gt;ANALOG |= ((1 &lt;&lt; PIN_LED)); // Режим работы PORTB_0 - цифровой (п.16.1.4) Обязательно устанавливать в 1.
+  MDR_PORTB-&gt;PWR |= (1 &lt;&lt; PIN_LED * 2); // Включить передачик PORTB_0. Скорость фронта вывода - медленный (п.16.1.7). Обязательно устанавливать в 1, 2 или 3.
+		
+  while(1){
+    for(int i = 0; i &lt; 100000; i++){} // Задержка	
+    MDR_PORTB-&gt;RXTX ^= (1 &lt;&lt; PIN_LED); // Инвертировать значение 0-го бита порта B (п.16.1.1)
+  }
+}
+</code></pre>
+
+<p>3.7) Компилируем проект через меню "Project->Build Target F7" или нажатием горячей клавиши F7. И вот первый результат! Проект должен собраться, возможно с кучей предупреждений которые мы уберем в дальнейшем. <br>
+
+<p>4) Настраиваем Keil: <br>
+
+<p>4.1) Для нормального отображения русских комментариев в тексте - в меню Edit -> Configuration -> Закладка "Editor" -> Encoding установить "Encode in UTF-8 without signature" или "Russian Windows-1251". Минус кодировки UTF-8 в том, что русские символы в коде будут двухбайтовые и это может затруднить разработку, а минус CP1251 в том, что русские символы в коде, в редакторе подчеркиваются как ошибочные. В общем, у меня установлена кодировка CP1251; <br>
+
+<p>4.2) Для отображения комментарии в тексте с двойным слешем // без предупреждений и использования современного стиля и синтаксиса написания кода,  в меню Project -> Options for Target 'Target 1'... (Alt+F7) -> Закладка "C/C++(AC6)" ->Language C  установить "с11"; <br>
+
+<p>4.3) Для  автоматического запуска контроллера после прошивки, без необходимости нажатия кнопки Reset на плате - в  меню Project -> Options for Target 'Target 1'... (Alt+F7) -> Закладка "Debug" -> Кнопка "Settings" -> Закладка "Flash Download" -> Reset and Run установить галку; <br>
+
+<p>4.4) Для  программирования микроконтроллера Миландр программатором ST-Link, как это делаю я, необходимо в  меню Project -> Options for Target 'Target 1'... (Alt+F7) -> Закладка "Debug"  в выпадающем списке возле кнопки "Settings" установить "ST-Link Debugger"; <br>
+
+<p>4.5) Если при прошивке МК Keil будет выдавать ошибку  "Error: Flash Download failed - Target DLL has been cancelled", проблема описана и решена по <a href = 'https://www.keil.com/support/docs/4204.htm' target = _blank >ссылке</a>.  Нужно скачать <a href = 'https://support.kaidzu.com/milandr/\public\img\storage\milandr\4204.zip' target = _blank >dll</a>  и заменить исходную C:\Keil_v5\ARM\STLink\ST-LINKIII-KEIL_SWO.dll; <br>
+
+<p>4.6) Если необходимо будет при компиляции генерировать hex файл в  меню Project -> Options for Target 'Target 1'... (Alt+F7) -> Закладка "Output" установить галку "Create HEX File"; <br>
+
+<p>4.7) Если при прошивке МК Keil будет выдавать предупреждения о старой версии ST-LINK - в меню Project -> Options for Target 'Target 1'... (Alt+F7) -> Закладка "Debug" -> Кнопка "Settings" -> Check version on start снять галку. <br><div id=storage_date>  2024-04-20</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="keil.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="clock.html" class = "row_a">Управление тактовой частотой микроконтроллера Миландр К1986ВЕ92QI (MDR32F9Q2I) </a> <br><a href="gpio.html" class = "row_a">Работа с портами ввода-вывода (GPIO) микроконтроллера Миландр на CMSIS</a> <br><a href="interrupt.html" class = "row_a">Прерывания в микроконтроллерах Миландр. Системный таймер.</a> <br><a href="keil.html" class = "row_a sel">Настройка среды разработки для микроконтроллеров Миландр (К1986ВЕ92QI)</a> <br><a href="program.html" class = "row_a">Прошивка микроконтроллера К1986ВЕ92QI на отладочной плате LDM-K1986BE92QI через UART и SWD с использованием ST-LINK</a> <br><a href="uart.html" class = "row_a">Работа с UART микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) </a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/milandr/keil' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

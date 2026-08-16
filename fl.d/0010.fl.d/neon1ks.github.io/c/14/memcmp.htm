@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция memcmp - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция memcmp</h1>
+<pre>
+#include &lt;string.h&gt;
+int memcmp(const void *<em>buf1</em>, const void *<em>buf2</em>, size_t <em>count</em>);
+</pre>
+<p class="tj">Функция <kbd>memcmp()</kbd> сравнивает первые <em>count</em> символов массивов, адресуемых параметрами <em>buf1</em> и <em>buf2</em>.
+<p class="tj">Функция <kbd>memcmp()</kbd> возвращает целое значение, которое интерпретируется следующим образом.</p>
+<table class="table table-bordered">
+<tr><th><em>Значение</em><th><em>Результат сравнения</em>
+<tr><td>Меньше нуля<td><em>buf1</em> меньше <em>buf2</em>
+<tr><td>Нуль<td>buf1</em> равен <em>buf2</em>
+<tr><td>Больше нуля<td>buf1</em> больше <em>buf2</em>
+</table>
+<h2>Пример</h2>
+<p class="tj">Данная программа выдает результат сравнения двух своих аргументов, которые задаются в командной строке.
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+int main(int argc, char *argv[])
+{
+  int outcome, len, l1, l2;
+  if(argc!=3) {
+    printf("Неверно задано число аргументов.");
+    exit(1);
+  }
+  /* определение длины более короткой строки */
+  l1 = strlen(argv[1]);
+  l2 = strlen(argv[2]);
+  len = l1 &lt; l2 ? l1:l2;
+  outcome = memcmp(argv[1], argv[2], len);
+  if(!outcome) printf("Равны");
+  else if(outcome&lt;0) printf("Первый меньше второго.");
+  else printf("Первый больше второго.");
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="memchr.htm">memchr()</a>  <a href="memcpy.htm">memcpy()</a>  <a href="strcmp.htm">strcmp()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

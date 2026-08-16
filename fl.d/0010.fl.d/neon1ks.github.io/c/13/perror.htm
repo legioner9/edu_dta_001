@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция perror - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция perror</h1>
+<pre>
+#include &lt;stdio.h&ft;
+void perror(const char *<em>str</em>);
+</pre>
+<p class="tj">Функция <kbd>perror()</kbd> преобразует значение глобальной переменной <kbd>errno</kbd> в строку и записывает эту строку в поток ошибок <kbd>stderr</kbd>. Если значение параметра <em>str</em> не равно нулю, то сначала записывается сама строка, за ней ставится двоеточие, а затем следует сообщение об ошибке, определяемое конкретной реализацией.
+<h2>Пример</h2>
+<p class="tj">Этот фрагмент выдает сообщение о любой ошибке ввода/вывода, которая может произойти в потоке, связанном с файлом <kbd>fp</kbd>.
+<pre>
+if ferror(fp) perror(" Ошибка при работе с файлом ");
+</pre>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

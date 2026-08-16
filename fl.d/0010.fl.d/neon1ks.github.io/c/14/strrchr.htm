@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strrchr - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strrchr</h1>
+<pre>
+#include &lt;string.h&gt;
+char *strrchr(const char *<em>str</em>, int <em>ch</em>) ;
+</pre>
+<p class="tj">Функция <kbd>strrchr()</kbd> возвращает указатель на последнее вхождение младшего байта параметра <em>ch</em> в строку, адресуемую параметром <em>str</em>. Если совпадение не обнаружено, возвращается нулевой указатель.
+<h2>Пример</h2>
+<p class="tj">Данная программа выводит сообщение <pre>пыль летит</pre>
+<pre>
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char *p;
+  p = strrchr("по полю пыль летит", 'п');
+  printf(p);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strpbrk.htm">strpbrk()</a>  <a href="strspn.htm">strspn()</a>  <a href="strstr.htm">strstr()</a>  <a href="strtok.htm">strtok()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

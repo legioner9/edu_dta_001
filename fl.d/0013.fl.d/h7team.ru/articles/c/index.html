@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Си примеры</title>
+    <link rel="icon" type="image/x-icon" href="https://h7team.ru/favicon.ico" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="" />
+
+    <meta property="og:title" content="Си примеры">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://h7team.ru">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    
+    <link rel="stylesheet" type="text/css" href="https://h7team.ru/h7in/templates/default/style.css" />
+	<!--meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0"-->
+	 <!--[if lt IE 9]>
+		 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body><div class="face0" onclick="window.scrollTo(0, document.documentElement.clientHeight - (document.documentElement.clientHeight / 4) );"><h1>Си примеры</h1></div><div class="text0"><ol class="content_headers" id="headers"><li><a href="index.html#Почти_весь_СИ_на_одной_страничке">Почти весь СИ на одной страничке</a></li>
+<li><a href="index.html#Целые_числа">Целые числа</a></li>
+<li><a href="index.html#Числа_с_точкой">Числа с точкой</a></li>
+<li><a href="index.html#Прочие_типы_данных">Прочие типы данных</a></li>
+<li><a href="index.html#Input">Input</a></li>
+<li><a href="index.html#Output">Output</a></li>
+<li><a href="index.html#operators_(mod__)">operators (mod %)</a></li>
+<li><a href="index.html#Conditionals_(Условные)">Conditionals (Условные)</a></li>
+<li><a href="index.html#while">while</a></li>
+<li><a href="index.html#function">function</a></li>
+<li><a href="index.html#глобальные_переменные">глобальные переменные</a></li>
+<li><a href="index.html#Array">Array</a></li>
+<li><a href="index.html#Addres_Data_(Адрес_данных_/_указатели)">Addres Data (Адрес данных / указатели)</a></li>
+<li><a href="index.html#Строки">Строки</a></li>
+<li><a href="index.html#sprintf()_-_Перевести_данные_в_строку">sprintf() - Перевести данные в строку</a></li>
+<li><a href="index.html#Пример_рандом_на_си">Пример рандом на си</a></li>
+<li><a href="index.html#Мини_окно_для_винды">Мини окно для винды</a></li>
+<li><a href="index.html#sscanf">sscanf</a></li>
+<li><a href="index.html#string.h">string.h</a></li>
+<li><a href="index.html#Void">Void</a></li>
+<li><a href="index.html#Длинна_массива">Длинна массива</a></li>
+<li><a href="index.html#Сортировка_массива">Сортировка массива</a></li>
+<li><a href="index.html#Cтруктуры">Cтруктуры</a></li>
+<li><a href="index.html#typedef_помогает_записать_структуру_проще">typedef помогает записать структуру проще</a></li>
+<li><a href="index.html#union_(союз)_это_подобие_структуры">union (союз) это подобие структуры</a></li>
+<li><a href="index.html#Библиотека_для_управления_памятью">Библиотека для управления памятью</a></li>
+<li><a href="index.html#Управление_указателем_файла">Управление указателем файла</a></li>
+<li><a href="index.html#Отлавливаем_ошибки">Отлавливаем ошибки</a></li>
+</ol><script>
+document.addEventListener('keydown', function(event) {
+    if (event.key === '0') window.location.href = '#headers';
+    var number = event.key - 1;
+    var headers = document.getElementById('headers');
+    var links = headers.getElementsByTagName('a')
+    if (!links[number]) return;
+    links[number].click();
+});
+
+                </script></div><a href="https://h7team.ru/img/si2.jpg" target="_blank" rel="nofollow"><img class="img0" src="https://h7team.ru/img/si2.jpg" alt="" /></a><div class="text0"><h2 id="Почти_весь_СИ_на_одной_страничке">Почти весь СИ на одной страничке</h2>Являюсь обычным web прогером (php, JavaScript, html, css)
+И тут будет как бы видение языка С моими глазами. С моими комментами, чисто как шпора.. 
+Если хотите нормально учить основы языка, а не вспоминать, то рекомендую 
+<a href="https://ru.code-basics.com/languages/clang"target="_blank" rel="nofollow">ru.code-basics.com</a>
+
+Сразу скажу, что многие языки очень на него похожи. 
+Если вы забыли, как тут что пишется, то можно найти на этой стр. Так то все примеры и кодец скопировал с 
+<a href="https://sololearn.com"target="_blank" rel="nofollow">sololearn.com</a>
+
+просто расположил их удобно на одной странице. Если кому нравится воспринимать больше по видео, то 
+<a href="https://youtu.be/hBJ4BWhP0OE"target="_blank" rel="nofollow">Гоша Дударь СИ</a>
+попытается вас обучить. Посмотрев несколько его видео, он показывает не всё, а только часть на скорую руку, тип как это всё может работать. Если бы показывал всё, то не все бы досматривали, так же, как не все дочитают этот текст..
+Язык С создан в 1969 - 1973 годах сотрудником Bell Labs Деннисом Ритчи как улучшение языка Би.
+</div><a href="https://h7team.ru/img/si_author.jpg" target="_blank" rel="nofollow"><img class="img0" src="https://h7team.ru/img/si_author.jpg" alt="Фото Dennis Ritchie" /></a><div class="text0">
+Тут будет много примеров кода, чтобы начать компилировать C, вам поможет эта статья
+<a href="https://h7team.ru/articles/start_c/">Как скомпилировать си</a>
+Это не для обучения а больше для вспоминания языка, так же для копирования кода
+
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf(&quot;Hello, World!\n&quot;);
+    return 0;
+}</code><div class="text0">
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() /*простая программа*/
+{
+  int num;
+  num = 1;
+  printf (&quot;Я простая&quot;);
+  printf (&quot;вычислительная машина.\n&quot;);
+  printf (&quot;Мое любимое число %d, потому что оно самое первое.\n&quot;, num);
+
+  return 0;
+}</code><div class="text0">
+на разных компах переменные по разному весят
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    printf(&quot;int: %d \n&quot;, sizeof(int));
+    printf(&quot;float: %d \n&quot;, sizeof(float));
+    printf(&quot;double: %d \n&quot;, sizeof(double)); // this float with big 0
+    printf(&quot;char: %d \n&quot;, sizeof(char));
+
+    return 0;
+} </code><div class="text0">
+<h2 id="Целые_числа">Целые числа</h2>short предназначен для хранения целых чисел. Диапазон чисел от -32 768 до 32 767
+unsigned short от 0 до 65 535
+int от -2 147 483 648 до 2 147 483 647
+unsigned int - от 0 до 4 294 967 295
+long от -9 223 372 036 854 775 808 до 9 223 372 036 854 775 807
+unsigned long от 0 до 18 446 744 073 709 551 615
+
+<h2 id="Числа_с_точкой">Числа с точкой</h2>float для создания чисел с плавающей точкой. Диапазон чисел от -3.4*10(в степ 38) до 3.4*10(в степ 38)
+double от (+-)4.9*10(в степ -324) до (+-)1.8*10(в степ 308)
+
+<h2 id="Прочие_типы_данных">Прочие типы данных</h2>bool логический тип данных. Предназначен для записи истинного (true) или ложного (false) значения
+char тип данных для работы с символами. Позволяет поместить в одинарных кавычках какой-либо символ
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    int a, b;
+    float salary = 56.23;
+    char letter = 'Z';
+    a = 8;
+    b = 34;
+    int c = a+b;
+
+    printf(&quot;%d \n&quot;, c); // for int
+    printf(&quot;%f \n&quot;, salary); // for float
+    printf(&quot;%c \n&quot;, letter); // for char
+
+    return 0;
+}
+
+printf
+
+%с Символ типа char
+%d Десятичное число целого типа со знаком
+%i Десятичное число целого типа со знаком
+%е Научная нотация (е нижнего регистра)
+%Е Научная нотация (Е верхнего регистра)
+%f Десятичное число с плавающей точкой
+%g Использует код %е или %f — тот из них, который короче (при использовании %g используется е нижнего регистра)
+%G Использует код %Е или %f — тот из них, который короче (при использовании %G используется Е верхнего регистра)
+%о Восьмеричное целое число без знака
+%s Строка символов
+%u Десятичное число целого типа без знака
+%х Шестнадцатиричное целое число без знака (буквы нижнего регистра)
+%Х Шестнадцатиричное целое число без знака (буквы верхнего регистра)
+%р Выводит на экран значение указателя
+%n Ассоциированный аргумент — это указатель на переменную целого типа, в которую помещено количество символов, записанных на данный момент
+%% Выводит символ %
+%4.2f Это выводит float, где показанно, сколько знаков до запятой и после
+\&quot; Выводит &quot;
+\n Выводит переход на след строку</code><div class="text0">
+Const. Define не использует память, а чисто заменяет значения перед компиляцией.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    const double PI = 3.14;
+    printf(&quot;%f&quot;, PI);
+    
+    return 0;
+}
+
+OR
+
+#include &lt;stdio.h&gt;
+#define PI 3.14
+int main() {
+    printf(&quot;%f&quot;, PI);
+    return 0;
+}</code><div class="text0">
+<h2 id="Input">Input</h2></div><code class="code1">
+getchar() считывает первый символ, если достигнут конец файла, то возвращается EOF.
+#include &lt;stdio.h&gt;  
+int main() {
+    char a = getchar();
+    printf(&quot;You entered: %c&quot;, a);
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    char a[100];
+    gets(a); 
+    printf(&quot;You entered: %s&quot;, a); 
+    return 0;
+}
+
+
+scanf([формат считывания], [адрес переменной])
+Адрес переменной взде, кроме текста.
+Если воодить цифры с буквами, он будет считывать с лева,
+пока введённое соответствует формату
+#include &lt;stdio.h&gt;
+int main() {
+    int a;
+    scanf(&quot;%d&quot;, &amp;a);
+    printf(&quot;You entered: %d&quot;, a); 
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int a, b;
+    printf(&quot;Enter two numbers:&quot;);
+    scanf(&quot;%d %d&quot;, &amp;a, &amp;b);
+    printf(&quot;\nSum: %d&quot;, a+b); 
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int x;
+    float num;
+    char text[20];
+    scanf(&quot;%d %f %s&quot;, &amp;x, &amp;num, text);
+}
+
+
+d decimal
+c character
+s string
+f float
+x hexadecimal</code><div class="text0">
+<h2 id="Output">Output</h2></div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+  char a = getchar();
+  printf(&quot;You entered: &quot;);
+  putchar(a);
+  return 0;
+}
+
+#include &lt;stdio.h&gt;
+int main() {
+  char a[100];
+  gets(a); 
+  printf(&quot;You entered: &quot;);
+  puts(a); 
+  return 0;
+} 
+
+
+------
+
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int x, y;
+    char text[20];
+
+    scanf(&quot;%2d %d %*f %5s&quot;, &amp;x, &amp;y, text);
+    /* input: 1234  5.7  elephant */
+
+    printf(&quot;%d  %d  %s&quot;, x, y, text);
+    /* output: 12  34  eleph */
+
+    return 0;
+} 
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    printf(&quot;The tree has %d apples.\n&quot;, 22);
+    /* output: The tree has 22 apples. */
+
+    printf(&quot;\&quot;Hello World!\&quot;\n&quot;);
+    /* output: &quot;Hello World!&quot; */
+}
+
+\n new line
+\t horizontal tab
+\\ backslash
+\b backspace
+\' single quote
+\&quot; double quote
+
+\% (not) =&gt; %% (yes)
+
+
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf(&quot;Color: %s, Number: %d, float: %5.2f \n&quot;, &quot;red&quot;, 42, 3.14159);
+    /* Color: red, Number: 42, float:  3.14  */
+
+    printf(&quot;Pi = %3.2f \n&quot;, 3.14159); 
+    /* Pi = 3.14 */
+    
+    printf(&quot;Pi = %8.5f \n&quot;, 3.14159); 
+    /* Pi = 3.14159 */
+    
+    printf(&quot;Pi = %-8.5f \n&quot;, 3.14159); 
+    /* Pi = 3.14159 */
+    
+    printf(&quot;There are %d %s in the tree. \n&quot;, 22, &quot;apples&quot;);
+    /* There are 22 apples in the tree. */
+}</code><div class="text0">
+<h2 id="operators_(mod__)">operators (mod %)</h2></div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    int a = 6;
+    int b = 4;
+    int c = 2;
+    int result;
+
+    result = a - b + c;  // 4
+    printf(&quot;%d \n&quot;, result);
+
+    result = a + b / c;  // 8
+    printf(&quot;%d \n&quot;, result);
+
+    result = (a + b) / c;  // 5
+    printf(&quot;%d \n&quot;, result);
+
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    float price = 6.50;
+    int increase = 2;
+    float new_price;
+
+    new_price = price + increase;
+    printf(&quot;New price is %4.2f&quot;, new_price);
+    /* Output: New price is 8.50 */
+
+    return 0;
+}
+ 
+
+#include &lt;stdio.h&gt;
+int main() {
+    float average;
+    int total = 23;
+    int count = 4;
+    average = (float) total / count;
+    printf(&quot;%4.2f&quot;, average);
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int x = 2;
+    x += 1;  // 3
+    x -= 1;  // 2
+    x *= 3;  // 6
+    x /= 2;  // 3
+    x %= 2;  // 1
+    x += 3 * 2;  // 7
+    printf(&quot;%d&quot;, x);
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int x, y, z;
+    
+    z = 3;
+    x = z--;  /* assign 3 to x, then decrement z to 2 */
+    printf(&quot;x=%d \n&quot;, x);
+    
+    y = 3;
+    x = ++y;  /* increment y to 4, then assign 4 to x */
+    
+    printf(&quot;x=%d \n&quot;, x);
+    printf(&quot;y=%d \n&quot;, y);
+
+    return 0;
+}</code><div class="text0">
+<h2 id="Conditionals_(Условные)">Conditionals (Условные)</h2></div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    int score = 89;
+    if (score &gt; 75)
+        printf(&quot;You passed.\n&quot;); 
+    return 0;
+}
+
+
+&lt;    less than
+&lt;=  less than or equal to
+&gt;    greater than
+&gt;=  greater than or equal to
+==  equal to
+!=   not equal to
+
+
+#include &lt;stdio.h&gt; 
+int main() {
+    int num = 41;
+    num += 1;
+    if (num == 42) {
+        printf(&quot;You won!&quot;);
+    }
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int in_stock = 20;
+    if (in_stock)
+        printf(&quot;Order received.\n&quot;); 
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int score = 89;
+    if (score &gt;= 90)
+        printf(&quot;Top 10%%.\n&quot;);
+    else
+        printf(&quot;Less than 90.\n&quot;);v
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int y;
+    int x = 3;
+    y = (x &gt;= 5) ?  5 : x;
+    printf(&quot;%d&quot;, y);
+    return 0;
+}
+
+ 
+#include &lt;stdio.h&gt;
+int main() {
+    int profit = 500;
+    int clients = 12;
+    int bonus = 0;
+    if (profit &gt; 1000) {
+        if (clients &gt; 15)
+            bonus = 100;
+    }  else
+        bonus = 25;
+    printf(&quot;%d&quot;, bonus);
+}
+ 
+
+#include &lt;stdio.h&gt;
+int main() {
+    int score = 89; 
+    if (score &gt;= 90)
+        printf(&quot;%s&quot;, &quot;Top 10% \n&quot;);
+    else if (score &gt;= 80)
+        printf(&quot;%s&quot;, &quot;Top 20% \n&quot;);
+    else if (score &gt; 75)
+        printf(&quot;%s&quot;, &quot;You passed.\n&quot;);
+    else
+        printf(&quot;%s&quot;, &quot;You did not pass.\n&quot;);
+}
+ 
+ 
+#include &lt;stdio.h&gt;
+int main() {
+    int num = 3;b
+    switch (num) {
+        case 1:
+            printf(&quot;One\n&quot;);
+            break; 
+        case 2:
+            printf(&quot;Two\n&quot;);
+            break; 
+        case 3:
+            printf(&quot;Three\n&quot;);
+            break; 
+        default:
+            printf(&quot;Not 1, 2, or 3.\n&quot;);
+    }
+}
+ 
+ 
+#include &lt;stdio.h&gt;b
+int main() {
+    int num = 3;
+    switch (num) {
+        case 1:
+        case 2:
+        case 3:
+            printf(&quot;One, Two, or Three.\n&quot;);
+            break;   
+        case 4:
+        case 5:
+        case 6:
+            printf(&quot;Four, Five, or Six.\n&quot;);
+            break;
+        default:
+            printf(&quot;Greater than Six.\n&quot;);
+    }  
+}
+ 
+
+&amp;&amp; || !
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int n = 42;
+    
+    if (n == 999 || (n &gt; 0 &amp;&amp; n &lt;= 100))
+        printf(&quot;Input valid.\n&quot;);
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    char n = 'V';
+    if (!(n == 'x' || n == 'X'))
+        printf(&quot;Roman numeral is not 10.\n&quot;);
+}
+
+
+int v = 5 &gt; 4 ? 6 : 8;</code><div class="text0">
+<h2 id="while">while</h2></div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    int count = 1;
+    while(count &lt; 8) {
+        printf(&quot;Count = %d\n&quot;, count);
+        count++;
+    }
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int count = 1;
+    do{
+        printf(&quot;Count = %d\n&quot;, count);
+        count++;
+    } while(count &lt; 8);
+    return 0;
+} 
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int num = 5;
+    while (num &gt; 0) {
+        if (num == 3)
+            break;
+        printf(&quot;%d\n&quot;, num);
+        num--;
+    } 
+    return 0;
+} 
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int num = 5;
+    while (num &gt; 0) {
+    num--;
+    if (num == 3)
+      continue;
+    printf(&quot;%d\n&quot;, num);
+  } 
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int i;
+    int max = 10;
+    for(i = 0; i &lt; max; i++) {
+        printf(&quot;%d\n&quot;, i);
+    }
+}</code><div class="text0">
+<h2 id="function">function</h2>void display_message();
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+/* declaration */
+int square(int num);
+int main(){
+    int x, result;
+    x = 5;
+    result = square(x);
+    printf(&quot;%d squared is %d\n&quot;, x, result);
+    return 0;
+}
+/* definition */
+int square(int num){
+    int y;
+    y = num * num;
+    return(y);
+}
+ 
+
+#include &lt;stdio.h&gt;
+int sum_up(int x, int y); 
+int main(){
+    int x, y, result;
+    x = 3;
+    y = 22;
+    //result = sum_up(x, y);
+    printf(&quot;%d + %d = %d&quot;, x, y, sum_up(x, y));
+    return 0;
+}
+int sum_up(int x, int y){ 
+    x += y;
+    return(x);
+} 
+
+
+демонстрация рекурсии
+#include &lt;stdio.h&gt;
+//function declaration
+int factorial(int num);
+int main() {    
+    int x = 5;
+    printf(&quot;The factorial of %d is %d\n&quot;, x, factorial(x));
+    return 0;
+}
+//function definition
+int factorial(int num) {
+    if (num == 1)  /* base case */
+        return (1);
+    else
+        return (num * factorial(num - 1));
+} 
+The factorial of 5 is 120
+
+
+просто выйти с функции без выполнения 
+return;</code><div class="text0">
+<h2 id="глобальные_переменные">глобальные переменные</h2></div><code class="code1">
+#include &lt;stdio.h&gt;
+int global1 = 0; 
+int main() {    
+    int local1, local2;
+    local1 = 5;
+    local2 = 10;
+    global1 = local1 + local2;
+    printf(&quot;%d \n&quot;, global1);  /* 15 */
+    return 0;
+}
+
+
+статичная переменная обьявляется 1 раз 
+и сохраняется на протяжен всей программы
+
+#include &lt;stdio.h&gt;
+void say_hello();
+int main() {    
+    int i;
+    for (i = 0; i &lt; 5; i++) {
+        say_hello();
+    }
+    return 0;
+}
+void say_hello() {
+    static int num_calls = 1;
+    printf(&quot;Hello number %d\n&quot;, num_calls);
+    num_calls++;
+}
+
+Hello number 1
+Hello number 2
+Hello number 3
+Hello number 4
+Hello number 5</code><div class="text0">
+<h2 id="Array">Array</h2></div><code class="code1">
+int test_scores[25]; /* An array size 25 */
+float prices[5] = {3.2, 6.55, 10.49, 1.25, 0.99};
+float prices[5] = {3.2, 6.55};
+
+массив не может менять свой размер
+
+вызов и изменение
+#include &lt;stdio.h&gt;
+int main() {
+    int x[5] = {20, 45, 16, 18, 22};
+    x[1] = 260;
+    printf(&quot;The second element is %d\n&quot;, x[1]); /* 260 */
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    float purchases[3] = {10.99, 14.25, 90.50};
+    float total = 0;
+    int k;
+    /* total the purchases */
+    for (k = 0; k &lt; 3; k++) {
+        total += purchases[k];
+		printf(&quot;total = %6.2f\n&quot;, total);
+    }
+    printf(&quot;Purchases total is %6.2f\n&quot;, total);
+    /* Output:  Purchases total is 115.74 */ 
+    return 0;
+}
+
+
+int a[2][3] = {
+  {3, 2, 6},
+  {4, 5, 20}
+};
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int a[2][3] = {
+        {3, 2, 6},
+        {4, 5, 20}
+    };
+    printf(&quot;Element 3 in row 2 is %d\n&quot;, a[1][2]); /* 20 */
+    a[1][2] = 25;
+    printf(&quot;Element 3 in row 2 is %d\n&quot;, a[1][2]); /* 25 */
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int a[2][3] = {
+        {3, 2, 6},
+        {4, 5, 20}
+    };
+    int k, j;
+    /* display array contents */
+    for (k = 0; k &lt; 2; k++) {
+        for (j = 0; j &lt; 3; j++) {
+            printf(&quot; %d&quot;, a[k][j]);
+        }
+        printf(&quot;\n&quot;);
+    }
+    return 0;
+}</code><div class="text0">
+<h2 id="Addres_Data_(Адрес_данных_/_указатели)">Addres Data (Адрес данных / указатели)</h2>*p - указатель
+(*p) - значение указателя
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+void test(int k);
+int main() {
+    int i = 0;
+    printf(&quot;The address of i is %x\n&quot;, &amp;i);
+    test(i);
+    printf(&quot;The address of i is %x\n&quot;, &amp;i);
+    test(i);
+    return 0;
+}
+void test(int k) {
+    printf(&quot;The address of k is %x\n&quot;, &amp;k);
+} 
+The address of i is 61fe1c
+The address of k is 61fdf0
+The address of i is 61fe1c
+The address of k is 61fdf0
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int j = 63;
+    int *p = NULL;
+    p = &amp;j; 
+    printf(&quot;The address of j is %x\n&quot;, &amp;j);
+    printf(&quot;p contains address %x\n&quot;, p);
+    printf(&quot;The value of j is %d\n&quot;, j);
+    printf(&quot;p is pointing to the value %d\n&quot;, *p);
+}
+The address of j is 61fe14
+p contains address 61fe14
+The value of j is 63
+p is pointing to the value 63
+
+
+// Адрес адреса
+int x = 12;
+int *p = NULL
+int **ptr = NULL;
+p = &amp;x;
+ptr = &amp;p;
+
+//  (*p) можно использовать вместо названия переменной
+#include &lt;stdio.h&gt;
+int main() {
+    int x = 5;
+    int y;
+    int *p = NULL;
+    p = &amp;x;
+    y = *p + 2; /* y is assigned 7 */
+    y += *p;     /* y is assigned 12 */
+    *p = y;       /* x is assigned 12 */
+    (*p)++;      /* x is incremented to 13 */
+    printf(&quot;p is pointing to the value %d\n&quot;, *p); 
+}
+
+
+указатели хорошо служат на массивах
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int a[5] = {22, 33, 44, 55, 66};
+    int *ptr = NULL;
+    int i;
+    ptr = a;
+    for (i = 0; i &lt; 5; i++) {
+        printf(&quot;%d &quot;, *(ptr + i));
+    }
+}
+
+
+имя массива служит указателем на 0 элемент массива
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    int a[5] = {22, 33, 44, 55, 66};
+    int *ptr = NULL;
+    ptr = a;  /* point to the first array element */
+    printf(&quot;%d  %x\n&quot;, *ptr, ptr);  /* 22 */
+    ptr++;
+    printf(&quot;%d  %x\n&quot;, *ptr, ptr);  /* 33 */
+    ptr += 3;
+    printf(&quot;%d  %x\n&quot;, *ptr, ptr);  /* 66 */
+    ptr--;
+    printf(&quot;%d  %x\n&quot;, *ptr, ptr);  /* 55 */
+    ptr -= 2;
+    printf(&quot;%d  %x\n&quot;, *ptr, ptr);  /* 33 */ 
+}
+22  61fe00
+33  61fe04
+66  61fe10
+55  61fe0c
+33  61fe04
+
+
+#include &lt;stdio.h&gt;
+void swap (int *num1, int *num2);
+int main() {
+    int x = 25;
+    int y = 100;
+    printf(&quot;x is %d, y is %d\n&quot;, x, y); 
+    swap(&amp;x, &amp;y);
+    printf(&quot;x is %d, y is %d\n&quot;, x, y); 
+    return 0;
+}
+void swap (int *num1, int *num2) {
+    int temp;
+    temp = *num1;
+    *num1 = *num2;
+    *num2 = temp;
+}
+
+
+в функцию мы не можем передать массив,
+поэтому передаем массив только через указатель
+
+
+#include &lt;stdio.h&gt;
+int add_up (int *a, int num_elements);
+int main() {
+    int orders[5] = {100, 220, 37, 16, 98};
+    printf(&quot;Total orders is %d\n&quot;, add_up(orders, 5)); 
+    return 0;
+}
+int add_up (int *a, int num_elements) {
+   int total = 0;
+   int k;
+   for (k = 0; k &lt; num_elements; k++) {
+        total += a[k];
+   }
+   return (total);
+}
+
+
+с функции нельзя вернуть массив, 
+просто возвращаем указатель на него
+
+
+#include &lt;stdio.h&gt;
+int * get_evens();
+int main() {
+    int *a;
+    int k;
+    a = get_evens(); /* get first 5 even numbers */
+    for (k = 0; k &lt; 5; k++)
+      printf(&quot;%d\n&quot;, a[k]); 
+    return 0;
+}
+int * get_evens () {
+   static int nums[5];
+   int k;
+   int even = 0;
+   for (k = 0; k &lt; 5; k++) {
+        nums[k] = even += 2;
+		// even += 2; nums[k] = even;
+   }
+    return (nums);
+}
+2
+4
+6
+8
+10
+
+
+a[k]   ===   *(a + k);</code><div class="text0">
+<h2 id="Строки">Строки</h2>Строка в C - это массив символов, который заканчивается символом NULL '\ 0'.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    char str1[6] = &quot;hello&quot;;
+    char str2[ ] = &quot;world&quot;;  /* size 6 */
+    printf(&quot;str1 is: %s, str2 is: %s&quot;, str1, str2);
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    char str3[6] = {'h', 'e', 'l', 'l', 'o', '\0'};
+    char str4[ ] = {'h', 'e', 'l', 'l', 'o', '\0'}; /* size 6 */
+    printf(&quot;str3 is: %s, str4 is: %s&quot;, str3, str4);
+    return 0;
+}
+
+
+забудьте включить &lt;string.h&gt;.
+strlen () - получить длину строки
+strcat () - объединить две строки
+strcpy () - копировать одну строку в другую
+strlwr () - преобразовать строку в нижний регистр
+Strupr () - преобразовать строку в верхний регистр
+strrev () - обратная строка
+strcmp () - сравнить две строки
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    char first_name[25];
+    int age;
+    printf(&quot;Enter your first name and age: \n&quot;);
+    scanf(&quot;%s %d&quot;, first_name, &amp;age); // Считывание с клавы
+    printf(&quot;\nHi, %s. Your age is %d&quot;, first_name, age);
+    return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+int main() {
+    char full_name[50];
+    printf(&quot;Enter your full name: &quot;);
+    gets(full_name); // Считывание с клавы
+    printf(&quot;\nHi, %s.&quot;, full_name);
+    return 0;
+}</code><div class="text0">
+fgets более безопасный приём строки с клавы
+fgets(char *str, int num, FILE *stream)
+считывает до num-1 символов
+из файла stream
+и помещает их в массив символов,
+на который указывает str
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    char full_name[50];
+    printf(&quot;Enter your full name: &quot;);
+    fgets(full_name, 50, stdin);
+    printf(&quot;\nHi, %s&quot;, full_name);
+    return 0;
+}</code><div class="text0">
+вывод строки
+fputs(const char *str, FILE *stream)
+записывает содержимое строки,
+на которую указывает sir,
+в заданный поток.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main()
+{
+  char city[40];
+  printf(&quot;Enter your favorite city: &quot;);
+  gets(city); //Ввод строки
+  fputs(city, stdout); // выводит строку
+  printf(&quot; is a fun city.&quot;);
+  return 0;
+} 
+//gg
+//Enter your favorite city: gg is a fun city.
+
+
+#include &lt;stdio.h&gt;
+int main()
+{
+  char city[40];
+  printf(&quot;Enter your favorite city: &quot;);
+  gets(city);
+  puts(city); // Тоже вывод
+  return 0;
+} 
+//gg2
+//Enter your favorite city: gg2</code><div class="text0">
+<h2 id="sprintf()_-_Перевести_данные_в_строку">sprintf() - Перевести данные в строку</h2></div><code class="code1">
+#include &lt;stdio.h&gt;
+int main()
+{
+  char info[100];
+  char dept[ ] = &quot;HR&quot;;
+  int emp = 75;
+  sprintf(info, &quot;The %s dept has %d employees.&quot;, dept, emp);
+  printf(&quot;%s\n&quot;, info);
+  return 0;
+}</code><div class="text0">
+<h2 id="Пример_рандом_на_си">Пример рандом на си</h2></div><code class="code1">
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;conio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int get_rand_int(int min, int max) ;
+int main()
+{
+	short a, b, c, d;
+	srand(time(NULL));
+	
+	// min= 10; max= 90+10-1;=99
+	a = get_rand_int(10, 99); 
+	b = get_rand_int(10, 99);
+		
+	printf(&quot;Solve the equation: \n&quot;);
+	printf (&quot;%d&quot;, a);
+	if(a &lt; b){
+		c = a + b;
+		printf(&quot; + &quot;);
+	}else{
+		c = a - b;
+		printf(&quot; - &quot;);		
+	}
+	printf (&quot;%d = &quot;, b);
+	
+	scanf(&quot;%d&quot;, &amp;d);
+	printf (&quot;%d\n&quot;, d);
+	
+	if(c == d){
+		printf(&quot;Right&quot;);
+	}else{
+		printf(&quot;NOT Right&quot;);
+	}
+	
+	return 0;
+} 
+int get_rand_int(const int min, const int max) {
+    return rand() % (max - min + 1) + min;
+}</code><div class="text0">
+<h2 id="Мини_окно_для_винды">Мини окно для винды</h2></div><code class="code1">
+#include &lt;windows.h&gt;
+int main() {
+ MessageBox(NULL,&quot;Hello, World!&quot;,&quot;Test&quot;,MB_OK);
+ return 0;
+}</code><div class="text0">
+<h2 id="sscanf">sscanf</h2>sscanf(Строка, формат данных через пробел, куда эти данные передавать)
+для поиска значений в строке. Функция считывает значения из строки и сохраняет их по соответствующим адресам переменных.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main()
+{
+  char info[] = &quot;Snoqualmie WA 13190&quot;;
+  char city[50];
+  char state[50];
+  int population;
+
+  sscanf(info, &quot;%s %s %d&quot;, city, state, &amp;population);
+
+  printf(&quot;%d people live in %s, %s.&quot;, population, city, state);
+  return 0;
+}</code><div class="text0">
+<h2 id="string.h">string.h</h2></div><code class="code1">
+#include &lt;string.h&gt;</code><div class="text0">
+strlen(str) Возвращает длину строки, хранящейся в str, не включая символ NULL.
+
+strcat(str1, str2) Добавляет (объединяет) str2 в конец str1 и возвращает указатель на str1.
+
+strcpy(str1, str2) Копирует str2 в str1. Эта функция полезна для присвоения строке нового значения.
+
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main()
+{
+    char s1[] = &quot;The grey fox&quot;;
+    char s2[] = &quot; jumped.&quot;;
+    strcat(s1, s2);
+    printf(&quot;%s\n&quot;, s1);
+    printf(&quot;Length of s1 is %d\n&quot;, strlen(s1));
+    strcpy(s1, s2);
+    printf(&quot;s1 is now %s \n&quot;, s1);
+    return 0;
+} </code><div class="text0">
+strncat(str1, str2, n) Добавляет (объединяет) первые n символов str2 в конец str1 и возвращает указатель на str1.
+
+strncpy(str1, str2, n) Копирует первые n символов str2 в str1.
+
+strcmp(str1, str2) Возвращает 0, если str1 равно str2, меньше 0, если str1 меньше str2, и больше 0, если str1 больше str2.
+
+strncmp(str1, str2, n) Возвращает 0, когда первые n символов str1 равны первым n символам str2, меньше 0, если str1 меньше str2, и больше 0, когда str1 больше str2.
+
+strchr(str1, c) Возвращает указатель на первое вхождение char c в str1 или NULL, если символ не найден.
+
+strrchr(str1, c) Ищет str1 в обратном порядке и возвращает указатель на позицию char c в str1 или NULL, если символ не найден.
+
+strstr(str1, str2) Возвращает указатель на первое вхождение str2 в str1 или NULL, если str2 не найден.
+
+int atoi(str) Преобразует ASCII в целое число. Преобразует str в эквивалентное значение типа int. 0 возвращается, если первый символ не является числом или числа не встречаются.
+
+double atof(str) Используется для плавающего кода ASCII. Преобразует str в эквивалентное значение типа double. 0.0 возвращается, если первый символ не является числом или числа не встречаются.
+
+long int atol(str) Заменяет ASCII на long int. Преобразует str в эквивалентное длинное целое число. 0 возвращается, если первый символ не является числом или числа не встречаются.
+конвертер из строки в число
+
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main()
+{
+    char input[10];
+    int num;
+    printf(&quot;Enter a number: &quot;);
+    gets(input);
+    num = atoi(input);
+    printf(&quot;You entered %d&quot;, num);
+    return 0;
+}</code><div class="text0">
+В atoi() отсутствует обработка ошибок, рекомендуется использовать strtol(строка для преобразования, char*, система счисления)
+</div><code class="code1">
+li2 = strtol(pEnd,    &amp;pEnd, 16), // преобразовать часть строки в значение 16-й СС
+li3 = strtol(pEnd,    &amp;pEnd,  2), // преобразовать часть строки в значение 2-й СС</code><div class="text0">
+</div><code class="code1">
+char trip[3][15] = {
+  &quot;suitcase&quot;,
+  &quot;passport&quot;,
+  &quot;ticket&quot;
+};
+
+
+// Массивы
+#include &lt;stdio.h&gt;
+int main()
+{
+  char *trip[] = {
+      &quot;suitcase&quot;,
+      &quot;passport&quot;,
+      &quot;ticket&quot;
+  };
+  printf(&quot;Please bring the following:\n&quot;);
+  for (int i = 0; i &lt; 3; i++) {
+    printf(&quot;%s\n&quot;, trip[i]);
+  }  
+  return 0;
+} 
+
+
+// Чтобы функции скормить другую функцию, её надо сделать в виде указателя.
+// Можно скопировать функцию вот так
+
+#include &lt;stdio.h&gt;
+void say_hello(int num_times); /* function */
+
+int main() {
+    void (*funptr)(int);  /* function pointer */
+    funptr = say_hello; /* pointer assignment */
+    funptr(3); /* function call */
+    
+    return 0;
+}
+
+void say_hello(int num_times) {
+    int k;
+    for (k = 0; k &lt; num_times; k++)
+        printf(&quot;Hello\n&quot;);
+}
+
+
+
+// Копирование, если у функции несколько аргументов
+int sum(int a, int b){
+ return a + b;
+}
+int (*psum)(int,int) = sum;
+
+
+
+// Пример, где все функции находятся в массиве
+#include &lt;stdio.h&gt;
+
+int add(int num1, int num2);
+int subtract(int num1, int num2);
+int multiply(int num1, int num2);
+int divide(int num1, int num2);
+
+int main() 
+{
+  int x, y, choice, result;
+  int (*op[4])(int, int);
+
+  op[0] = add;
+  op[1] = subtract;
+  op[2] = multiply;
+  op[3] = divide;
+  printf(&quot;Enter two integers: &quot;);
+  scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+  printf(&quot;Enter 0 to add, 1 to subtract, 2 to multiply, or 3 to divide: &quot;);
+  scanf(&quot;%d&quot;, &amp;choice);
+  result = op[choice](x, y);
+  printf(&quot;\n %d&quot;, result);
+    
+  return 0;
+}
+
+int add (int x, int y) {
+  return(x + y);
+}
+
+int subtract (int x, int y) {
+  return(x - y);
+}
+
+int multiply (int x, int y) {
+  return(x * y);
+}
+
+int divide (int x, int y) {
+  if (y != 0)
+    return (x / y);
+  else
+    return 0;
+} </code><div class="text0">
+<h2 id="Void">Void</h2>Указатель void используется для ссылки на любой тип адреса в памяти и имеет объявление, которое выглядит так: void * ptr;
+Это как одно название переменной может быть разного формата, но неудобно его воспроизводить..
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+int main() {
+    int x = 33;
+    float y = 12.4;
+    char c = 'a';
+    void *ptr;
+    
+    ptr = &amp;x;
+    printf(&quot;void ptr points to %d\n&quot;, *((int *)ptr));
+    ptr = &amp;y;
+    printf(&quot;void ptr points to %f\n&quot;, *((float *)ptr));
+    ptr = &amp;c;
+    printf(&quot;void ptr points to %c&quot;, *((char *)ptr));
+
+    return 0;
+}</code><div class="text0">
+Вот функция, которая принимает число в виде ссылки , умножает его и возвращает
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+void * square (const void *num);
+
+int main() {
+  int x, sq_int;
+  x = 6;
+  sq_int = square(&amp;x);
+  printf(&quot;%d squared is %d\n&quot;, x, sq_int);
+
+  return 0;
+}
+
+void * square(const void *num) {
+  static int result;
+  result = (*(int *)num) * (*(int *)num);
+  return(result);
+}</code><div class="text0">
+<h2 id="Длинна_массива">Длинна массива</h2>Если у вас есть array sizeof(array) возвращает количество байтов, которое занимает массив. Поскольку каждый элемент может занимать более 1 байта пространства, вам нужно разделить результат на размер одного элемента (sizeof(array[0])). Это дает вам количество элементов в массиве.
+<h2 id="Сортировка_массива">Сортировка массива</h2>qsort(
+ адрес массива, // (void *)arr
+ количество элементов в массиве, // num = sizeof(arr)/sizeof(arr[0]); 
+ размер одного элемента, // width = sizeof(arr[0]);
+ функция определения сортировки // compare
+);
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int compare (const void *, const void *); 
+
+int main() {
+    int arr[5] = {52, 23, 56, 19, 4};
+    int num, width, i;
+  
+    num = sizeof(arr)/sizeof(arr[0]); // Делим на размер одного элемента
+    printf(&quot;sizeof(arr) %d\n &quot;, sizeof(arr));
+    printf(&quot;sizeof(arr[0]) %d\n &quot;, sizeof(arr[0]));
+	
+    width = sizeof(arr[0]);
+    qsort((void *)arr, num, width, compare); //  Сортировка
+    for (i = 0; i &lt; 5; i++)
+        printf(&quot;%d &quot;, arr[ i ]);
+    
+    return 0;
+}
+
+int compare(const void *elem1, const void *elem2) {
+    if ((*(int *)elem1) == (*(int *)elem2))
+        return 0;
+    else if ((*(int *)elem1) &lt; (*(int *)elem2))
+        return -1;
+    else
+        return 1;
+} </code><div class="text0">
+<h2 id="Cтруктуры">Cтруктуры</h2></div><code class="code1">
+struct course {
+  int id;
+  char title[40];
+  float hours; 
+};</code><div class="text0">
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+struct student {
+    int age;
+    int grade;
+    char name[40];
+};
+int main() {
+    /* declare two variables */
+    struct student s1;
+    struct student s2;
+    
+    s1.age = 19;
+    s1.grade = 9;
+    sprintf(s1.name, &quot;John Bighimer&quot;);
+    
+    s2.age = 22;
+    s2.grade = 10;
+    sprintf(s2.name, &quot;Batman Jokerson&quot;);
+    
+    printf(&quot;Student: %s, %d\n&quot;, s1.name, s1.age);
+    printf(&quot;Student: %s, %d\n&quot;, s2.name, s2.age);
+    
+    return 0;
+}
+
+
+or
+
+struct student s1 = {19, 9, &quot;John Birghimer&quot;};
+struct student s2 = {22, 10, &quot;Batman Jokerson&quot;};
+
+or
+
+struct student s1; // declaring
+s1 = (struct student){19, 9, &quot;John Birghimer&quot;};
+
+or
+
+struct student s1 = { .grade = 9, .age = 19, .name = &quot;John Birghimer&quot;};
+
+or
+
+s1.age = 19;</code><div class="text0">
+структуры можно передать такому же типу
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+struct student {
+    int age;
+    int grade;
+    char name[40];
+};
+
+int main() {
+    struct student s1 = {19, 9, &quot;Jason&quot;};
+    struct student s2;
+    
+    printf(&quot;Assigning, s2 = s1\n&quot;);
+    s2 = s1;
+    
+    printf(&quot;Results, Name: %s, Age: %d, Grade: %d\n&quot;, s2.name, s2.age, s2.grade);
+    
+    return 0;
+}</code><div class="text0">
+Пример с таймером, для сравнения скорости работы
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+
+int main(){
+  clock_t start = clock();
+
+  long d = 0.0;
+
+  for (long i = 0; i &lt; 100000000; i++)
+  {
+    d += i &gt;&gt; 1;    
+  }
+
+  clock_t end = clock();
+  clock_t elapsed = (end - start) / (CLOCKS_PER_SEC / 1000); 
+
+  printf(&quot;%ld\n&quot;, d);
+  printf(&quot;%lu\n&quot;, elapsed);
+}</code><div class="text0">
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct course {
+  int id;
+  char title[40];
+  float hours; 
+};
+
+int main() {
+  struct course cs1 = {341279, &quot;Intro to C++&quot;, 12.5};
+  struct course cs2;
+
+  cs2.id = 341281;
+  strcpy(cs2.title, &quot;Advanced C++&quot;);
+  cs2.hours = 14.25;
+   
+  printf(&quot;%d\t%s\t%4.2f\n&quot;, cs1.id, cs1.title, cs1.hours);
+  printf(&quot;%d\t%s\t%4.2f\n&quot;, cs2.id, cs2.title, cs2.hours);
+  
+  return 0;
+}</code><div class="text0">
+<h2 id="typedef_помогает_записать_структуру_проще">typedef помогает записать структуру проще</h2></div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+    int id;
+    char title[40];
+    float hours; 
+} course;
+
+int main() {
+    course cs1;
+    course cs2;
+
+    cs1.id = 123456;
+    strcpy(cs1.title, &quot;JavaScript Basics&quot;);
+    cs1.hours = 12.30;
+
+    cs2.id = 341281;
+    strcpy(cs2.title, &quot;Advanced C++&quot;);
+    cs2.hours = 14.25;
+       
+    printf(&quot;%d\t%s\t%4.2f\n&quot;, cs1.id, cs1.title, cs1.hours);
+    printf(&quot;%d\t%s\t%4.2f\n&quot;, cs2.id, cs2.title, cs2.hours);
+  
+    return 0;
+}</code><div class="text0">
+Структуры могут быть вложенные
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+typedef struct {
+  int x;
+  int y;
+} point;
+
+typedef struct {
+  float radius;
+  point center;
+} circle; 
+
+int main() {
+    point p;
+    p.x = 3;
+    p.y = 4;
+    
+    circle c;
+    c.radius = 3.14;
+    c.center = p;
+    
+    c.center.y = 37;
+    
+    circle c = {4.5, {1, 3}}; 
+    
+    printf(&quot;Circle radius is %.2f, center is at (%d, %d)&quot;, c.radius, c.center.x, c.center.y);
+  
+    return 0;
+}</code><div class="text0">
+Так же, как указатели на переменные, могут быть определены указатели на структуры.
+</div><code class="code1">
+struct myStruct * struct_ptr;
+определяет указатель на структуру myStruct.
+
+struct_ptr = &amp; struct_var;
+сохраняет адрес структурной переменной struct_var в указателе struct_ptr.
+
+struct_ptr -&gt; struct_mem;
+получает доступ к значению члена структуры struct_mem.</code><div class="text0">
+еще можно передавать указатели на структуры
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct student{
+    char name[50];
+    int number;
+    int age;
+};
+
+void showStudentData(struct student *st) {
+    printf(&quot;\nStudent:\n&quot;);
+    printf(&quot;Name: %s\n&quot;, st-&gt;name);
+    printf(&quot;Number: %d\n&quot;, st-&gt;number);
+    printf(&quot;Age: %d\n&quot;, st-&gt;age);
+}
+
+int main() {
+    struct student st1;
+    struct student st2;
+    
+    strcpy(st1.name, &quot;Krishna&quot;);
+    st1.number = 5;
+    st1.age = 21;
+    
+    strcpy(st2.name, &quot;Max&quot;);
+    st2.number = 9;
+    st2.age = 15;
+    
+    showStudentData(&amp;st1);
+    showStudentData(&amp;st2);
+    
+    return 0;
+}</code><div class="text0">
+(*st) .age совпадает с st-> age.
+Кроме того, когда для имени структуры используется typedef,
+тогда указатель объявляется с использованием только имени
+typedef вместе с * и именем указателя. (*st) .age
+Передавая структуру функции в виде указателя,
+можно менять данные структуры.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+    int id;
+    char title[40];
+    float hours; 
+} course;
+
+void update_course(course *class);
+void display_course(course class);
+
+int main() {
+    course cs2;
+    update_course(&amp;cs2);
+    display_course(cs2);
+    return 0;
+}
+
+void update_course(course *class) {
+    strcpy(class-&gt;title, &quot;C++ Fundamentals&quot;);
+    class-&gt;id = 111;
+    class-&gt;hours = 12.30;
+}
+
+void display_course(course class) {
+    printf(&quot;%d\t%s\t%3.2f\n&quot;, class.id, class.title, class.hours);
+} </code><div class="text0">
+В массиве могут храниться элементы любого типа данных, включая структуры.
+После объявления массива структур, элемент становится доступным по порядковому номеру.
+Затем оператор точки используется для доступа к членам элемента, как в программе:
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+typedef struct {
+  int h;
+  int w;
+  int l;
+} box;
+
+int main(){
+  box boxes[3] = {{2, 6, 8}, {4, 6, 6}, {2, 6, 9}};
+  int k, volume;
+  
+  for (k = 0; k &lt; 3; k++) {
+    volume = boxes[k].h * boxes[k].w * boxes[k].l;
+    printf(&quot;box %d volume %d\n&quot;, k, volume);
+  }
+  return 0;
+}</code><div class="text0">
+<h2 id="union_(союз)_это_подобие_структуры">union (союз) это подобие структуры</h2>Союзы используются для управления памятью. Самый большой тип данных члена используется для определения размера разделяемой памяти, а затем все члены используют это одно место. Этот процесс также помогает ограничить фрагментацию памяти.
+Как я понял: это хранит все данные в одной области памяти и последняя запись данных перезаписывает всё предыдущее, размер определяется самым большим его свойством (типом).
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+union val {
+    int int_num;
+    float fl_num;
+    char str[20]; 
+};
+
+int main() {
+    union val test;
+    test.int_num = 42;
+    printf(&quot;%d&quot;, test.int_num);
+    return 0;
+}</code><div class="text0">
+union , так же как и структуру, можно копировать
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+union val {
+    int int_num;
+    float fl_num;
+    char str[20]; 
+};
+
+int main() {
+    union val u1;
+    union val u2;
+    u1.int_num = 42;
+    u2 = u1;
+    printf(&quot;%d&quot;, u2.int_num);
+    return 0;
+}</code><div class="text0">
+Последнее присвоение переопределяет предыдущие назначения, поэтому str сохраняет значение и доступ к int_num и fl_num бессмыслен.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+union val {
+  int int_num;
+  float fl_num;
+  char str[20]; 
+};
+int main() {  
+  union val test;
+
+  test.int_num = 123;
+  test.fl_num = 98.76;
+  strcpy(test.str, &quot;hello&quot;);
+
+  printf(&quot;%d\n&quot;, test.int_num);
+  printf(&quot;%f\n&quot;, test.fl_num);
+  printf(&quot;%s\n&quot;, test.str);
+  return 0;
+}</code><div class="text0">
+Объединения часто используются в структурах, потому что в структуре может быть член, чтобы отслеживать, какой член объединения хранит значение. Например, в следующей программе структура транспортного средства использует либо идентификационный номер транспортного средства (VIN), либо назначенный идентификатор, но не оба сразу:
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+  char make[20];
+  int model_year;
+  int id_type; /* 0 for id_num, 1 for VIN */
+  union {
+    int id_num;
+    char VIN[20]; 
+  } id;
+} vehicle;
+
+int main() {  
+  vehicle car1;
+  strcpy(car1.make, &quot;Ford&quot;);
+  car1.model_year = 2017;
+  car1.id_type = 0;
+  car1.id.id_num = 123098;
+  
+  printf(&quot;Car %s, %d, %d&quot;, car1.make, car1.model_year, car1.id.id_num);
+
+  return 0;
+}
+
+
+
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+  char make[20];
+  int model_year;
+  int id_type; /* 0 for id_num, 1 for VIN */
+  union {
+    int id_num;
+    char VIN[20]; 
+  } id;
+} vehicle;
+
+int main() {  
+  vehicle car1;
+  strcpy(car1.make, &quot;Ford&quot;);
+  car1.model_year = 2017;
+  car1.id_type = 0;
+  car1.id.id_num = 123098;
+  
+  printf(&quot;Make: %s\n&quot;, car1.make);
+  printf(&quot;Model Year: %d\n&quot;, car1.model_year);
+  if (car1.id_type == 0)
+    printf(&quot;ID: %d\n&quot;, car1.id.id_num);
+  else
+    printf(&quot;ID: %s\n&quot;, car1.id.VIN);
+
+  return 0;
+}</code><div class="text0">
+Если мы поставим указатель на обьединение, и через указатель поменяем обьединению данные, то в самом обьединении так же поменяются данные
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+union val {
+  int int_num;
+  float fl_num;
+  char str[20]; 
+};
+
+int main() {  
+  union val info;
+  union val *ptr = NULL;
+  ptr = &amp;info;
+  ptr-&gt;int_num = 10;
+  printf(&quot;info.int_num is %d&quot;, info.int_num);
+  
+  return 0;
+}</code><div class="text0">
+(*ptr).int_num === ptr->int_num
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+union id {
+  int id_num;
+  char name[20]; 
+};
+
+void set_id (union id *item);
+void show_id (union id item);
+
+int main() {  
+  union id item;
+  
+  set_id(&amp;item);  
+  show_id(item);
+
+  return 0;
+}
+
+void set_id(union id *item) {
+    item-&gt;id_num = 42;
+}
+
+void show_id(union id item) {
+    printf(&quot;ID is %d&quot;, item.id_num);
+}</code><div class="text0">
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+union val {
+  int int_num;
+  float fl_num;
+  char str[20]; 
+};
+
+int main() {  
+  union val nums[10];
+  int k;
+  
+  /* create an array of ints */
+  for (k = 0; k &lt; 10; k++) {
+    nums[k].int_num = k;
+  }
+  
+  /* display array values */
+  for (k = 0; k &lt; 10; k++) {
+    printf(&quot;%d  &quot;, nums[k].int_num);
+  }
+  
+  return 0;
+}</code><div class="text0">
+Массив - это структура данных, в которой хранятся значения коллекции одного типа. Массивы объединений позволяют хранить значения разных типов.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+
+union type {
+  int i_val;
+  float f_val;
+  char ch_val;
+};
+
+int main() {
+  union type arr[3];
+  arr[0].i_val = 42;
+  arr[1].f_val = 3.14;
+  arr[2].ch_val = 'x';
+  printf(&quot;1st element is %d, 2nd is %f, and the 3rd is %c&quot;, arr[0].i_val, arr[1].f_val, arr[2].ch_val);
+  
+  return 0;
+}</code><div class="text0">
+<h2 id="Библиотека_для_управления_памятью">Библиотека для управления памятью</h2></div><code class="code1">
+#include &lt;stdlib.h&gt;</code><div class="text0">
+malloc(bytes) - Возвращает указатель на непрерывный блок памяти размером в байты.
+
+calloc(num_items, item_size) Возвращает указатель на непрерывный блок памяти, который имеет num_items элементов, каждый размером item_size в байтах. Обычно используется для массивов, структур и других производных типов данных. Выделенная память инициализируется 0.
+
+realloc(ptr, bytes) - Изменяет размер памяти, на которую указывает ptr, до размера в байтах. Вновь выделенная память не инициализируется.
+
+free(ptr) Освобождает блок памяти, на который указывает ptr.
+
+malloc(10) - запросить память 10 байт, она отдает указатель на начало, этот адрес надо сохранить в указатель, она должна быть кратна размеру типа.
+то, что вернется юзайте, как указатель на массив
+
+int x;
+sozeof(x);
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main() {
+  int *ptr;
+  ptr = malloc(10*sizeof(*ptr));  /* a block of 10 ints */
+  if (ptr != NULL) {
+    *(ptr+2) = 50;  /* assign 50 to third int */
+  }
+  printf(&quot;3rd elem equals to %d&quot;, *(ptr + 2));
+  return 0;
+}</code><div class="text0">
+mallog может послать нахер, поэтому всегда проверяем, не равен ли указатель NULL
+
+free(ptr); правильно освобождать память в той же функции, где ее взяли
+
+calloc(количество структур, sizeof(структура)) выделение памяти для структуры
+calloc выделяет блоки памяти в непрерывном блоке памяти для массива элементов структуры. Вы можете переходить от одной структуры к другой с помощью арифметики указателя. После выделения места для структуры необходимо выделить память для строки внутри структуры. Использование указателя для информационного элемента позволяет сохранять строку любой длины. Динамически распределяемые структуры являются основой связанных списков и двоичных деревьев, а также других структур данных.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+  int num;
+  char *info;
+} record;
+
+int main() {
+  record *recs;
+  int num_recs = 2;
+  int k;
+  char str[ ] = &quot;This is information&quot;;
+
+  recs = calloc(num_recs, sizeof(record));
+  if (recs != NULL) {
+    for (k = 0; k &lt; num_recs; k++) {
+      (recs+k)-&gt;num = k;
+      (recs+k)-&gt;info = malloc(sizeof(str));
+      strcpy((recs+k)-&gt;info, str);
+    }
+  }
+
+  for (k = 0; k &lt; num_recs; k++) {
+    printf(&quot;%d\t%s\n&quot;, (recs+k)-&gt;num, (recs+k)-&gt;info);
+  }
+
+  return 0;
+}</code><div class="text0">
+Функция realloc (указатель, количество * sizeof(указатель на данные)) расширяет текущий блок, чтобы включить дополнительную память.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+  int *ptr;
+  ptr = malloc(10*sizeof(*ptr));  /* a block of 10 ints */
+  if (ptr != NULL) {
+    *(ptr+2) = 50;  /* assign 50 to third int */
+  }
+  ptr = realloc(ptr, 100*sizeof(*ptr)); /* 100 ints */
+  *(ptr+30) = 75;
+  printf(&quot;%d %d&quot;, *(ptr+2), *(ptr+30));
+
+  return 0;
+}</code><div class="text0">
+strlen При использовании strlen для определения количества байтов, необходимых для строки, не забудьте включить один дополнительный байт для символа NULL '\ 0'. Символ всегда состоит из одного байта, поэтому нет необходимости умножать требования к памяти на sizeof (char).
+</div><code class="code1">
+#include &lt;stdio.h&gt;  
+#include &lt;string.h&gt; 
+
+int main (void)
+{    
+   char str [11]=&quot;0123456789&quot;;
+   printf (&quot;Length string \&quot;%s\&quot; - %d char \n&quot;, str, strlen (str) );
+   return 0;
+}
+
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+  char str20[20];
+  char *str = NULL;
+
+  strcpy(str20, &quot;12345&quot;);
+  printf(&quot;str20 size: %d\n&quot;, sizeof(str20));
+  printf(&quot;str20 length: %d\n&quot;, strlen(str20));
+  str = malloc(strlen(str20)+1); /* make room for \0 */
+  strcpy(str, str20);
+  printf(&quot;%s&quot;, str);
+
+  return 0;
+}</code><div class="text0">
+Динамический массив - как безразмерный
+Вся программа написана в main () в демонстрационных целях. Чтобы правильно реализовать динамический массив, подзадачи следует разбить на такие функции, как init_array (), Increase_array (), add_element () и display_array (). Проверка ошибок также была пропущена, чтобы демонстрация была короткой.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+// создали структуру
+typedef struct {
+  int *elements;
+  int size;
+  int cap;
+} dyn_array;
+
+int main() {
+  dyn_array arr;
+  int i;
+
+  /* initialize array */
+  arr.size = 0;
+  arr.elements = calloc(1, sizeof(*arr.elements));
+  arr.cap = 1;  /* room for 1 element */
+
+  /* expand by 5 more elements */
+  arr.elements = realloc(arr.elements, (5 + arr.cap)*sizeof(*arr.elements));
+  if (arr.elements != NULL)
+    arr.cap += 5; /* increase capacity */
+
+  /* add an element and increase size */  
+  if (arr.size &lt; arr.cap) {
+    arr.elements[arr.size] = 50; /* add element to array */
+    arr.size++;
+  }
+  else
+    printf(&quot;Need to expand array.&quot;);
+
+  /* display array elements */
+  for (i = 0; i &lt; arr.cap; i++)
+    printf(&quot;Element %d: %d\n&quot;, i, arr.elements[ i ]);
+
+  return 0;
+}</code><div class="text0">
+<h2 id="Управление_указателем_файла">Управление указателем файла</h2>В stdio.h есть функции для управления расположением указателя файла в двоичном файле:
+ftell(fp) Возвращает значение типа long int, соответствующее позиции указателя файла fp в количестве байтов от начала файла.
+fseek(fp, num_bytes, from_pos) Перемещает позицию указателя файла fp на num_bytes байтов относительно позиции from_pos, которая может быть одной из следующих констант:
+- SEEK_SET начало файла
+- SEEK_CUR текущая позиция
+- SEEK_END конец файла
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct {
+  int id;
+  char name[20];
+} item;
+
+int main() { 
+  FILE *fptr;
+  item first, second, secondf;
+
+  // Заполнение данных
+  first.id = 10276;
+  strcpy(first.name, &quot;Widget&quot;);
+  second.id = 11786;
+  strcpy(second.name, &quot;Gadget&quot;);
+  
+  // Закидывание в файл
+  fptr = fopen(&quot;info.dat&quot;, &quot;wb&quot;);
+  fwrite(&amp;first, 1, sizeof(first), fptr);
+  fwrite(&amp;second, 1, sizeof(second), fptr);
+  fclose(fptr); 
+
+  // Читает с файла
+  fptr = fopen(&quot;info.dat&quot;, &quot;rb&quot;);
+
+  // Перемещается на второй элемент для чтения
+  fseek(fptr, 1*sizeof(item), SEEK_SET);
+  fread(&amp;secondf, 1, sizeof(item), fptr);
+
+  // Вывод того, что прочитал
+  printf(&quot;%d  %s\n&quot;, secondf.id, secondf.name);
+  fclose(fptr);
+  return 0;
+}</code><div class="text0">
+Эта программа записала в файл две записи об элементе.
+Чтобы прочитать только вторую запись,
+fseek() переместила указатель файла на
+1 * sizeof(item) байт от начала файла.
+Например, если вы хотите переместить указатель на четвертую запись, вы переместитесь к 3 * sizeof (item) с начала файла (SEEK_SET).
+<h2 id="Отлавливаем_ошибки">Отлавливаем ошибки</h2>Использование exit во избежание сбоя программы является хорошей практикой, поскольку он закрывает все открытые файловые соединения и процессы.
+Используйте errno, perror() и strerror()
+для выявления ошибок с помощью кодов ошибок.
+Вы можете вернуть любое значение с помощью оператора выхода, но обычно 0 для успеха и -1 для неудачи.
+Ещё часто используются предопределенные макросы stdlib.h EXIT_SUCCESS и EXIT_FAILURE.
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main() {
+  int x = 10;
+  int y = 0;
+
+  if (y != 0)
+    printf(&quot;x / y = %d&quot;, x/y);
+  else {
+    printf(&quot;Divisor is 0. Program exiting.&quot;);
+    exit(EXIT_FAILURE);
+  }
+  
+  return 0;
+}</code><div class="text0">
+Некоторые библиотечные функции, такие как fopen(),
+устанавливают код ошибки, когда они не выполняются должным образом.
+Код ошибки устанавливается в глобальной переменной с именем errno, которая определена в заголовочном файле errno.h. При использовании errno вы должны установить его в 0 перед вызовом библиотечной функции.
+Чтобы вывести код ошибки, хранящийся в errno, вы используете fprintf для печати в поток файлов stderr, стандартный вывод ошибок на экран.
+
+Использование stderr является условием и хорошей практикой программирования. Вы можете вывести errno другими способами, но будет легче отслеживать обработку исключений, если вы будете использовать stderr только для сообщений об ошибках.
+Чтобы использовать errno, вам нужно объявить его с помощью оператора extern int errno; в верхней части вашей программы (или вы можете включить файл заголовка errno.h).
+</div><code class="code1">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+extern int errno;
+
+int main() {
+  FILE *fptr;
+
+  errno = 0;
+  fptr = fopen(&quot;c:\\nonexistantfile.txt&quot;, &quot;r&quot;);
+  if (fptr == NULL) {
+    fprintf(stderr, &quot;Error opening file. Error code: %d\n&quot;, errno);
+    exit(EXIT_FAILURE);
+  }
+
+  fclose(fptr);
+  return 0;
+}</code><div class="text0">
+</div><footer><div class="time">2022.08.20 23:20.00</div><div class="copy">&copy; <a href="https://h7team.ru/">h7team.ru</a> 2017-2022г<div style="display:Inline-block;" onclick="window.open('/h7in/#/articles/c/index.html');" rel="nofollow">.</div></div></footer><div class="seo">
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(47970263, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        trackHash:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/47970263" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</div></body></html>

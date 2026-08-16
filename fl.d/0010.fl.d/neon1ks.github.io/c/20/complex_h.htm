@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Библиотека поддержки арифметических операций с комплексными числами - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#20">Содержание</a> | <a href="20.htm">&lt;&lt;&lt;</a> | <a href="fenv_h.htm">&gt;&gt;&gt;</a><hr>
+<h1>Библиотека поддержки арифметических операций с комплексными числами</h1>
+<p class="tj">В версии С99 стало возможным выполнять арифметические операции с комплексными числами. Библиотека поддержки арифметических операций с комплексными числами имеет заголовочный файл <kbd>&lt;complex.h&gt;</kbd>. В нем определены следующие макросы:</p>
+<table class="table table-bordered">
+<tr><th><em>Макрос</em><th><em>Расширение</em>
+<tr><td><kbd>complex</kbd><td><kbd>_Complex</kbd>
+<tr><td><kbd>imaginary</kbd><td><kbd>_Imaginary</kbd>
+<tr><td><kbd>_Complex_I</kbd><td><kbd>(const float_Coraplex)</kbd> <em>i</em>
+<tr><td><kbd>_Imaginary_I</kbd><td><kbd>(const float imaginary)</kbd> <em>i</em>
+<tr><td><kbd>I</kbd><td><kbd>_Imaginary_I</kbd> (или <kbd>_Complex_I</kbd>, если не поддерживаются мнимые типы)
+</table>
+<p class="tj">Здесь <em>i</em> представляет мнимое значение, которое равно квадратному корню из —1. Поддержка мнимых типов не обязательна.
+<p class="tj">В версии С99 вместо ключевьк слов <kbd>complex</kbd> и <kbd>imaginary</kbd> определены слова <kbd>_Complex</kbd> и <kbd>_Imaginary</kbd>, поскольку во многих существующих программах, написанных на С89, уже определены пользовательские типы данных <kbd>complex</kbd> и <kbd>imaginary</kbd> для комплексных чисел. Использование в версии С99 слов <kbd>_Complex</kbd> и <kbd>_Imaginary</kbd> позволяет избежать изменения написанного ранее кода. Однако в новые программы лучше всего включить заголовок <kbd>&lt;complex.h&gt;</kbd>, а затем использовать макросы <kbd>complex</kbd> и <kbd>imaginary</kbd>.</p>
+<table class="table table-bordered">
+<tr><td class="tdnote">На заметку<td class="tj">В C++ определен класс <kbd>complex</kbd>, в котором предлагается иной способ реалазации действий с комплексными числами.
+</table>
+<p class="tj">Ниже в табл. 20.1 приведены математические функции, часто используемые в элементарной теории функций комплексного переменного. Обратите внимание, что для каждой функции определены версии <kbd>float complex</kbd>, <kbd>double complex</kbd> и <kbd>long double complex</kbd>. Имя версии <kbd>float complex</kbd> имеет суффикс <kbd>f</kbd>, а имя версии <kbd>long double complex</kbd> — суффикс <kbd>l</kbd>. Углы измеряются, разумеется, в радианах.</p>
+<table class="table table-bordered">
+<caption><strong>Таблица 20.1. Математические функции, используемые в элементарной теории функций комплексного переменного</strong></caption>
+<tr><th><em>Функция</em><th><em>Назначение</em>
+<tr><td><pre>float cabsf(
+  float complex <em>arg</em>);
+double cabs(
+  double complex <em>arg</em>);
+long double cabsl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает абсолютную величину (модуль) комплексного числа <em>arg</em>
+<tr><td><pre>float complex cacosf(
+  float complex <em>arg</em>);
+double complex cacos(
+  double complex <em>arg</em>);
+long double complex cacosl(
+  long double complex arg);</pre><td class="t">Возвращает комплексное значение арккосинуса от параметра <em>arg</em>
+<tr><td><pre>float complex cacoshf(
+  float complex <em>arg</em>);
+double complex cacosh(
+  double complex <em>arg</em>);
+long double complex cacoshl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение гиперболического арккосинуса от параметра <em>arg</em>
+<tr><td><pre>float cargf(
+  float complex <em>arg</em>);
+double carg(
+  double complex <em>arg</em>);
+long double cargl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает значение аргумента комплексного числа <em>arg</em>
+<tr><td><pre>float complex casinf(
+  float complex arg);	
+double complex casin(
+  double complex <em>arg</em>);
+long double complex casinl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение арксинуса от параметра <em>arg</em>
+<tr><td><pre>float complex casinhf(	
+  float complex <em>arg</em>);
+double complex casinh(
+  double complex <em>arg</em>);
+long double complex casinhl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение гиперболического арксинуса от параметра <em>arg</em>
+<tr><td><pre>float complex catanf(
+  float complex <em>arg</em>);
+double complex catan(
+  double complex <em>arg</em>);
+long double complex catanl(
+  long double complex arg);</pre><td class="t">Возвращает комплексное значение арктангенса от параметра <em>arg</em>
+<tr><td><pre>float complex catanhf(
+  float complex <em>arg</em>);
+	
+double complex catanh(
+  double complex <em>arg</em>);
+long double complex catanhl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение гиперболического арктангенса от параметра <em>arg</em>
+<tr><td><pre>float complex ccosf(
+  float complex <em>arg</em>);
+double complex ccos(
+  double complex <em>arg</em>);
+long double complex ccosl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение косинуса от параметpa <em>arg</em>
+<tr><td><pre>float complex ccoshf(
+  float complex <em>arg</em>);
+double complex ccosh(
+  double complex <em>arg</em>);
+long double complex ccoshl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение гиперболического косинуса от параметра <em>arg</em>
+<tr><td><pre>float complex cexpf(
+  float complex <em>arg</em>);
+double complex cexp(
+  double complex <em>arg</em>);
+long double complex cexpl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение e<sup>arg</sup>, где е — основание натурального логарифма
+<tr><td><pre>float cimagf(
+  float complex <em>arg</em>);
+double cimag(
+  double complex <em>arg</em>);
+long double cimagl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает мнимую часть параметра <em>arg</em>
+<tr><td><pre>float complex clogf(
+  float complex <em>arg</em>);
+double complex clog(
+  double complex <em>arg</em>);
+long double complex clogl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение натурального логарифма от параметра <em>arg</em>
+<tr><td><pre>float complex conjf(
+  float complex <em>arg</em>);
+double complex conj(
+  double complex <em>arg</em>);
+long double complex conjl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексно-сопряженное значение параметра <em>arg</em>
+<tr><td><pre>float complex cpowf(
+  float complex <em>a</em>,
+  long double complex <em>b</em>);
+double complex cpow(
+  double complex <em>a</em>,
+  double complex <em>b</em>);
+long double complex cpowl(
+  long double complex <em>a</em>,
+  long double complex <em>b</em>);</pre><td class="t">Возвращает комплексное значение a<sup>b</sup>
+<tr><td><pre>float complex cprojf(
+  float complex <em>arg</em>);
+double complex cproj(
+  double complex <em>arg</em>);
+long double complex cprojl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает проекцию параметра <em>arg</em> на сферу Римана
+<tr><td><pre>float crealf(
+  float complex <em>arg</em>);
+double creal(
+  double complex <em>arg</em>);
+long double creall(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает вещественную часть параметра <em>arg</em>
+<tr><td><pre>float complex csinf(
+  float complex <em>arg</em>);
+double complex csin(
+  double complex <em>arg</em>);
+long double complex csinl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение синуса от параметра <em>arg</em>
+<tr><td><pre>float complex csinhf(
+  float complex <em>arg</em>);
+double complex csinh(
+  double complex <em>arg</em>);
+long double complex csinhl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение гиперболического синуса от параметра <em>arg</em>
+<tr><td><pre>float complex csqrtf(
+  float complex <em>arg</em>);
+double complex csqrt(
+  double complex <em>arg</em>);
+long double complex csqrtl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение квадратного корня из параметра <em>arg</em>
+<tr><td><pre>float complex ctanf(
+  float complex <em>arg</em>);	
+double complex ctan(
+  double complex <em>arg</em>);
+long double complex ctanl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает комплексное значение тангенса от параметpa <em>arg</em>
+<tr><td><pre>float complex ctanhf(
+  float complex <em>arg</em>);
+double complex ctanh(
+  double complex <em>arg</em>);
+long double complex ctanhl(
+  long double complex <em>arg</em>);</pre><td class="t">Возвращает   комплексное   значение   гиперболического тангенса от параметра <em>arg</em>
+</table>
+<hr><a href="../main.htm#20">Содержание</a> | <a href="20.htm">&lt;&lt;&lt;</a> | <a href="fenv_h.htm">&gt;&gt;&gt;</a>
+
+
+</body>
+</html>

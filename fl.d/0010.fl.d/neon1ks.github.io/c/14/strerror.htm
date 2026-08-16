@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strerror - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strerror</h1>
+<pre>
+#include &lt;string.h&gt;
+char *strerror(int <em>errnum</em>);
+</pre>
+<p class="tj">Функция <kbd>strerror()</kbd> возвращает указатель на строку, содержащую системное сообщение об ошибке, связанной со значением <em>errnum</em>. Эту строку не следует менять ни при каких обстоятельствах.
+<h2>Пример</h2>
+<p class="tj">Данный фрагмент программы выводит на экран системное сообщение об ошибке.
+<pre>
+printf(strerror(10));
+</pre>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция exit - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция exit</h1>
+<pre>
+#include &lt;stdlib.h&gt;
+void exit(int <em>exit_code</em>);
+</pre>
+<p class="tj">Функция <kbd>exit()</kbd> вызывает немедленное нормальное завершение программы. Это значит, что вызываются функции завершения, зарегистрированные функцией <kbd>atexit()</kbd>, и любые открытые файлы после дозаписи буферов в них закрываются.
+<p class="tj">В вызывающий процесс (обычно это операционная система) передается значение параметра <em>exit_code</em>, если в данной среде предусмотрена поддержка возможных значений. По соглашению, если параметр <em>exit_code</em> равен нулю или значению <kbd>EXIT_SUCCESS</kbd>, предполагается нормальное завершение программы. Ненулевое значение, или значение <kbd>EXIT_FAILURE</kbd>, используется для индикации ошибки, определенной конкретной реализацией.
+<h2>Пример</h2>
+<p class="tj">Эта программа обработки списка рассылки позволяет пользователю сделать выбор из меню. Программа завершается, если введена буква Q.
+<pre>
+int menu(void)
+{
+  char choice;
+  do {
+    printf("Ввод имени (E)\n");
+    printf("Удаление имени (D)\n");
+    printf("Печать (P)\n");
+    printf("Выход (Q)\n");
+    choice = getchar();
+  } while(!strchr("EDPQ", toupper(choice)));
+  if(choice=='Q') exit(0);
+  return choice;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="atexit.htm">atexit()</a>  <a href="abort.htm">abort()</a>  <a href="https://neon1ks.github.io/c/18/_Exit.htm">_Exit()</a>
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

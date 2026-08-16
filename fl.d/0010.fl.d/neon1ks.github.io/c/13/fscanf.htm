@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция fscanf - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция fscanf</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int fscanf(FILE *<em>stream</em>, const char *<em>format</em>, ...);
+</pre>
+<p class="tj">Функция <kbd>fscanf()</kbd> работает подобно функции <kbd>scanf()</kbd>, но читает информацию не из стандартного потока ввода <kbd>stdin</kbd>, а из потока, заданного указателем <em>stream</em>. Подробности рассматриваются в разделе этой главы, посвященном функции <kbd>scanf</kbd>.
+<p class="tj">В версии C99 к параметрам <em>stream</em> и <em>format</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">Функция <kbd>fscanf()</kbd> возвращает количество аргументов, которым действительно присвоены значения. Это число не включает опущенные поля. Если возвращаемое функцией значение равно <kbd>EOF</kbd>, то это свидетельствует о том, что до выполнения первого присваивания произошел сбой.
+<h2>Пример</h2>
+<p class="tj">Приведенный фрагмент программы читает из потока <kbd>fp</kbd> строку и значение переменной <kbd>f</kbd> с плавающей точкой (типа <kbd>float</kbd>).
+<pre>
+char str[80];
+float f;
+fscanf(fp, "%s%f", str, &f);
+</pre>
+<h2>Зависимые функции</h2>
+<a href="scanf.htm">scanf()</a>  <a href="fprintf.htm">fprintf()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

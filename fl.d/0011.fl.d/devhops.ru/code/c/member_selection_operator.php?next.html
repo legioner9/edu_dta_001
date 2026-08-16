@@ -1,0 +1,438 @@
+<!-- SHOWRB 1 --><!-- INFO: t --><!DOCTYPE html>
+        <html lang="ru">
+        <head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-109068906-1"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "UA-109068906-1");</script><!-- AD sense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-7881721879502382", enable_page_level_ads: true});</script><!-- AD sense ends --><title>Оператор стрелка указатель на член структуры в Си</title>
+            <meta name="keywords" content="Оператор &laquo;стрелка&raquo; указатель на член структуры,member selection operator, member selection operator c, member selection operator в си,">
+            <meta name="description" content="Использование указателя на члена структуры в Си">
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta property="og:image" content="https://devhops.ru/ide/visual_studio/img/precompiledHeadersOff_00102--small.jpg">
+            <link rel="stylesheet" type="text/css" href="../../.css/devhops.css">
+            <link rel="icon" type="image/png" href="../../img/favicon/favicon.png">
+            <!-- Yandex.RTB -->
+            <script>window.yaContextCb=window.yaContextCb||[]</script>
+            <script src="https://yandex.ru/ads/system/context.js" async></script>
+        </head>
+        <body><div id="startid"></div>
+        <nav id="topmenu" class="topmenu">
+        <div class="topmenu-text-block">
+        <div class="topmenu-text">
+            DevHops.ru
+        </div>
+        </div>
+        <div class="topmenu-items"><a class="width_bcd" href="https://t.me/aofeed">Telegram</a>
+        <a href="https://devhops.ru/about/">О Проекте</a>
+        </div></nav><nav id="breadcrumbs" class="breadcrumbs"><a class="width_bcd" href="https://devhops.ru/">&#128187;</a><a href="https://devhops.ru/code/"><span class="width_bcd">&#124;</span></a><a href="https://devhops.ru/code/"><span class="width_a">Code</span><span class="width_bcd">Программирование</span></a><a href="index.html"><span class="width_bcd">&#124;</span></a><a href="index.html"><span class="width_a">C</span><span class="width_bcd">C</span></a><a href="index.html"><span class="width_bcd">&#124;</span></a></nav><script src="../../.js/breadcrumbs_script.js"></script><aside id="aside_left_block"><!-- display_aside_tcont_block() --><!-- show_aside_tcont() --><div class="aside_tcont_grid"><!-- content_show() -->
+    <div id="aside_content_articles">
+    <nav class="aside_tcont_block_nav mt5">
+    <a class="aside_tcont_topic" href="member_selection_operator.php%3Fnext.html#tableOfContent">СОДЕРЖАНИЕ:</a><a href="member_selection_operator.php%3Fnext.html#intro">Введение</a><a href="member_selection_operator.php%3Fnext.html#related_articles_footer">Другие статьи о С</a></nav></div><!-- /content_show() --></div><!-- /show_aside_tcont() --><!-- /display_aside_tcont_block() --><div class="p2"><!-- display_advert_one() -->
+        <div id="advert_one" class="align-center w100">
+            <div id="advert_one_ads">
+                
+    <a href="https://t.me/aofeed" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/banners/aofeed1.webp">  
+            <source type="image/png" srcset="../../aa_img/banners/aofeed1.png">   
+            <img class="w100" src="../../aa_img/banners/aofeed1.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    
+            </div>
+            <button id="remove_advert_one_button">Убрать рекламу</button>
+            <button id="show_advert_one_button">Показать рекламу</button>
+            <script src="../../.js/advert_one_script.js"></script>
+        </div><!-- /display_advert_one() --></div><script src="../../.js/aside_left_block_script.js"></script>
+        <!-- left nav buttons -->
+        <div id="totopbuttons" class="verticalNavButtonsDiv">
+        <a class="toTopButton" href="member_selection_operator.php%3Fnext.html#startid" title="Наверх">
+            <span class="arrow up"></span>
+        </a>
+        <a class="toBottomButton" href="member_selection_operator.php%3Fnext.html#bottomid" title="Вниз">
+            <span class="arrow down"></span>
+        </a>
+        </div>
+        <script src="../../.js/to_top_buttons_script.js"></script>
+        </aside><aside id="aside_right_block"><!-- display_aside_related_block() --><!-- aside_related show --><div id="aside_related_articles">
+        <nav class="aside_related_block_nav mt5">
+        <a class="aside_related_topic" href="member_selection_operator.php%3Fnext.html#tableOfContent">ПОХОЖИЕ СТАТЬИ</a><a href="index.html">Программирование на Си</a><a href="basics/index.html">Основы Си</a><a href="lessons.php.html">Учебник по Си</a><a href="boolean.php.html">Boolean в Си</a><a href="sockets.php.html">Сокеты в Си</a><a href="kernigan_ritchie.php.html">К и Р</a><a href="argc_argv.php.html">Что такое <b>argc</b>, <b>char * argv[]</b></a><a href="scanf.php.html">Функция <b>scanf()</b></a><a href="pointers.php.html">Указатели</a><a href="structures.php.html">Структуры в Си</a><a href="rest/index.html">Запросы к REST API на Си</a></nav></div><!-- /display_aside_tcont_block() --><div class="p2"><!-- display_advert_two() -->
+        <!-- www.devhops.ru Advert Two -->
+        <div id="advert_two">
+        <div id="advert_two_ads">
+        
+                <!-- RS0 -->
+                <div id="advert_two_slider_0" class="BlinkingBanner">
+                    <div class="align-center w100 mt2"><!-- Yandex.RTB R-A-1583746-2 --><div id='yandex_rtb_R-A-1583746-2'></div><script>window.yaContextCb.push(()=>{Ya.Context.AdvManager.render({renderTo: 'yandex_rtb_R-A-1583746-2', blockId: 'R-A-1583746-2'})})</script></div>
+                </div><!-- RSLIDER 1 i=0 -->
+                <div id="advert_two_slider_1" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://t.me/aofeed" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/banners/aofeed1.webp">  
+            <source type="image/png" srcset="../../aa_img/banners/aofeed1.png">   
+            <img class="w100" src="../../aa_img/banners/aofeed1.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 2 i=3 -->
+                <div id="advert_two_slider_2" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://t.me/aofeed" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/banners/aofeed2.webp">  
+            <source type="image/png" srcset="../../aa_img/banners/aofeed2.png">   
+            <img class="w100" src="../../aa_img/banners/aofeed2.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 3 i=6 -->
+                <div id="advert_two_slider_3" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://ad.admitad.com/g/xhberu6jwc5b523e94aa4bfa9a7f2b/?i=4" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/admitad_wikium500x500.webp">  
+            <source type="image/png" srcset="../../aa_img/admitad/admitad_wikium500x500.png">   
+            <img class="w100" src="../../aa_img/admitad/admitad_wikium500x500.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 4 i=9 -->
+                <div id="advert_two_slider_4" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://ad.admitad.com/g/hw12tyatxl5b523e94aa1ac5a4392d/?i=4" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/admitad_puzzle-english500x500.webp">  
+            <source type="image/png" srcset="../../aa_img/admitad/admitad_puzzle-english500x500.png">   
+            <img class="w100" src="../../aa_img/admitad/admitad_puzzle-english500x500.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 5 i=12 -->
+                <div id="advert_two_slider_5" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/o6Vfek" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/book24/do_not_make_me_think.webp">  
+            <source type="image/jpeg" srcset="../../aa_img/admitad/book24/do_not_make_me_think.jpg">   
+            <img class="w100" src="../../aa_img/admitad/book24/do_not_make_me_think.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 6 i=15 -->
+                <div id="advert_two_slider_6" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://tp.media/r?marker=201961.rb&trs=38807&p=4268&u=https%3A%2F%2Ftezeks.com%2F" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/travelpouts/tekez_russia.webp">  
+            <source type="image/jpeg" srcset="../../aa_img/travelpouts/tekez_russia.jpg">   
+            <img class="w100" src="../../aa_img/travelpouts/tekez_russia.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 7 i=18 -->
+                <div id="advert_two_slider_7" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/kwork/kwork_refactor_website600x600.webp">  
+            <source type="image/jpeg" srcset="../../aa_img/admitad/kwork/kwork_refactor_website600x600.jpg">   
+            <img class="w100" src="../../aa_img/admitad/kwork/kwork_refactor_website600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 8 i=21 -->
+                <div id="advert_two_slider_8" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/kwork/kwork_all600x600.webp">  
+            <source type="image/jpeg" srcset="../../aa_img/admitad/kwork/kwork_all600x600.jpg">   
+            <img class="w100" src="../../aa_img/admitad/kwork/kwork_all600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 9 i=24 -->
+                <div id="advert_two_slider_9" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/kwork/kwork_banners600x600.webp">  
+            <source type="image/jpeg" srcset="../../aa_img/admitad/kwork/kwork_banners600x600.jpg">   
+            <img class="w100" src="../../aa_img/admitad/kwork/kwork_banners600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 10 i=27 -->
+                <div id="advert_two_slider_10" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/kwork/kwork_logos600x600.webp">  
+            <source type="image/jpeg" srcset="../../aa_img/admitad/kwork/kwork_logos600x600.jpg">   
+            <img class="w100" src="../../aa_img/admitad/kwork/kwork_logos600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 11 i=30 -->
+                <div id="advert_two_slider_11" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/kwork/kwork_scripts600x600.webp">  
+            <source type="image/jpeg" srcset="../../aa_img/admitad/kwork/kwork_scripts600x600.jpg">   
+            <img class="w100" src="../../aa_img/admitad/kwork/kwork_scripts600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 12 i=33 -->
+                <div id="advert_two_slider_12" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/admitad/kwork/kwork_social_media600x600.webp">  
+            <source type="image/jpeg" srcset="../../aa_img/admitad/kwork/kwork_social_media600x600.jpg">   
+            <img class="w100" src="../../aa_img/admitad/kwork/kwork_social_media600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 13 i=36 -->
+                <div id="advert_two_slider_13" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/beget/beget_hosting_as_it_should1080x1080.webp">  
+            <source type="image/png" srcset="../../aa_img/beget/beget_hosting_as_it_should1080x1080.png">   
+            <img class="w100" src="../../aa_img/beget/beget_hosting_as_it_should1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 14 i=39 -->
+                <div id="advert_two_slider_14" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/beget/beget_virt_serv7_1080x1080.webp">  
+            <source type="image/png" srcset="../../aa_img/beget/beget_virt_serv7_1080x1080.png">   
+            <img class="w100" src="../../aa_img/beget/beget_virt_serv7_1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 15 i=42 -->
+                <div id="advert_two_slider_15" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/beget/beget_cloud_db1080x1080.webp">  
+            <source type="image/png" srcset="../../aa_img/beget/beget_cloud_db1080x1080.png">   
+            <img class="w100" src="../../aa_img/beget/beget_cloud_db1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 16 i=45 -->
+                <div id="advert_two_slider_16" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/beget/beget_cloud_infra1080x1080.webp">  
+            <source type="image/png" srcset="../../aa_img/beget/beget_cloud_infra1080x1080.png">   
+            <img class="w100" src="../../aa_img/beget/beget_cloud_infra1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div>
+            </div>
+            <button id="remove_advert_two_button">Убрать рекламу</button>
+            <button id="show_advert_two_button">Показать рекламу</button>
+        <script src="../../.js/advert_two_script.js"></script></div><!-- /display_advert_two() --></div><script src="../../.js/aside_right_block_script.js"></script></aside><main class="wrapper mt5">
+        <h1>Оператор стрелка указатель на член структуры в Си</h1><div id="tableOfContent"></div><!-- 3 -->
+<p class="p2">
+    Перед чтением этой статьи убедитесь, что Вы знакомы со
+    <a href="structures.php.html">
+        структурами
+    </a>
+    и
+    <a href="pointers.php.html">
+        указателями
+    </a>
+</p>
+<p class="p1">
+    По-английски этот оператор называется <strong>member selection operator</strong>
+</p>
+<p class="p1">
+    Зайдём издалека:
+    <br><br>
+    Пусть у нас есть структрура <span class="salad">Website</span>
+    <br><br>
+    Пусть у этой структуры есть три члена name, year, rating
+    <br><br>
+    И у нас есть объект типа Website, который называется site1
+    <br><br>
+    Мы можем создать указатель на этот объект. Помним, что:
+</p>
+<p class="info p2">
+    Тип указателя должен соответствовать типу объекта на который он указывает.
+</p>
+<p class="p8">
+    Поэтому синтаксис будет такой:
+    <br><br> 
+    struct Website * ptr;
+    <br><br>
+        так мы задаём правильный тип указателя.
+        <br><br>
+        Теперь можно тыкнуть указателем на нужный объект
+        <br><br>
+        ptr = &#38;heihei.ru
+        <br><br>
+        Всё как обычно. Создали указатель и он указывает куда надо.
+        <br><br>
+        Но у стуктуры есть члены: name, year, rating, поэтому встаёт вопрос - как к ним обратиться&#63;
+        <br><br>
+        Эту задачу и решает -&gt;
+        <br><br>
+        Мы можем написать ptr-&gt;name, ptr-&gt;year, ptr-&gt;rating и всё готово.
+</p>
+<p class="somecode p2">
+<code>&#35;include &lt;stdio.h&gt;</code>
+<code></code>
+<code>struct Website {</code>
+<code>	char name[80];</code>
+<code>	int year;</code>
+<code>	float rating;</code>
+<code>};</code>
+<code></code>
+<code>int main()</code>
+<code>{</code>
+<code>    struct Website site1={"heihei.ru", 2018, 30.5};</code>
+<code>    struct Website *ptr;</code>
+<code></code>
+<code>    // по аналогии с указателями типа char или int мы создаём</code>
+<code>    // указатель типа struct Website</code>
+<code></code>
+<code>    ptr = &#38;site1;</code>
+<code></code>
+<code>    printf("%s %d %.1f\n", ptr->name, ptr->year, ptr->rating);</code>
+<code></code>
+<code>	return 0;</code>
+<code>}</code>
+    </p>
+    <p class="cmd1">
+        gcc -o mso_example mso_example.c
+        <br>
+        ./mso_example
+    </p>
+<p class="cout1">
+    heihei.ru 2018 30.5
+</p>
+<div class="p8 align-center"><div class='imgfull'><p class='preads p8'>РЕКЛАМА хостинга <a href='https://beget.com/p3421'>Beget</a>, которым я пользуюсь более десяти лет</p>
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/beget/beget1600x720_6.webp">  
+            <source type="image/png" srcset="../../aa_img/beget/beget1600x720_6.png">   
+            <img class="w100" src="../../aa_img/beget/beget1600x720_6.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    <p class='postads p1'>Конец рекламы хостинга <a href='https://beget.com/p3421'>Beget</a>, который я всем рекомендую</p></div></div>
+<h2 class="h2mTop">
+    Задача
+</h2>
+<p class="p1">
+    Замените строку   
+</p>
+<p class="somecode mt2 w100">
+<code class="incFr19">    printf("%s %d %.1f\n", ptr->name, ptr->year, ptr->rating);</code>    
+</p>
+<p class="p2">
+    На
+</p>
+<p class="somecode mt2 w100">
+<code class="incFr19">     printf("%s %d %.1f\n", *ptr.name, *ptr.year, *ptr.rating);</code>    
+</p>
+<p class="p2">
+    Изучите ошибку, которую выдаст компилятор и постарайтесь устранить.
+    <br><br>
+    Решение чуть ниже
+</p>
+<h3 class="h3mTop">
+    Решение
+</h3>
+<p class="p1">
+    Мой компилятор 
+    <a href="gcc/index.html">
+        GCC
+    </a>
+    выдаёт следующую ошибку
+</p>
+<p class="cout1 wspw">
+mso_example.c: In function ‘main’:
+mso_example.c:19:32: <span class="red">error:</span> ‘ptr’ is a pointer; did you mean to use ‘->’?
+     printf("%s %d %.1f\n", *ptr<span class="red">.</span>name, *ptr.year, *ptr.rating);
+                                <span class="red">^</span>
+                                ->
+mso_example.c:19:43: <span class="red">error:</span> ‘ptr’ is a pointer; did you mean to use ‘->’?
+     printf("%s %d %.1f\n", *ptr.name, *ptr<span class="red">.</span>year, *ptr.rating);
+                                           <span class="red">^</span>
+                                           ->
+mso_example.c:19:52: <span class="red">error:</span> ‘ptr’ is a pointer; did you mean to use ‘->’?
+     printf("%s %d %.1f\n", *ptr.name, *ptr.year, *ptr<span class="red">.</span>rating);
+                                                    <span class="red">^</span>
+                                                    ->
+    </p>
+    <p class="p2">
+        Он пытается обработать точку между ptr и name и подсказывает, что вместо точки нужна стрелка.
+        <br><br>
+        Он не видит * перед ptr потому что приоритет оператора точка выше, чем у *
+        <br><br>
+        Нужно взять все *ptr в скобки (*ptr)
+    </p>
+    
+    
+<p class="somecode p2">
+<code class="incFr19">     printf("%s %d %.1f\n", (*ptr).name, (*ptr).year, (*ptr).rating);</code>    
+</p> 
+<p class="p2">
+    <a class="bbutton100" href="structures.php.html">
+        Предыдущий урок: Структуры
+    </a>
+</p>
+<p class='p5'>Автор статьи: <a href='https://andreyolegovich.ru'>Андрей Олегович</a></p><div id="related_articles_footer" class="p20 anchor"></div><table class="tcont"><caption>Похожие статьи</caption><tbody><tr><td><td><a href="index.html">Программирование на Си</a><tr><td><td><a href="basics/index.html">Основы Си</a><tr><td><td><a href="lessons.php.html">Учебник по Си</a><tr><td><td><a href="boolean.php.html">Boolean в Си</a><tr><td><td><a href="sockets.php.html">Сокеты в Си</a><tr><td><td><a href="kernigan_ritchie.php.html">К и Р</a><tr><td><td><a href="argc_argv.php.html">Что такое <b>argc</b>, <b>char * argv[]</b></a><tr><td><td><a href="scanf.php.html">Функция <b>scanf()</b></a><tr><td><td><a href="pointers.php.html">Указатели</a><tr><td><td><a href="structures.php.html">Структуры в Си</a><tr><td><td><a href="rest/index.html">Запросы к REST API на Си</a></tbody></table></main>
+            <!-- footer _lessons_bottom_navigator_inc -->
+            <nav class="wrapper font-size0 mt12">
+                <div class="previous font1">
+                    <a class="" href="pointers.php.html">
+                        Указатели
+                    </a>
+                </div>
+                <div class="next font1">
+                    <a class="" href="structures.php.html">
+                        Структуры
+                    </a>
+                </div>
+            </nav>
+            <!-- footer /_lessons_bottom_navigator end -->
+        <div class="count"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-11806655-6"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-11806655-6');</script><!-- /Global site tag (gtag.js) - Google Analytics --><!-- Yandex.Metrika counter --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");ym(86097190, "init", {clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script><noscript><div><img src="https://mc.yandex.ru/watch/86097190" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter --></div>
+            <div class="wrapper align-center mt10">
+            <p class="p1 font1">
+                <a class="bbutton100" id="website_search2" href="https://devhops.ru/search/">
+                    Поиск по сайту
+                </a>
+            </p>
+            <p class="p8 font1">
+                Подпишитесь на <a href="https://t.me/aofeed">Telegram канал @aofeed</a> чтобы следить 
+                за выходом новых статей и обновлением старых
+                <br><br>
+                <a class="bbutton100" href="https://t.me/aofeed">Перейти на канал</a>
+                <br><br>
+                <a href="https://t.me/aofeed">@aofeed</a>
+            </p>
+            <p class="p8 font1">
+                <a class="bbutton100" href="https://t.me/aofeedchat">
+                    Задать вопрос в Телеграм-группе
+                </a>
+                <br><br>
+                <a href="https://t.me/aofeedchat">@aofeedchat</a>
+            </p>
+            </div>
+        
+        <div class="wrapper mt10">
+            <table class="tab11">
+            <caption>Контакты и сотрудничество:</caption>
+            <tr><td>Рекомендую наш хостинг <a href="https://www.beget.com/p3421">beget.ru</a>
+            <tr><td>Пишите на
+                    <span class="tt">info@urn.su</span> если Вы:
+            <tr><td>1. Хотите написать статью для нашего сайта или перевести статью на свой родной язык.
+            <tr><td>2. Хотите разместить на сайте рекламу, подходящую по тематике.
+            <tr><td>3. Реклама на моём сайте имеет максимальный уровень цензуры. Если Вы увидели
+                    рекламный блок недопустимый для просмотра детьми школьного возраста, вызывающий шок
+                    или вводящий в заблуждение - пожалуйста свяжитесь с нами по электронной почте
+            <tr><td>4. Нашли на сайте ошибку, неточности, баг и т.д. 
+                    <span class="width_a">.</span><span class="width_b">..</span>
+                    <span class="width_c">...</span><span class="width_d">....</span>
+            <tr><td>5. Статьи можно расшарить в соцсетях, нажав на иконку сети:
+                    <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                    <script src="https://yastatic.net/share2/share.js"></script>
+                    <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter,reddit,lj,viber,whatsapp,skype,telegram">
+                    </div>
+            </table> 
+        </div><div id="bottomid"></div></body></html>

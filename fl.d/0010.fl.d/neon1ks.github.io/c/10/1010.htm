@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Операторы препроцессора # и ## - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#10">Содержание</a> | <a href="1009.htm">&lt;&lt;&lt;</a> | <a href="1011.htm">&gt;&gt;&gt;</a><hr>
+<h1>Операторы препроцессора # и ##</h1>
+<p class="tj">Имеется два оператора препроцессора: <kbd>#</kbd> и <kbd>##</kbd>. Они применяются в сочетании с оператором <kbd>#define</kbd>.
+<p class="tj">Оператор <kbd>#</kbd>, который обычно называют оператором <em>превращения в строку</em> (<em>stringize</em>), превращает аргумент, перед которым стоит, в строку, заключенную в кавычки. Рассмотрим, например, следующую программу:
+<pre>
+#include &lt;stdio.h&gt;
+#define mkstr(s)  # s
+int main(void)
+{
+  printf(mkstr(Мне нравится C));
+  return 0;
+}
+</pre>
+<p class="tj">Препроцессор превращает строку
+<pre>printf(mkstr(Мне нравится C));</pre>
+<p class="t">в
+<pre>printf("Мне нравится C");</pre>
+<p class="tj">Оператор <kbd>##</kbd>, который называют оператором <em>склеивания</em> (<em>pasting</em>), или <em>конкатенации</em> конкатенирует две лексемы. Рассмотрим, например, программу
+<pre>
+#include &lt;stdio.h&gt;
+#define concat(a, b)  a ## b
+int main(void)
+{
+  int xy = 10;
+  printf("%d", concat(x, y));
+  return 0;
+}
+</pre>
+<p class="tj">Препроцессор преобразует
+<pre>printf("%d", concat(x, y));</pre>
+<p class="t">в
+<pre>printf("%d", xy);</pre>
+<p class="tj">Если эти операторы покажутся вам незнакомыми, то надо помнить вот о чем: они не являются необходимыми и не используются в большинстве программ. В общем-то, эти операторы предусмотрены для работы препроцессора в некоторых особых случаях.
+<hr><a href="../main.htm#10">Содержание</a> | <a href="1009.htm">&lt;&lt;&lt;</a> | <a href="1011.htm">&gt;&gt;&gt;</a>
+
+
+</body>
+</html>

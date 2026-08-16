@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strncat - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strncat</h1>
+<pre>
+#include &lt;string.h&gt;
+char *strncat(char *<em>str1</em>, const char *<em>str2</em>, size_t <em>count</em>);
+</pre>
+<p class="tj">Функция <kbd>strncat()</kbd> присоединяет к строке, адресуемой параметром <em>str1</em>, не более <em>count</em> символов строки, адресуемой параметром <em>str2</em>, завершая "результирующую" строку <em>str1</em> нулевым символом. Конечный нуль-символ, первоначально завершающий строку <em>str1</em>, перезаписывается первым символом строки <em>str2</em>. Строка <em>str2</em> в результате этой операции конкатенации не меняется. Если строки перекрываются, поведение функции <kbd>strncat()</kbd> не определено.
+<p class="tj">В версии С99 к параметрам <em>str1</em> и <em>str2</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">Функция <kbd>strncat()</kbd> возвращает значение указателя <em>str1</em>.
+<p class="tj">При выполнении операций с массивами символов контроль нарушения их границ не выполняется, поэтому программист должен сам позаботиться о достаточном размере массива <em>str1</em>, позволяющем вместить как его исходное содержимое, так и содержимое присоединяемого массива <em>str2</em>.
+<h2>Пример</h2>
+<p class="tj">Данная программа конкатенирует первую строку, прочитанную из стандартного входного потока <kbd>stdin</kbd>, ко второй строке и предотвращает переполнение массива <kbd>s1</kbd>, в который записывается результат. Например, если пользователь введет сначала <pre>привет</pre>, а затем <pre>всем</pre>, то программа выведет сообщение <pre>всемпривет</pre>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(void)
+{
+  char s1[80], s2[80];
+  unsigned int len;
+  gets(s1);
+  gets(s2);
+  /* вычисление подходящей длины */
+  len = 79-strlen(s2);
+  strncat(s2, s1, len);
+  printf(s2);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strcat.htm">strcat()</a>  <a href="https://neon1ks.github.io/c/14/strnchr.htm">strnchr()</a>  <a href="strncmp.htm">strncmp()</a>  <a href="strncpy.htm">strncpy()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

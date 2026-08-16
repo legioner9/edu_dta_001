@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция fflush - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция fflush</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int fflush(FILE *<em>stream</em>);
+</pre>
+<p class="tj">Если поток <em>stream</em> связан с файлом, открытым для записи, то при обращении к функции <kbd>fflush()</kbd> в этот файл будет физически записано содержимое выходного буфера. При этом файл остается открытым.
+<p class="tj">Нулевое значение, возвращаемое функцией, свидетельствует о ее успешном выполнении, а значение <kbd>EOF</kbd> — о возникновении ошибки при записи.
+<p class="tj">При нормальном завершении программы или при заполнении буферов все их coдержимое автоматически дозаписывается в файл. Кроме того, буфер дозаписывается в файл при закрытии файла.
+<h2>Пример</h2>
+<p class="tj">Приведенный фрагмент программы дозаписывает в файл содержимое буфера после каждой операции записи.
+<pre>
+/*
+  Предполагается, что fp связан с выходным файлом.
+*/
+for(i=0; i&lt;MAX; i++) {
+  fwrite(buf, sizeof(some_type), 1, fp);
+  fflush(fp);
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="fclose.htm">fclose()</a>  <a href="fopen.htm">fopen()</a>  <a href="fread.htm">fread()</a>  <a href="fwrite.htm">fwrite()</a>  <a href="getc.htm">getc()</a>  <a href="putc.htm">putc()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strncpy - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strncpy</h1>
+<pre>
+#include &lt;string.h&gt;
+char *strncpy(char *<em>str1</em>, const char *<em>str2</em>, size_t <em>count</em>);
+</pre>
+<p class="tj">Функция <kbd>strncpy()</kbd> копирует не более <em>count</em> символов из строки, адресуемой параметром <em>str2</em>, в массив, адресуемый параметром <em>str1</em>. Параметр <em>str2</em> должен указывать на строку, заканчивающуюся символом конца строки.
+<p class="tj">В версии С99 к параметрам <em>str1</em> и <em>str2</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">Если заданные массивы символов перекрываются, поведение функции <kbd>strncpy()</kbd> не определено.
+<p class="tj">Если длина строки, адресуемой параметром <em>str2</em>, меньше значения <em>count</em>, то в конец строка - результата <em>str1</em> добавляются "недостающие" нулевые символы.
+<p class="tj">Если же длина строки, адресуемой параметром <em>str2</em>, больше значения <em>count</em>, то строка - результат, адресуемая параметром <em>str1</em>, не будет заканчиваться символом конца строки<sup><a href="strncpy.htm#11" id="1">[1]</a></sup>.
+<p class="tj">Функция <kbd>strncpy()</kbd> возвращает значение указателя <em>str1</em>.
+<h2>Пример</h2>
+<p class="tj">Следующий фрагмент программы копирует не более 79 символов из строки <kbd>str1</kbd> в строку <kbd>str2</kbd>, тем самым гарантируется, что массив не переполнится.
+<pre>
+char str1[128], str2[80];
+gets(str1);
+strncpy(str2, str1, 79);
+</pre>
+<h2>Зависимые функции</h2>
+<a href="memcpy.htm">memcpy()</a>  <a href="strchr.htm">strchr()</a>  <a href="strncat.htm">strncat()</a>  <a href="strncmp.htm">strncmp()</a>
+<p><img src="../work/sup.bmp" alt="----------">
+<blockquote>
+<p class="tj"><sup><a href="strncpy.htm#1" id="11">[1]</a></sup>Обратите внимание, что такую "строку " считать полноценной нельзя, ведь некоторые строковые функции работать с подобными строками могут некорректно.
+</blockquote>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

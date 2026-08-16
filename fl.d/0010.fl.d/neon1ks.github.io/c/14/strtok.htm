@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strtok - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strtok</h1>
+<pre>
+#include &lt;string.h&gt;
+char *strtok(char *<em>str1</em>, const char *<em>str2</em>);
+</pre>
+<p class="tj">Функция <kbd>strtok()</kbd> возвращает указатель на следующую лексему в строке, адресуемой параметром <em>str1</em>. Символы, образующие строку, адресуемую параметром <em>str2</em>, представляют собой разделители, которые определяют лексему. При отсутствии лексемы, подлежащей возврату, возвращается нулевой указатель.
+<p class="tj">В версии С99 к параметрам <em>str1</em> и <em>str2</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">Чтобы разделить некоторую строку на лексемы, при первом вызове функции <kbd>strtok()</kbd> параметр <em>str1</em> должен указывать на начало этой строки. При последующих вызовах функции в качестве параметра <em>str1</em> нужно использовать нулевой указатель. Этим способом вся строка разбивается на лексемы.
+<p class="tj">При каждом обращении к функции <kbd>strtok()</kbd> можно использовать различные наборы разделителей.
+<h2>Пример</h2>
+<p class="tj">Эта программа разбивает строку "Травка зеленеет, солнышко блестит" на лексемы, разделителями которых служат пробелы и запятые. В результате получится <pre>Травка|зеленеет|солнышко|блестит</pre>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(void)
+{
+  char *p;
+  p = strtok("Травка зеленеет, солнышко блестит", " ");
+  printf(p);
+  do {
+    p = strtok('\0', ", ");
+    if(p) printf("|%s", p);
+  } while(p);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strchr.htm">strchr()</a>  <a href="strcspn.htm">strcspn()</a>  <a href="strpbrk.htm">strpbrk()</a>  <a href="strrchr.htm">strrchr()</a>  <a href="strspn.htm">strspn()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

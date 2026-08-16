@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция memcpy - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция memcpy</h1>
+<pre>
+#include &lt;string.h&gt;
+void *memcpy(void *<em>to</em>, const void *<em>from</em>, size_t <em>count</em>);
+</pre>
+<p class="tj">Функция <kbd>memcpy()</kbd> копирует <em>count</em> символов из массива, адресуемого параметром <em>from</em>, в массив, адресуемый параметром <em>to</em>. Если заданные массивы перекрываются, поведение функции <kbd>memcopy()</kbd> не определено.
+<p class="tj">В версии С99 к параметрам <em>to</em> к <em>from</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">Функция <kbd>memcpy()</kbd> возвращает значение указателя <em>to</em>.
+<h2>Пример</h2>
+<p class="tj">Данная программа копирует содержимое массива <em>buf1</em> в массив <em>buf2</em> и выводит результат на дисплей.
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#define SIZE 80
+int main(void)
+{
+  char buf1[SIZE], buf2[SIZE];
+  strcpy(buf1, "Когда, в случае если...");
+  memcpy(buf2, buf1, SIZE);
+  printf(buf2);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="memmove.htm">memmove()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strcmp - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strcmp</h1>
+<pre>
+#include &lt;string.h&gt;
+int strcmp(const char *<em>str1</em>, const char *<em>str2</em>);
+</pre>
+<p class="tj">Функция <kbd>strcmp()</kbd> сравнивает в лексикографическом порядке две строки и возвращает целое значение, зависящее следующим образом от результата сравнения.</p>
+<table class="table table-bordered">
+<tr><th><em>Значение</em><th><em>Результат сравнения строк</em>
+<tr><td>Меньше нуля<td><em>str1</em> меньше <em>str2</em>
+<tr><td>Нуль<td><em>str1</em> равен <em>str2</em>
+<tr><td>Больше нуля<td><em>str1</em> больше <em>str2</em>
+</table>
+<h2>Пример</h2>
+<p class="tj">Следующую функцию можно использовать для проверки пароля. В случае неудачи она возвращает нуль, а при успешном выполнении — единицу.
+<pre>
+int password(void)
+{
+  char s[80];
+  printf("Введите пароль: ");
+  gets(s);
+  if(strcmp(s, "pass")) {
+    printf("Неверный пароль\n");
+    return 0;
+  }
+  return 1;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strchr.htm">strchr()</a>  <a href="strcpy.htm">strcpy()</a>  <a href="strcmp.htm">strcmp()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

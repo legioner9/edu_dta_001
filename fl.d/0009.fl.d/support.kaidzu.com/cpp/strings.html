@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Строки в языке С++</title>
+<meta name='description' content='Использование строк в языке С++. Преобразование из различных типов данных в строки и наоборот. Поиск подстрок и сравнение строк.'><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='../c/main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='../python/main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='../milandr/keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='alignas.html' class = "row_a">alignas</a><br><a href='alignof.html' class = "row_a">alignof</a><br><a href='and.html' class = "row_a">and</a><br><a href='and_eq.html' class = "row_a">and_eq</a><br><a href='array.html' class = "row_a">array</a><br><a href='asm.html' class = "row_a">asm</a><br><a href='auto.html' class = "row_a">auto</a><br><a href='bitand.html' class = "row_a">bitand</a><br><a href='bitor.html' class = "row_a">bitor</a><br><a href='bool.html' class = "row_a">bool</a><br><a href='break.html' class = "row_a">break</a><br><a href='case.html' class = "row_a">case </a><br><a href='catch.html' class = "row_a">catch</a><br><a href='char.html' class = "row_a">char</a><br><a href='char16_t.html' class = "row_a">char16_t</a><br><a href='char32_t.html' class = "row_a">char32_t</a><br><a href='char8_t.html' class = "row_a">char8_t</a><br><a href='cin.html' class = "row_a">cin</a><br><a href='class.html' class = "row_a">class</a><br><a href='compl.html' class = "row_a">compl</a><br><a href='concept.html' class = "row_a">concept</a><br><a href='const.html' class = "row_a">const</a><br><a href='consteval.html' class = "row_a">consteval</a><br><a href='constexpr.html' class = "row_a">constexpr</a><br><a href='const_cast.html' class = "row_a">const_cast</a><br><a href='continue.html' class = "row_a">continue</a><br><a href='cout.html' class = "row_a">cout</a><br><a href='default.html' class = "row_a">default</a><br><a href='delete.html' class = "row_a">delete</a><br><a href='deque.html' class = "row_a">deque</a><br><a href='do.html' class = "row_a">do</a><br><a href='double.html' class = "row_a">double</a><br><a href='dynamic_cast.html' class = "row_a">dynamic_cast</a><br><a href='else.html' class = "row_a">else</a><br><a href='enum.html' class = "row_a">enum</a><br><a href='explicit.html' class = "row_a">explicit</a><br><a href='extern.html' class = "row_a">extern</a><br><a href='false.html' class = "row_a">false</a><br><a href='float.html' class = "row_a">float</a><br><a href='for.html' class = "row_a">for</a><br><a href='forward_list.html' class = "row_a">forward_list</a><br><a href='friend.html' class = "row_a">friend</a><br><a href='goto.html' class = "row_a">goto</a><br><a href='if.html' class = "row_a">if</a><br><a href='inline.html' class = "row_a">inline</a><br><a href='int.html' class = "row_a">int</a><br><a href='list.html' class = "row_a">list</a><br><a href='long.html' class = "row_a">long</a><br><a href='map.html' class = "row_a">map</a><br><a href='multimap.html' class = "row_a">multimap</a><br><a href='multiset.html' class = "row_a">multiset</a><br><a href='mutable.html' class = "row_a">mutable</a><br><a href='namespace.html' class = "row_a">namespace</a><br><a href='new.html' class = "row_a">new</a><br><a href='noexcept.html' class = "row_a">noexcept</a><br><a href='not.html' class = "row_a">not</a><br><a href='not_eq.html' class = "row_a">not_eq</a><br><a href='nullptr.html' class = "row_a">nullptr</a><br><a href='operator.html' class = "row_a">operator</a><br><a href='or.html' class = "row_a">or</a><br><a href='or_eq.html' class = "row_a">or_eq</a><br><a href='priority_queue.html' class = "row_a">priority_queue</a><br><a href='private.html' class = "row_a">private</a><br><a href='protected.html' class = "row_a">protected</a><br><a href='public.html' class = "row_a">public</a><br><a href='queue.html' class = "row_a">queue</a><br><a href='register.html' class = "row_a">register</a><br><a href='reinterpret_cast.html' class = "row_a">reinterpret_cast</a><br><a href='return.html' class = "row_a">return </a><br><a href='rvalue.html' class = "row_a">rvalue</a><br><a href='set.html' class = "row_a">set</a><br><a href='short.html' class = "row_a">short</a><br><a href='signed.html' class = "row_a">signed</a><br><a href='sizeof.html' class = "row_a">sizeof</a><br><a href='stack.html' class = "row_a">stack</a><br><a href='static.html' class = "row_a">static</a><br><a href='static_assert.html' class = "row_a">static_assert</a><br><a href='static_cast.html' class = "row_a">static_cast</a><br><a href='struct.html' class = "row_a">struct</a><br><a href='switch.html' class = "row_a">switch</a><br><a href='template.html' class = "row_a">template</a><br><a href='this.html' class = "row_a">this</a><br><a href='thread_local.html' class = "row_a">thread_local</a><br><a href='throw.html' class = "row_a">throw</a><br><a href='true.html' class = "row_a">true</a><br><a href='try.html' class = "row_a">try</a><br><a href='typedef.html' class = "row_a">typedef</a><br><a href='typeid.html' class = "row_a">typeid</a><br><a href='typename.html' class = "row_a">typename</a><br><a href='union.html' class = "row_a">union</a><br><a href='unordered_map.html' class = "row_a">unordered_map</a><br><a href='unordered_multimap.html' class = "row_a">unordered_multimap</a><br><a href='unordered_multiset.html' class = "row_a">unordered_multiset</a><br><a href='unordered_set.html' class = "row_a">unordered_set</a><br><a href='unsigned.html' class = "row_a">unsigned</a><br><a href='using.html' class = "row_a">using</a><br><a href='vector.html' class = "row_a">vector</a><br><a href='virtual.html' class = "row_a">virtual</a><br><a href='void.html' class = "row_a">void</a><br><a href='volatile.html' class = "row_a">volatile</a><br><a href='wchar_t.html' class = "row_a">wchar_t</a><br><a href='while.html' class = "row_a">while</a><br><a href='xor.html' class = "row_a">xor</a><br><a href='xor_eq.html' class = "row_a">xor_eq</a><br><a href='asm_listing.html' class = "row_a">Ассемблерный листинг</a><br><a href='benchmark.html' class = "row_a">Бенчмарки</a><br><a href='version.html' class = "row_a">Версия компилятора</a><br><a href='vremya_vypolneniya.html' class = "row_a">Время выполнения</a><br><a href='containers.html' class = "row_a">Выбор контейнера</a><br><a href='glossary.html' class = "row_a">Глоссарий</a><br><a href='main_page.html' class = "row_a">Достоинства и недостатки</a><br><a href='isklyucheniya.html' class = "row_a">Исключения</a><br><a href='keiwords.html' class = "row_a">Ключевые слова</a><br><a href='no_ide.html' class = "row_a">Компиляция без IDE</a><br><a href='constructor.html' class = "row_a">Конструктор</a><br><a href='massivy.html' class = "row_a">Массивы</a><br><a href='var_name.html' class = "row_a">Наименование переменных</a><br><a href='func_params.html' class = "row_a">Параметры функции</a><br><a href='peregruzka.html' class = "row_a">Перегрузка</a><br><a href='rekursiya.html' class = "row_a">Рекурсия</a><br><a href='draw_console.html' class = "row_a">Рисование в консоли</a><br><a href='console_rus.html' class = "row_a">Русский текст в консоли</a><br><a href='random_number.html' class = "row_a">Случайные числа</a><br><a href='reference.html' class = "row_a">Ссылки</a><br><a href='stack_heap.html' class = "row_a">Стек и куча</a><br><a href='strings.html' class = "row_a sel">Строки</a><br><a href='data_types.html' class = "row_a">Типы данных</a><br><a href='files.html' class = "row_a">Файлы</a><br><a href='function.html' class = "row_a">Функции</a><br><a href='templates.html' class = "row_a">Шаблоны </a><br></div>
+<div id=storage_content>
+<h1>Строки в языке С++</h1>
+<h2>Преобразование чисел в строку и наоборот</h2>
+<pre class='language-C'><code>
+#include &lt;iostream&gt;        // stoi(stol, stoll)
+using namespace std;
+int main(){
+    string str = &quot;12&quot;;          // &quot;12&quot;
+    int i = stoi(str);          // string to int
+    long L = stol(str);         // string to long
+    long long LL = stoll(str);  // string to long long
+    float f = stof(&quot;3.14f&quot;);    // string to float
+    double d = stod(&quot;3.14&quot;);    // string to double
+    str = to_string(23);        // int to string
+    str = to_string(3.14f);     // float to string
+    str = to_string(3.14);      // double to string
+}
+</code></pre>
+
+<h2>Сравнение строк</h2>
+<p>Сравнение "Сишных" строк (указатель на массив char оканчивающихся нулевым символом - значение 0)
+<pre class='language-C'><code>
+int strcmp(str1, str2); // Возвращает 0 если строки равны , если не равны, то возвращает 1 или -1 в зависимости от того больше или меньше первый не совпавший символ в строке str1 и строке str2.
+
+char buf[100] = &quot;Hi Victor&quot;;      // Строка для сравнения
+cout &lt;&lt; strcmp(buf, &quot;Hi Victor&quot;); //0 Строки равны
+cout &lt;&lt; strcmp(buf, &quot;Hi&quot;);        //1 Строки не равны (разная длина, разное содержимое)  
+cout &lt;&lt; strcmp(buf, &quot;Victor&quot;);    //-1 Строки не равны (разная длина, разное содержимое) V &gt; H
+</code></pre>
+
+<p> Сравнение std::string делается встроенным в класс методом compare(). А также можно просто использовать операторы == или !=.
+<pre class='language-C'><code>
+string str = &quot;Hi Victor&quot;;           // Строка для сравнения
+cout &lt;&lt; str.compare(&quot;Hi Victor&quot;);   //0  Строки равны
+cout &lt;&lt; str.compare(&quot;Hi&quot;);          //7  Строки не равны
+cout &lt;&lt; str.compare(&quot;Victor&quot;);      //-1 Строки не равны
+if(str == &quot;Hi Victor&quot;){             // Можно сравнивать std::string операторами == и !=
+	cout &lt;&lt; &quot;OK&quot;;                   //OK
+}
+</code></pre>
+
+<h2>Поиск подстроки</h2>
+<p>Встроенная в класс std::string функция find находит и возвращает индекс (size_t) первого вхождения подстроки в строку или string::npos если вхождение не найдено
+<pre class='language-C'><code>
+string str = &quot;Hi Victor&quot;;        // Строка в которой будем искать подстроку
+cout &lt;&lt; str.find(&quot;Hi Victor&quot;);   //0
+cout &lt;&lt; str.find(&quot;Hi&quot;);          //0
+cout &lt;&lt; str.find(&quot;Victor&quot;);      //3
+cout &lt;&lt; str.find(&quot;Gektor&quot;);      //18446744073709551615 == string::npos
+
+size_t res = str.find(&quot;Gektor&quot;); // Корректный поиск string::npos
+if(res == string::npos){         // Положение строки равно &quot;не нейдено&quot;?
+	cout &lt;&lt; &quot;\nNot found&quot;;
+}
+</code></pre><div id=storage_date>  2023-10-23</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="strings.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="strings.html" class = "row_a sel">Строки в языке С++. Преобразование типов в строку и обратно, поиск строк и подстрок.</a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/cpp/strings' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

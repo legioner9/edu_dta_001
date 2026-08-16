@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Работа с UART микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) </title>
+<meta name='description' content='Работа с UART микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) на примере printf'><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='../c/main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='../cpp/main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='../python/main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='keil.html' class = "row_a">1 Настройка Keil</a><br><a href='program.html' class = "row_a">2 Прошивка МК</a><br><a href='bit_operation.html' class = "row_a">3 Битовые операции</a><br><a href='gpio.html' class = "row_a">4 GPIO</a><br><a href='interrupt.html' class = "row_a">5 Прерывания</a><br><a href='clock.html' class = "row_a">6 Тактирование</a><br><a href='uart.html' class = "row_a sel">7 UART</a><br></div>
+<div id=storage_content>
+<h1>Работа с UART микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) </h1>
+<p>На примере микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) и отладочной платы <a href='https://ldm-systems.ru/product/19002' target = _blank >LDM-K1986BE92QI</a> рассмотрим работу с UART, в соответствии с пунктом 27 <a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Spec_Seriya_1986BE9x.pdf' target = _blank >спецификации на МК</a>.
+<p>Будем выводить циклически строку в порт USB A (USB UART) функцией printf.
+<p>Также посланная из терминала строка выводится в него же. При посылке строки "led" выводится что команда найдена (имитация ввода команды).
+ 
+<pre class='language-C'><code>
+/* Программа выводит в USB-UART циклически строку а также строку посланную в терминал на скорости 115 200 строку, 
+если строка &quot;led&quot; то выводит &quot;led find&quot; (имитация приема и распознавания команды
+для платы через терминал */
+
+#include &quot;MDR32F9Q2I.h&quot; // Макроопределения для K1986BE92QI (MDR32F9Q2I)
+#include &lt;stdio.h&gt;  // printf()
+#include &lt;stdarg.h&gt; // va_list, va_arg..
+#include &lt;string.h&gt; // strstr()
+
+// Макроопределения чтобы можно было поменять используемый порт в одном месте
+#define UART_RX 0	// Номер вывода RX UART
+#define UART_TX 1	// Номер вывода TX UART
+#define PORT_UART MDR_UART2	// Используемый UART
+#define PORT_UART_GPIO MDR_PORTD	// Используемый порт для выводов UART
+#define UART_IRQHandler UART2_IRQHandler	// Используемый обработчик прерываний
+#define UART_IRQn UART2_IRQn	// Используемое прерывание
+
+#define PIN_LED 3	// Номер вывода светодиода
+#define PORT_LED MDR_PORTB	// Порт светодиода
+
+void UART_IRQHandler(void); // Прототип обработчика прерывания (чтобы убрать предупреждение компилятора)
+
+static void init_GPIO(void){ // Инициализация порта светодиода
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 22); // Разрешение тактирования порта B (п.14.7.8)
+
+  PORT_LED-&gt;OE |= (1 &lt;&lt; PIN_LED);      // Вход или выход. 0 - вход, 1 - выход (п.16.1.2)
+  PORT_LED-&gt;ANALOG |= (1 &lt;&lt; PIN_LED);  // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_LED-&gt;PWR |= (1 &lt;&lt; PIN_LED * 2); // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+}
+
+static void init_CPU(void){ // Включаем тактирование от кварца 8 МГц. Умножители и делители не используем. То есть тактовая частота CPU 8 МГц.
+  MDR_RST_CLK-&gt;HS_CONTROL = 0x01; // Вкл. HSE внешний кварц (8 МГц) (п.14.7.3)
+  MDR_RST_CLK-&gt;CPU_CLOCK |= (2 &lt;&lt; 0); // Источник для CPU_C1 = HSE (п.14.7.4)
+  MDR_RST_CLK-&gt;CPU_CLOCK |= (1 &lt;&lt; 8); // Источник для HCLK = CPU_C3
+}
+
+static void init_UART(void){ // Инициализация UART на скорость 115 200 (при 8 000 000 тактовой частоты)
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 7);  // Разрешение тактирования UART2 (п.14.7.8) PD0 - RX (вход МК), PD1 - TX (выход порта)
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 24); // Разрешение тактирования порта D (п.14.7.8)
+
+  PORT_UART_GPIO-&gt;FUNC |= (2 &lt;&lt; UART_RX * 2); // Функция RX. 0 - порт (GPIO), 1 - основная, 2 - альтернативная, 3 - переопределенная (п.16.1.2) (п.4 т.2)
+  PORT_UART_GPIO-&gt;ANALOG |= (1 &lt;&lt; UART_RX);   // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_UART_GPIO-&gt;PWR |= (3 &lt;&lt; UART_TX * 2);  // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+	
+  PORT_UART_GPIO-&gt;FUNC |= (2 &lt;&lt; UART_TX * 2); // Функция TX. 0 - порт (GPIO), 1 - основная, 2 - альтернативная, 3 - переопределенная (п.16.1.2) (п.4 т.2)
+  PORT_UART_GPIO-&gt;ANALOG |= (1 &lt;&lt; UART_TX);   // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_UART_GPIO-&gt;PWR |= (3 &lt;&lt; UART_TX * 2);  // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+	
+  MDR_RST_CLK-&gt;UART_CLOCK = (
+   (0 &lt;&lt; 0u)    // Установка делителя для UART1 = undefined (п.14.7.11)
+  |(0 &lt;&lt; 8u) 		// Установка делителя для UART2 = 1
+  |(0 &lt;&lt; 24u) 	// Разрешение тактовой частоты UART1
+  |(1 &lt;&lt; 25u)); // Разрешение тактовой частоты UART2
+	
+	// Параметры делителя при частоте = 8 000 000 Гц и скорости = 115200
+  PORT_UART-&gt;IBRD = 0x4;  // Целая часть делителя скорости 8 000 000 / (16 * 115 200) = 4,34 (п.27.5.4)
+  PORT_UART-&gt;FBRD = 0x16; // Дробная часть делителя скорости (0,34 * 64 + 0,5) = 22 = 0x16 (п.27.5.4)
+  PORT_UART-&gt;LCR_H = (
+   (0 &lt;&lt; 1)   // Разрешение проверки четности
+  |(0 &lt;&lt; 2)   // Четность/нечетность (нет контроля)
+  |(0 &lt;&lt; 3)   // Стоп-бит = 1 бит
+  |(3 &lt;&lt; 5)   // Длина слова = 8 бит
+  |(0 &lt;&lt; 7)); // Передача бита четности
+	
+//	PORT_UART-&gt;LCR_H |= (1 &lt;&lt; 4); // Разрешен буфер FIFO приемника и передатчика
+//	PORT_UART-&gt;IFLS &amp;= ~(7 &lt;&lt; 3); // Сбрасываем биты
+//	PORT_UART-&gt;IFLS |= ~(4 &lt;&lt; 3); // Прерывание по заполнености буфера на 7/8
+  
+	PORT_UART-&gt;CR = ((1 &lt;&lt; 8) | (1 &lt;&lt; 9) | 1); // Передачик и приемник разрешен, разрешение приемопередатчика UART2
+	
+	NVIC_EnableIRQ(UART2_IRQn); // Разрашаем прерывания от UART
+	PORT_UART-&gt;IMSC |= (1 &lt;&lt; 4); // Устанавливаем прерывание от приемника UARTRXINTR
+}
+
+static char printf_buf[260];  // Строка (буфер) для вывода
+int printf(const char *format, ...){ // Реализация printf  
+  char ch; // Считываемый символ из буфера для отправки в UART
+  int count = 0; // Счетчик (индекс символа в строке)
+  va_list arg_ptr; // Аргументы printf()
+  va_start(arg_ptr, format); // Заполняем аргументы
+  vsnprintf(printf_buf, sizeof(printf_buf) - 1, format, arg_ptr); // Помещаем итоговую строку в printf_buf
+  va_end(arg_ptr); // Завершаем обработку переменного числа параметров
+  ch = printf_buf[count]; // Берем первый символ для вывода в UART	
+	while(ch){ // Перебираем символы в строке
+		if(ch == '\n'){ // Если перенос строки
+			PORT_UART-&gt;DR = '\r'; // Делаем возврат каретки (п.27.9.2)
+			while(PORT_UART-&gt;FR &amp; (1 &lt;&lt; 5)){} // Ждем готовности UART (освобождения буфера)	(п.27.9.4)
+		}
+		PORT_UART-&gt;DR = ch; // Пишем байт в регистр данных (п.27.9.2)
+		while(PORT_UART-&gt;FR &amp; (1 &lt;&lt; 5)){} // Ждем готовности UART (освобождения буфера)	(п.27.9.4)
+		ch = printf_buf[++count];  // Берем следующий символ
+	}
+	return 0; // Нужно вернуть что-то
+}
+
+static char buf_UART[80]; // Буфер (строка) для вычитавания данных из UART
+static int count_UART = 0; // Счетчик (индекс) символа в строке
+void UART_IRQHandler(void){ // Обработчик прерываний UART
+	char * pstr = NULL; // Указатель на строку поиска команды
+	while((PORT_UART-&gt;FR &amp; (1 &lt;&lt; 4)) == 0){ // Ждем готовности UART (заполнения буфера)	(п.27.9.4)	
+		char ch = (PORT_UART-&gt;DR &amp; 0xFF); // Вычитываем символ данных из регистра UART, ограничиваем восьмью битами
+		buf_UART[count_UART] = ch; // Записываем в строку принятый символ
+		count_UART++; // Иникрементируем счетчик буфера
+		printf(&quot;%c&quot;, ch); // Реализуем отображение вводимых символов
+		if(ch == '\r' || ch == '\n'){ // Конец строки
+			buf_UART[count_UART] = 0; // Записываем в буфер символ окончания строки
+			count_UART = 0; // Сбрасываем счетчик (индекс) символа в строке
+			printf(&quot;read %s\n&quot;, buf_UART); // Выводим строку в терминал
+			pstr = strstr(buf_UART, &quot;led\r&quot;); // Ищем строку (имитация команды через терминал) с завершающим символом
+			if(pstr == buf_UART){ // Если найдено совпадение с начала строки (указатели совпадают) 
+				printf(&quot;command led find \n&quot;); // Выводим что команда найдена
+			}
+		}
+	}	
+}
+
+int main (void){ 	// Главная функция
+	uint16_t count = 0; // Счетчик для мигания светодиодом
+	init_CPU(); 		// Инициализация тактирования
+	init_UART(); 		// Инициализация UART
+	init_GPIO(); 	  	// Инициализация порта со светодиодом. 
+	
+	while(1){ // Основной цикл
+		for(int i = 0; i &lt; 500000; i++){} // Задержка	
+		printf(&quot;Hi my dear friend!!! pi=%.2f, addr=%p\n&quot;, 3.14, (void *)&amp;count_UART);		// Выводим в UART строку
+		PORT_LED-&gt;RXTX = (MDR_PORTB-&gt;RXTX &amp; 0xFFFFFFF0) | ((count &amp; 0x01u) &lt;&lt; PIN_LED); // Инвертировать значение бита светодиода. Не блокируем SWD порта JTAG A
+		count++; // Инкрементируем счетчик
+	}
+}
+</code></pre><div id=storage_date>  2024-08-13</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="uart.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="clock.html" class = "row_a">Управление тактовой частотой микроконтроллера Миландр К1986ВЕ92QI (MDR32F9Q2I) </a> <br><a href="gpio.html" class = "row_a">Работа с портами ввода-вывода (GPIO) микроконтроллера Миландр на CMSIS</a> <br><a href="interrupt.html" class = "row_a">Прерывания в микроконтроллерах Миландр. Системный таймер.</a> <br><a href="keil.html" class = "row_a">Настройка среды разработки для микроконтроллеров Миландр (К1986ВЕ92QI)</a> <br><a href="program.html" class = "row_a">Прошивка микроконтроллера К1986ВЕ92QI на отладочной плате LDM-K1986BE92QI через UART и SWD с использованием ST-LINK</a> <br><a href="uart.html" class = "row_a sel">Работа с UART микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) </a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/milandr/uart' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

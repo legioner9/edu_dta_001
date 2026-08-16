@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция qsort - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция qsort</h1>
+<pre>
+#include &lt;stdlib.h&gt;
+void qsort(void *<em>buf</em>, size_t <em>num</em>, size_t <em>size</em>, int (*<em>compare</em>) (const void *, const void *));
+</pre>
+<p class="tj">Функция <kbd>qsort()</kbd> сортирует массив, адресуемый параметром-указателем <em>buf</em>. (Для сортировки используется алгоритм быстрой сортировки (алгоритм quicksort), разработанный Ч.Э.Р. Хоаром (C.A.R. Hoare). Быстрая сортировка считается наилучшим алгоритмом сортировки общего назначения.) Количество элементов в массиве задается параметром <em>num</em>, а размер (в байтах) каждого элемента — параметром <em>size</em>.
+<p class="tj">Для сравнения двух элементов массива используется функция, передаваемая через параметр <em>compare</em>. Функция <em>compare</em> должна иметь следующее описание.
+<pre>int <em>func_name</em>(const void *<em>arg1</em>, const void *<em>arg2</em>);</pre>
+<p class="tj">Она должна возвращать значения, описанные ниже.</p>
+<table class="table table-bordered">
+<tr><th><em>Сравнение</em><th><em>Возвращаемое значение</em>
+<tr><td><em>arg1</em> меньше <em>arg2</em><td>Меньше нуля
+<tr><td><em>arg1</em> равен <em>arg2</em><td>Нуль
+<tr><td><em>arg1</em> больше <em>arg2</em><td>Больше нуля
+</table>
+<p class="tj">Массив сортируется в порядке возрастания, т.е. по самому младшему адресу будет записан наименьший элемент.
+<h2>Пример</h2>
+<p class="tj">Следующая программа сортирует список целых чисел и выводит результат:
+<pre>
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+int num[10] = {
+  1, 3, 6, 5, 8, 7, 9, 6, 2, 0
+};
+int comp(const void *, const void *);
+int main(void)
+{
+  int i;
+  printf("Исходный массив: ");
+  for(i=0; i&lt;10; i++) printf("%d ", num[i]);
+  qsort(num, 10, sizeof(int), comp);
+  printf("Отсортированный массив: ");
+  for(i=0; i&lt;10; i++) printf("%d ", num[i]);
+  return 0;
+}
+/* сравнение целых */
+int comp(const void *i, const void *j)
+{
+  return *(int *)i - *(int *)j;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="bsearch.htm">bsearch()</a>
+<h2>Сортировка в убывающем порядке</h2>
+<p class="tj">Функция-параметр <em>compare</em> фактически определяет порядок, используемый при сортировке. Задавая с ее помощью различные порядки на сортируемом множестве, можно получить различные упорядочения исходного массива. Например, чтобы отсортировать массив в порядке убывания (т.е. от большего к меньшему), необходимо в этой функции определить обратный (т.е. дуальный или двойственный) порядок. Для этого достаточно определить функцию, лишь знаком отличающуюся от исходной. Это можно сделать, например, так: <em>compare1(x,y) = compare(у,х)</em> или так: <em>compare1(х,у) = - compare(х,у)</em>.
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

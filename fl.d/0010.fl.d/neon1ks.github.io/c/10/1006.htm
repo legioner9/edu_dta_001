@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Директива #undef - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#10">Содержание</a> | <a href="1005.htm">&lt;&lt;&lt;</a> | <a href="1007.htm">&gt;&gt;&gt;</a><hr>
+<h1>Директива #undef</h1>
+<p class="tj">Директива <kbd>#undef</kbd> удаляет ранее заданное определение имени макроса, то есть "аннулирует" его определение; само имя макроса должно находиться после директивы. В общем виде директива <kbd>#undef</kbd> выглядит таким образом:
+<pre>#undef <em>имя_макроса</em></pre>
+<p class="tj">Вот как, например, можно использовать эту директиву:
+<pre>
+#define LEN 100
+#define WIDTH 100
+char array[LEN][WIDTH];
+#undef LEN
+#undef WIDTH
+/* а здесь и LEN и WIDTH уже не определены */
+</pre>
+<p class="tj">И <kbd>LEN</kbd>, и <kbd>WIDTH</kbd> определены, пока не встретился оператор <kbd>#undef</kbd>.
+<p class="tj">Директива <kbd>#undef</kbd> используется в основном для того, чтобы локализовать имена макросов в тех участках кода, где они нужны.
+<hr><a href="../main.htm#10">Содержание</a> | <a href="1005.htm">&lt;&lt;&lt;</a> | <a href="1007.htm">&gt;&gt;&gt;</a>
+
+
+</body>
+</html>

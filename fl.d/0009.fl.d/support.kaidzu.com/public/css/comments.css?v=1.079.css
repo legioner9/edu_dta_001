@@ -1,0 +1,32 @@
+.big_image_com img{max-width: 100%;}
+.comments{border: solid 1px #e2e2e2; background-color: #fff; border-radius: 5px; padding: 0 1ex 1ex 1ex; margin: 2ex 0; display: flow-root;}
+.comments h3{margin-left: 1em; color:navy;}
+#comments_add_picture{background: linear-gradient(to top, #fff, #eee); border-radius: 5px; display: inline-block; border:3px lightgray groove; color:navy; text-align: center; cursor: pointer; padding:3px; margin-right: 3%; }
+#comments_add_picture *{vertical-align: middle;}
+#comments_add_picture img{width: 40px;}
+#comments_add_picture:hover{border-color: #888;text-decoration: underline;}
+#comments_edit{width:94%; height: 6em; border:1px dodgerblue solid; border-radius: 5px; font-size: medium; padding: 1ex; overflow: auto; margin-left: 2px;}
+#comments_edit img{cursor:move;}
+.comments form{border: solid 1px gray; border-radius: 7px; padding-bottom: 5px;}
+#comments_img{margin-left: 1em; display:none;}
+#comments_img img{max-width: 25%;}
+.comments input[type='file']{visibility: hidden; width:0; height: 0;}
+.comments .smile span{border: solid 1px transparent; min-width: 45px; min-height: 34px; display:inline-block; text-align: center; vertical-align: bottom;}
+.comments .smile span:hover{border: groove 1px blue; background-color: Aliceblue; border-radius: 5px; cursor: pointer;}
+.div_comments{border:1px solid lightskyblue; border-radius:5px; padding: 5px; margin-bottom: 5px;}
+.gray{color:Silver; font-style: italic;}
+#comments_submit{background: linear-gradient(to top, #fff, #eee); border-radius: 5px; display: inline-block; border:2px lightgray groove; color:Navy; text-align: center; cursor: pointer; margin-left: 1ex; padding: 3px;}
+#comments_submit *{vertical-align: middle; }
+#comments_submit:hover{border-color: #888;text-decoration: underline;}
+.comments_table_edit{width:100%;}
+.comments_user{border: solid 1px #e2e2e2; background-color: #f0f0f0; border-radius: 5px;}
+.comments_user img{max-width: 42px;}
+.date{color:lightgray; margin-bottom: 2ex; font-size:70%; font-style: italic;}
+#table_submit{width:100%;}
+#table_submit td{border: 0px solid transparent;}
+#td_picture{text-align: right;}
+.td_user{width:90%;}
+
+@media only screen and (min-width: 1080px) {
+#comments_edit{width:98%;}
+}

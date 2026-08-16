@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция rename - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция rename</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int rename(const char *<em>oldfname</em>, const char *<em>newfname</em>);
+</pre>
+<p class="tj">Функция <kbd>rename()</kbd> переименовывает файл; она заменяет имя файла, заданное параметром <em>oldfname</em>, именем, заданным параметром <em>newfname</em>. Имя, заданное параметром <em>newfname</em>, не должно совпадать ни с одним из существующих в каталоге имен файлов.
+<p class="tj">При успешном выполнении функция <kbd>rename()</kbd> возвращает нуль, а в случае ошибки — ненулевое значение.
+<h2>Пример</h2>
+<p class="tj">Данная программа заменяет имя файла, заданное первым (<u>нумерация аргументов начинается с нуля!</u>) аргументом командной строки, именем, которое задается вторым аргументом командной строки. Учитывая, что программа называется CHANGE, командная строка
+<pre>CHANGE THIS THAT</pre>
+приведет к переименованию файла THIS в файл THAT.
+<pre>
+#include &lt;stdio.h&gt;
+int main(int argc, char *argv[])
+{
+  if(rename(argv[1], argv[2]) != 0)
+    printf("Ошибка при переименовании");
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="remove.htm">remove()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция wcstombs - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция wcstombs</h1>
+<pre>
+#include &lt;stdlib.h&gt;
+size_t wcstombs(char *<em>out</em>, const wchar_t *<em>in</em>, size_t <em>size</em>);
+</pre>
+<p class="tj">Функция <kbd>wcstombs()</kbd> преобразует массив двухбайтовых символов, адресуемый параметром-указателем <em>in</em>, в его многобайтовый эквивалент и помещает результат в массив, адресуемый параметром <em>out</em>. Преобразованию подлежат только первые <em>size</em> символов. Процесс преобразования прекращается раньше, если будет обнаружен символ конца строки ('0').
+<p class="tj">В версии С99 к параметрам <em>out</em> и <em>in</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">При успешном выполнении функция <kbd>wcstombs()</kbd> возвращает количество байтов, помещенных в массив <em>out</em>. При возникновении ошибки возвращается значение -1.
+<h2>Зависимые функции</h2>
+<a href="wctomb.htm">wctomb()</a>  <a href="mbstowcs.htm">mbstowcs()</a>
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

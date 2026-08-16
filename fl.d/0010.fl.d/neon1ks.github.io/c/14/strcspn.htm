@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strcspn - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strcspn</h1>
+<pre>
+#include &lt;string.h&gt;
+size_t strcspn(const char *<em>str1</em>, const char *<em>str2</em>);
+</pre>
+<p class="tj">Функция <kbd>strcspn()</kbd> возвращает длину начальной подстроки в строке, адресуемой параметром <em>str1</em>, которая не содержит ни одного символа из строки, адресуемой параметром <em>str2</em>. Другими словами, функция <kbd>strcspn()</kbd> возвращает индекс первого символа в строке <em>str1</em>, который совпадает с любым из символов в строке <em>str2</em>.
+<h2>Пример</h2>
+<p class="tj">Следующая программа выводит число <pre>6</pre>
+<pre>
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  int len;
+  len = strcspn("это тест", "сл");
+  printf("%d", len);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strrchr.htm">strrchr()</a>  <a href="strpbrk.htm">strpbrk()</a>  <a href="strstr.htm">strstr()</a>  <a href="strtok.htm">strtok()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

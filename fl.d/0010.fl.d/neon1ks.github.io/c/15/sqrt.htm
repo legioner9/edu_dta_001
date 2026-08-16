@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция sqrt - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#15">Содержание</a> | <a href="15.htm#00">Глава 15</a><hr>
+<h1>Функция sqrt</h1>
+<pre>
+#include &lt;math.h&gt;
+float sqrtf(float <em>num</em>);
+double sqrt(double <em>num</em>);
+long double sqrtl(long double <em>num</em>);
+</pre>
+<p class="tj">Функции <kbd>sqrtf()</kbd> и <kbd>sqrtl()</kbd> добавлены в версии С99.
+<p class="tj">Каждая функция семейства <kbd>sqrt()</kbd> возвращает значение квадратного корня от аргумента <em>num</em>. Если значение аргумента отрицательно, возникает ошибка из-за выхода за пределы области допустимых значений (ошибка из-за нарушения области определения).
+<h2>Пример</h2>
+<p class="tj">Данный фрагмент программы выводит на экран число <pre>4</pre>
+<pre>printf("%f", sqrt(16.0));</pre>
+<h2>Зависимые функции</h2>
+<a href="exp.htm">exp()</a>  <a href="log.htm">log()</a>  <a href="pow.htm">pow()</a>
+<hr><a href="../main.htm#15">Содержание</a> | <a href="15.htm#00">Глава 15</a>
+
+
+</body>
+</html>

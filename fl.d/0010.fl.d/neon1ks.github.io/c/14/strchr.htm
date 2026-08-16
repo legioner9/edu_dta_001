@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strchr - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strchr</h1>
+<pre>
+#include &lt;string.h&gt;
+char *strchr(const char *<em>str</em>, int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>strchr()</kbd> возвращает указатель на первое вхождение младшего байта параметра <em>ch</em> в строку <em>str</em>. Если указанный символ не найден, возвращается нулевой указатель.
+<h2>Пример</h2>
+<p class="tj">Данная программа выводит строку <pre>из примера</pre>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(void)
+{
+  char *p;
+  p = strchr("строка из примера", ' ');
+  printf(p);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strpbrk.htm">strpbrk()</a>  <a href="strspn.htm">strspn()</a>  <a href="strstr.htm">strstr()</a>  <a href="strtok.htm">strtok()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

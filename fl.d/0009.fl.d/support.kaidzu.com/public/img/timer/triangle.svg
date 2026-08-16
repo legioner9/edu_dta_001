@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Создано Microsoft Visio 11.0, Экспорт SVG, версия 1.0 triangle.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="4.172in"
+		height="3.7241in" viewBox="0 0 300.384 268.135" xml:space="preserve" color-interpolation-filters="sRGB" class="st9">
+	<v:documentProperties v:langID="1049" v:metric="true" v:viewMarkup="false"/>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#00b0f0;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.72}
+		.st2 {fill:#00b050;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.72}
+		.st3 {fill:#cd736b;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.72}
+		.st4 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.72}
+		.st5 {fill:#cd736b;font-family:Arial;font-size:1.99999em;font-weight:bold}
+		.st6 {fill:#00b050;font-family:Arial;font-size:1.99999em;font-weight:bold}
+		.st7 {font-size:1em}
+		.st8 {fill:#00b0f0;font-family:Arial;font-size:1.99999em;font-weight:bold}
+		.st9 {fill:none;fill-rule:evenodd;font-size:12;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Page-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<g id="shape2-1" v:mID="2" v:groupContext="shape" transform="translate(239.853,471.973) rotate(180)">
+			<title>Лист.2</title>
+			<path d="M0 246.88 L77.85 246.88 L198.16 246.88 L198.16 239.79 L212.31 253.96 L198.16 268.13 L198.16 261.05 L0 261.05
+						 L0 246.88 Z" class="st1"/>
+		</g>
+		<g id="shape3-3" v:mID="3" v:groupContext="shape" transform="translate(352.825,-100.418) rotate(60)">
+			<title>Лист.3</title>
+			<path d="M0 246.88 L77.97 246.88 L198.47 246.88 L198.47 239.79 L212.65 253.96 L198.47 268.13 L198.47 261.05 L0 261.05
+						 L0 246.88 Z" class="st2"/>
+		</g>
+		<g id="shape1-5" v:mID="1" v:groupContext="shape" transform="translate(-199.018,87.2845) rotate(-60)">
+			<title>Лист.1</title>
+			<path d="M0 246.88 L77.95 246.88 L198.43 246.88 L198.43 239.79 L212.6 253.96 L198.43 268.13 L198.43 261.05 L0 261.05
+						 L0 246.88 Z" class="st3"/>
+		</g>
+		<g id="shape4-7" v:mID="4" v:groupContext="shape" transform="translate(-214.171,51.1427) rotate(-60)">
+			<title>Лист.4</title>
+			<desc>Вдох</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="76" cy="258.135" width="152" height="20"/>
+			<rect x="0" y="248.135" width="152" height="20" class="st4"/>
+			<text x="45.71" y="265.34" class="st5" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Вдох</text>		</g>
+		<g id="shape5-10" v:mID="5" v:groupContext="shape" transform="translate(391.153,-103.17) rotate(60)">
+			<title>Лист.5</title>
+			<desc>Задержка дыхания</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="88.4543" cy="237.958" width="176.91" height="60.3543"/>
+			<rect x="0" y="207.781" width="176.909" height="60.3543" class="st4"/>
+			<text x="31.45" y="230.76" class="st6" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Задержка <tspan
+						x="35.61" dy="1.2em" class="st7">дыхания</tspan></text>		</g>
+		<g id="shape6-14" v:mID="6" v:groupContext="shape" transform="translate(44.8024,-0.72)">
+			<title>Лист.6</title>
+			<desc>Выдох</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="82.0763" cy="248.962" width="164.16" height="38.3465"/>
+			<rect x="0" y="229.788" width="164.153" height="38.3465" class="st4"/>
+			<text x="41.54" y="256.16" class="st8" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Выдох</text>		</g>
+	</g>
+</svg>

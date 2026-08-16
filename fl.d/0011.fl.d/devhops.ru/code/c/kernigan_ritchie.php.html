@@ -1,0 +1,730 @@
+<!-- SHOWRB 1 --><!-- INFO: b2 --><!DOCTYPE html>
+        <html lang="ru">
+        <head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-109068906-1"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "UA-109068906-1");</script><!-- AD sense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-7881721879502382", enable_page_level_ads: true});</script><!-- AD sense ends --><title>Решение задач из учебника Керниган и Ричи</title>
+            <meta name="keywords" content="решение задач керниган и ричи, решение упражнений керниган и ричи, Си, программирование, C, programs,написать программу подсчёта пробелов и новой строки,упражнения для языка си,">
+            <meta name="description" content="Решение задач по C из учебника Керниган и Ричи">
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta property="og:image" content="https://devhops.ru/ide/visual_studio/img/precompiledHeadersOff_00102--small.jpg">
+            <link rel="stylesheet" type="text/css" href="../../.css/devhops.css">
+            <link rel="icon" type="image/png" href="../../img/favicon/favicon.png">
+            <!-- Yandex.RTB -->
+            <script>window.yaContextCb=window.yaContextCb||[]</script>
+            <script src="https://yandex.ru/ads/system/context.js" async></script>
+        </head>
+        <body><div id="startid"></div>
+        <nav id="topmenu" class="topmenu">
+        <div class="topmenu-text-block">
+        <div class="topmenu-text">
+            DevHops.ru
+        </div>
+        </div>
+        <div class="topmenu-items"><a class="width_bcd" href="https://t.me/aofeed">Telegram</a>
+        <a href="https://devhops.ru/about/">О Проекте</a>
+        </div></nav><nav id="breadcrumbs" class="breadcrumbs"><a class="width_bcd" href="https://devhops.ru/">&#128187;</a><a href="https://devhops.ru/code/"><span class="width_bcd">&#124;</span></a><a href="https://devhops.ru/code/"><span class="width_a">Code</span><span class="width_bcd">Программирование</span></a><a href="index.html"><span class="width_bcd">&#124;</span></a><a href="index.html"><span class="width_a">C</span><span class="width_bcd">C</span></a><a href="index.html"><span class="width_bcd">&#124;</span></a></nav><script src="../../.js/breadcrumbs_script.js"></script><aside id="aside_left_block"><!-- display_aside_tcont_block() --><!-- show_aside_tcont() --><div class="aside_tcont_grid"><!-- content_show() -->
+    <div id="aside_content_articles">
+    <nav class="aside_tcont_block_nav mt5">
+    <a class="aside_tcont_topic" href="basics/kernighan_ritchie.php.html#tableOfContent">СОДЕРЖАНИЕ:</a><a href="basics/kernighan_ritchie.php.html#intro">Введение</a><a href="basics/kernighan_ritchie.php.html#related_articles_footer">Другие статьи о С</a></nav></div><!-- /content_show() --></div><!-- /show_aside_tcont() --><!-- /display_aside_tcont_block() --><div class="p2"><!-- display_advert_one() -->
+        <div id="advert_one" class="align-center w100">
+            <div id="advert_one_ads">
+                
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/beget/beget_cloud_db1080x1080.webp">  
+            <source type="image/png" srcset="../../aa_img/beget/beget_cloud_db1080x1080.png">   
+            <img class="w100" src="../../aa_img/beget/beget_cloud_db1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    
+            </div>
+            <button id="remove_advert_one_button">Убрать рекламу</button>
+            <button id="show_advert_one_button">Показать рекламу</button>
+            <script src="../../.js/advert_one_script.js"></script>
+        </div><!-- /display_advert_one() --></div><script src="../../.js/aside_left_block_script.js"></script>
+        <!-- left nav buttons -->
+        <div id="totopbuttons" class="verticalNavButtonsDiv">
+        <a class="toTopButton" href="basics/kernighan_ritchie.php.html#startid" title="Наверх">
+            <span class="arrow up"></span>
+        </a>
+        <a class="toBottomButton" href="basics/kernighan_ritchie.php.html#bottomid" title="Вниз">
+            <span class="arrow down"></span>
+        </a>
+        </div>
+        <script src="../../.js/to_top_buttons_script.js"></script>
+        </aside><aside id="aside_right_block"><!-- display_aside_related_block() --><!-- aside_related show --><div id="aside_related_articles">
+        <nav class="aside_related_block_nav mt5">
+        <a class="aside_related_topic" href="basics/kernighan_ritchie.php.html#tableOfContent">ПОХОЖИЕ СТАТЬИ</a><a href="basics/index.html">Основы Си</a><a href="lessons.php.html">Учебник по Си</a><a href="boolean.php.html">Boolean в Си</a><a href="sockets.php.html">Сокеты в Си</a><a href="kernigan_ritchie.php.html">К и Р</a><a href="argc_argv.php.html">Что такое <b>argc</b>, <b>char * argv[]</b></a><a href="scanf.php.html">Функция <b>scanf()</b></a><a href="pointers.php.html">Указатели</a><a href="structures.php.html">Структуры в Си</a><a href="rest/index.html">Запросы к REST API на Си</a><a href="member_selection_operator.php.html">Оператор &laquo;стрелка&raquo; указатель на член структуры</a></nav></div><!-- /display_aside_tcont_block() --><div class="p2"><!-- display_advert_two() -->
+        <!-- www.devhops.ru Advert Two -->
+        <div id="advert_two">
+        <div id="advert_two_ads">
+        
+                <!-- RS0 -->
+                <div id="advert_two_slider_0" class="BlinkingBanner">
+                    <div class="align-center w100 mt2"><!-- Yandex.RTB R-A-1583746-2 --><div id='yandex_rtb_R-A-1583746-2'></div><script>window.yaContextCb.push(()=>{Ya.Context.AdvManager.render({renderTo: 'yandex_rtb_R-A-1583746-2', blockId: 'R-A-1583746-2'})})</script></div>
+                </div><!-- RSLIDER 1 i=0 -->
+                <div id="advert_two_slider_1" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://t.me/aofeed" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/banners/aofeed_horiz1.webp">  
+            <source type="image/png" srcset="../../aa_img/banners/aofeed_horiz1.png">   
+            <img class="w100" src="../../aa_img/banners/aofeed_horiz1.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 2 i=3 -->
+                <div id="advert_two_slider_2" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://t.me/aofeed" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/banners/aofeed_horiz2.webp">  
+            <source type="image/png" srcset="../../aa_img/banners/aofeed_horiz2.png">   
+            <img class="w100" src="../../aa_img/banners/aofeed_horiz2.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 3 i=6 -->
+                <div id="advert_two_slider_3" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../aa_img/beget/beget1600x720_2.webp">  
+            <source type="image/png" srcset="../../aa_img/beget/beget1600x720_2.png">   
+            <img class="w100" src="../../aa_img/beget/beget1600x720_2.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div>
+            </div>
+            <button id="remove_advert_two_button">Убрать рекламу</button>
+            <button id="show_advert_two_button">Показать рекламу</button>
+        <script src="../../.js/advert_two_script.js"></script></div><!-- /display_advert_two() --></div><script src="../../.js/aside_right_block_script.js"></script></aside><main class="wrapper mt5">
+        <h1>Решение задач из учебника Керниган и Ричи</h1><div id="tableOfContent"></div><!-- 3 --><!-- 3 --><!-- 3 -->
+<div id="intro" class="anchor"></div>
+<h2 class="h2mTop">
+    Введение
+</h2>
+<p class="p1">
+    Если после компиляции у Вас появляется файл a.out и Вы не знаете, что с ним делать попробуйте:
+</p>
+<p class="cmd1">
+    .&#47;a.out
+</p>
+<p class="p1">
+    Стр. 29
+</p>
+<p class="somecode mt2 w100">
+<code>#include&lt;stdio.h&gt;</code>
+<code>#define LOWER 0</code>
+<code>#define UPPER 300</code>
+<code>#define STEP 20</code>
+<code>main()</code>
+<code>/*Именованные константы*/</code>
+<code>{</code>
+<code>int fahr, fahr1;</code>
+<code>for (fahr = LOWER; fahr &lt;= UPPER;   fahr = fahr + STEP)</code>
+<code></code> 
+<code>    printf("%5d  %10f.1\n", fahr, 5.0/9.0*(fahr-32.0));</code>
+<code>    }</code>
+</p>
+<p class="p1">
+    Если не поставить  .0 после 32 мой антивирус avast пишет об угрозе.
+    <br>Тоже самое происходит и со всеми предыдущими примерами, в которых
+    <br>используется for<br><br>
+    Страница 34, параграф 1.5.3 Подсчёт строк.
+</p>
+<p class="somdecode p2">
+    if (c == &#39;\n&#39;)
+</p>
+<p class="p1">
+     а не какой-то загадочный V<br>
+    
+    
+    <br>
+    <br>
+    Страница 35, упражнение 1.8. Нужно написать программу для подсчёта табуляций, пробелов и новых строк.
+    
+    <br>
+    <br>
+    Я написал два варианта. Один работает правильно.
+    <br>
+    </p>
+    <p class="somecode w100 mt2">
+<code>#include&lt;stdio.h&gt;</code>
+<code>/*подсчет пробелов, табуляци и новых строк входного потока*/</code>
+<code>main()</code>
+<code>{</code>
+<code>int c, nl;</code>
+<code>nl = 0;</code>
+<code>while ((c=getchar()) &#33;&#61;EOF)</code>
+<code></code>    
+<code>if (c==&#39;\n&#39;)</code>
+<code>&plus;&plus;nl;</code>
+<code>else if (c==&#39;\t&#39;)</code>
+<code>&plus;&plus;nl;</code>
+<code>else if (c==&#39; &#39;)</code>
+<code>&plus;&plus;nl;</code>
+<code>printf("%d\n", nl);</code>
+<code>}</code>
+    </p>
+    <p class="p1">
+    Второй считает всё подряд.
+    <br>
+    <br>
+    
+    <br>
+    <br>
+    #include&lt;stdio.h&gt;<br>
+    /*подсчет пробелов, табуляци и новых строк входного потока*/<br>
+    main()<br>
+    {<br>
+    int c, nl;<br>
+    nl = 0;<br>
+    while ((c=getchar()) &#33;&#61;EOF)<br>
+    
+    if (c==&#39;\n&#39;,&#39;\t&#39;,&#39; &#39;)<br>
+    &plus;&plus;nl;<br>
+    printf("%d\n", nl);<br>
+    
+    }<br>
+    
+    <br>
+    Синий говорит, что условие if здесь всегда TRUE.
+    <br>Последний символ в условии if (c==&#39;\n&#39;,&#39;\t&#39;,&#39; &#39;) рассматривается компиллятором как логический.
+    <br>В ASCII значение пробела это 20. 20 > 0, всё, что больше нуля считается за TRUE, т.е. любо символ даёт вклад в сумму.
+    <br>Я проверил, если там поставить просто ноль, то ничего выводится не будет. Ноль это FALSE.
+    
+    </p>
+    <h2>Решения упражнений из книги Б. Кернигана и Д. Ричи 
+    <br>"Язык программирования Си"</h2>
+    <p class="p1">
+    Это мои решения, на 99% поэтому они могут быть довольно кривыми.
+    <br><br>
+    Нашел <a href="http:&#47;&#47;konstantinovd.narod.ru/k_and_r.html" >сайт</a>, где также выложены решения.
+    </p>
+    <h3 class="h3mTop">1.15</h3>
+    <p class="somecode w100 mt3">
+<code>#include &lt;stdio.h&gt;</code>
+<code>    float ffahr(int c);</code>
+<code></code>
+<code>    main()</code>
+<code>    {</code>
+<code>    int cel,i;</code>
+<code></code>
+<code>    for (i =0;i&lt;20; &plus;&plus;i){</code>
+<code>    	cel = i*10;</code>
+<code>    		printf("%d %f\n", cel, ffahr(cel));</code>
+<code>    	}</code>
+<code>    return 0;</code>
+<code>    }	</code>
+<code></code>
+<code></code>
+<code></code>
+<code>    float ffahr(int c)</code>
+<code>    {</code>
+<code>    	float fahr;</code>
+<code>    	</code>
+<code>    	fahr = (9.0/5.0)*c + 32.0;</code>
+<code>    		</code>
+<code>    return fahr;</code>
+<code>    	}	</code>
+    </p>
+    
+    <h3 class="h3mTop">1.17</h3>
+    
+    <p class="somecode w100 mt2">
+<code>#include &lt;stdio.h&gt;</code>
+<code>#define MAXLINE 1000 &#47;* максимальная длина строки в потоке *&#47;</code>
+<code></code>
+<code>int fgetline(char line[],int maxline);</code>
+<code>void copy(char to[], char from[]);</code>
+<code>&#47;*вывод самой длинной строки в потоке *&#47;</code>
+<code>main()</code>
+<code>{</code>
+<code>int len;&#47;* длина текущей строки *&#47;</code>
+<code>int max;&#47;* текущая максимальная длина *&#47;</code>
+<code>char line[MAXLINE]; &#47;* текущая максимальная длина *&#47;</code>
+<code>char longest [MAXLINE]; &#47;* самая длинная строка из введенных *&#47;</code>
+<code>char more50 [MAXLINE];</code>
+<code>char more51 [MAXLINE];</code>
+<code>char more52 [MAXLINE];</code>
+<code>char more53 [MAXLINE];</code>
+<code>char more54 [MAXLINE];</code>
+<code>char more55 [MAXLINE];</code>
+<code>char more56 [MAXLINE];</code>
+<code>int j,i;</code>
+<code>j =0;</code>
+<code>max = 0;</code>
+<code>while ((len = fgetline(line, MAXLINE)) &gt; 0 ){</code>
+<code></code>
+<code></code>
+<code> &#47;*  if (len &gt; max) {</code>
+<code>max = len;</code>
+<code>copy(longest, line); *&#47;  	</code>
+<code>   	</code>
+<code>&#47;*if (max &gt; 0) &#47;* была непустая строка *&#47;</code>
+<code>	&#47;*printf("%s", longest);</code>
+<code>return 0;*&#47;</code>
+<code></code>
+<code>	if (len &gt;= 5 ) {</code>
+<code>		</code>
+<code>	copy(more5j, line);</code>
+<code>	&plus;&plus;j;</code>
+<code>	}</code>
+<code>		}</code>
+<code>printf("%s", more5);</code>
+<code></code>
+<code>}	   	</code>
+<code></code>
+<code>&#47;* getline: считывает строку в s, возвращает её длину *&#47;</code>
+<code>int fgetline(char s[], int lim)</code>
+<code>{</code>
+<code>	int c,i;</code>
+<code>	</code>
+<code>	for (i = 0; i&lt;lim-1 &amp;&amp; (c=getchar()) &#33;&#61;EOF &amp;&amp; c&#33;&#61;&#39;&#92;n&#39;;&plus;&plus;i)</code>
+<code>	s[i] = c;</code>
+<code>	if (c ==&#39;&#92;n&#39;){</code>
+<code>s[i] = c;</code>
+<code>&plus;&plus;i;		</code>
+<code>		}</code>
+<code>		s[i] = &#39;\0&#39;;</code>
+<code>		return i;</code>
+<code>	</code>
+<code>	}	</code>
+<code>	</code>
+<code>&#47;* copy: копирует строку &#39;from&#39; в &#39;to&#39;; длина to считается достаточной *&#47;	</code>
+<code></code>
+<code>void copy(char to[], char from[])</code>
+<code>{</code>
+<code>int i;</code>
+<code>i=0;</code>
+<code>while((to[i] = from[i]) &#33;&#61;&#39;\0&#39;)</code>
+<code>&plus;&plus;i;</code>
+<code>	</code>
+<code>	</code>
+<code>	}	</code>
+    </p>
+<div class="p8 align-center"></div>   
+    <h3 class="h3mTop">1.18</h3>
+    <p class="somecode w100 mt2">
+<code>#include &lt;stdio.h&gt;</code>
+<code>#define MAXLINE 1000</code>
+<code>int fgetline(char line[], int maxline);</code>
+<code>void reverse(char to[], char from[]);</code>
+<code></code>
+<code>main()</code>
+<code>{</code>
+<code>	int c,i,j,max,len,k;</code>
+<code>	i=0;</code>
+<code>	j=2;</code>
+<code>char line [MAXLINE];</code>
+<code></code>
+<code>/*while ((len = fgetline(line, MAXLINE))&gt;1){*/</code>
+<code></code>
+<code>len = fgetline(line, MAXLINE);</code>
+<code>while (line[len-j] ==&#39; &#39; || line[len-j]==&#39;&#92;t&#39;)</code>
+<code>&plus;&plus;j;</code>
+<code>for (k=0;k&lt;=len-j;&plus;&plus;k)</code>
+<code>printf("%c", line[k]);</code>
+<code></code>
+<code>printf("%c&#92;n", &#39;&#92;t&#39;);</code>
+<code>	}</code>
+<code>	</code>
+<code>	/*printf("%c&#92;n", line[len-2]);*/</code>
+<code>	</code>
+<code>	</code>
+<code>int fgetline(char s[], int lim)</code>
+<code>{</code>
+<code>int c, i;</code>
+<code>for (i=0; i&lt; lim-1 &amp;&amp; (c = getchar()) &#33;&#61;EOF &amp;&amp; c &#33;&#61;&#39;&#92;n&#39;;&plus;&plus;i )</code>
+<code>s[i]	=c;</code>
+<code>if (c==&#39;&#92;n&#39;){</code>
+<code>s[i] = c;</code>
+<code>&plus;&plus;i;</code>
+<code>}</code>
+<code>s[i] = &#39;\0&#39;;</code>
+<code>return i;</code>
+<code>	}</code>
+    </p>
+    <h3 class="h3mTop">1.19</h3>
+    
+    <p class="somecode w100 mt2">
+<code>#include &lt;stdio.h&gt;</code>
+<code>#define MAXLINE 1000</code>
+<code></code>
+<code>void reverse(char to[], char from[]);</code>
+<code></code>
+<code>main()</code>
+<code>{</code>
+<code>	int c,i,j,max;</code>
+<code>	i=0;</code>
+<code>char line [MAXLINE];</code>
+<code>char revline [MAXLINE];	</code>
+<code>while ((c=getchar())&#33;&#61;EOF &amp;&amp; c&#33;&#61;&#39;&#92;n&#39;) {</code>
+<code>line[i] = c;	</code>
+<code>&plus;&plus;i;</code>
+<code>	}</code>
+<code>	max=i;</code>
+<code>for (j=0;j&lt;=max;&plus;&plus;j){</code>
+<code>revline[j]=line[i];</code>
+<code>--i;</code>
+<code>	}</code>
+<code>printf("%s&#92;n",revline);</code>
+<code>printf("%s&#92;n",line);</code>
+<code></code>
+<code>	return 0;</code>
+<code>	}</code>
+    </p>
+    <h3 class="h3mTop">1.20</h3>
+    
+    <p class="somecode w100 mt2">
+<code>#include &lt;stdio.h&gt;</code>
+<code>main()</code>
+<code>{</code>
+<code>int c,i,j;</code>
+<code>i=0;</code>
+<code>while((c=getchar())&#33;&#61;EOF){</code>
+<code>	if(c&#33;&#61;&#39;&#92;t&#39;&amp;&amp; c&#33;&#61;&#39;&#92;n&#39;){</code>
+<code>		&plus;&plus;i;</code>
+<code></code>
+<code>&#47;&#47;printf("%d",i);</code>
+<code></code>
+<code>if(i==8){</code>
+<code>i=0;}</code>
+<code>printf("%c",c);</code>
+<code>}</code>
+<code>if(c==&#39;&#92;t&#39;){</code>
+<code>for (j=0;j&lt;8-i;&plus;&plus;j){</code>
+<code>printf("%c",&#39; &#39;);}</code>
+<code>i=0;</code>
+<code>}</code>
+<code>else if(c==&#39;&#92;n&#39;){</code>
+<code>printf(&#34;&#92;n&#34;,"new line");</code>
+<code>i=0;}</code>
+<code>&#47;*else</code>
+<code>printf("%c",c);*&#47;</code>
+<code>}	</code>
+<code>printf(&#34;&#92;n&#34;);</code>
+<code>}</code>
+    			
+    </p>
+    
+    <h3 class="h3mTop">1.22</h3>
+    <p class="somecode w100 mt2">
+<code>#include &lt;stdio.h&gt;</code>
+<code>#define lim 10</code>
+<code>#define maxline 50</code>
+<code>main()</code>
+<code>{</code>
+<code> 	int c,i,j,start,start2,len,len2,len3;</code>
+<code> 	int line[maxline];</code>
+<code> 	int line2[maxline];	</code>
+<code>  	</code>
+<code> 	start=0;</code>
+<code> 	len3=0;</code>
+<code> 	for(i=0;i&lt;maxline;&plus;&plus;i){</code>
+<code> 		line[i]=(&#39;A&#39;);		</code>
+<code>	}	</code>
+<code> 	i=0;</code>
+<code>  	while((c=getchar())&#33;&#61;EOF &amp;&amp; i&lt;maxline) {</code>
+<code>  		if(c&#33;&#61;&#39;&#92;n&#39;){</code>
+<code>  		line[i]=c;</code>
+<code>  		&plus;&plus;i;}</code>
+<code>  		else {;}</code>
+<code>  		}	</code>
+<code>  /* commentr</code>
+<code>  rii</code>
+<code>  1234</code>
+<code>  */		</code>
+<code>  		len=i;</code>
+<code>  		for(start=0;start&lt;(maxline-9);start &plus;=len3){</code>
+<code>  		</code>
+<code>  		</code>
+<code>  		for(j=(start&plus;9);j&lt;(start&plus;0);--j){</code>
+<code>  			if (line[j]==&#39; &#39;){</code>
+<code>  				len2=j;</code>
+<code>  				j=0;								</code>
+<code>  				}</code>
+<code>  			else {</code>
+<code>  					len2= start &plus; 9;</code>
+<code>  					}}</code>
+<code>  			for(i=start;i&lt;=len2;&plus;&plus;i)</code>
+<code>  					{</code>
+<code>  				printf("%c",line[i]);					</code>
+<code>  					}</code>
+<code>  					printf(&#34;&#92;n&#34;);</code>
+<code>  			&#47;&#47;printf("%d",start);</code>
+<code>  			len3=(len2-start&plus;1);</code>
+<code>  			}</code> 
+</p>
+<div class="p8 align-center"></div>
+<h3 class="h3mTop">1.23</h3>
+<p class="somecode w100 mt2">			
+<code>#include &lt;stdio.h&gt;</code>
+<code>#define lim 10</code>
+<code>#define maxline 5000</code>
+<code>main()</code>
+<code>{</code>
+<code>	int c,i,i1,j,j1,j2,len;</code>
+<code>	int line[maxline];</code>
+<code>	int line2[maxline];</code>
+<code>	len=0;</code>
+<code>	j=j1=j2=0;</code>
+<code>while((c=getchar())&#33;&#61;EOF){</code>
+<code>&plus;&plus;i;</code>
+<code>line[i]=c;</code>
+<code>}</code>
+<code>	for(j=0;j&lt;=i;&plus;&plus;j){</code>
+<code>		</code>
+<code>	  if(line[j]&#61;&#61;&#39;&#47;&#39;){</code>
+<code>	    j1=j&plus;1;</code>
+<code>		if(line[j1]&#61;&#61;&#39;&#47;&#39;){</code>
+<code>		  for(j=j;j &lt; i &amp;&amp; line[j]&#33;&#61;&#39;&#92;n&#39;;&plus;&plus;j)</code>
+<code>		    &plus;&plus;len;				</code>
+<code>		}</code>
+<code>		</code>
+<code>		else if(line[j1]&#61;&#61;&#39;&#42;&#39;){</code>
+<code>		  j2=j;</code>
+<code></code>
+<code>				</code>
+<code>		  for(j2=j;j2&lt;i;&plus;&plus;j2)</code>
+<code>		    {</code>
+<code>			if(line[j2]&#33;&#61;&#39;*&#39;) {</code>
+<code>			  &plus;&plus;len;</code>
+<code>			  &plus;&plus;j;</code>
+    
+<code>          }</code>
+<code>			else if(line[j2]&#61;&#61;&#39;&#42;&#39;) {</code>
+<code>			  j1=j2&plus;1;</code>
+<code>			  if(line[j1]&#33;&#61;&#39;/&#39;) {</code>
+<code>			    &plus;&plus;len;</code>
+<code>				&plus;&plus;j;								</code>
+<code>			  }</code>
+<code>			  else {</code>
+<code>			    &plus;&plus;j;</code>
+<code>			    j2=i;</code>
+<code>            }												</code>
+<code>			}								</code>
+<code>	      }</code>
+<code>													</code>
+<code>		}			</code>
+<code>				</code>
+<code>		else {</code>
+<code>		  line2[j-len]=line[j];</code>
+<code>						</code>
+<code>		}</code>
+<code>		else</code>
+<code>		line2[j-len]=line[j];		</code>
+<code>	&#47;&#47; dljkflkdjfl;kjsdlkf;klsdjfj;sdljf;klsdjfk;ljsdk;flj;sdlkjfkl;sjdfl;ksjdflk;js;dlkfj;klf9</code>			
+<code>		}</code>
+<code></code>
+<code>	</code>
+<code>	printf("Old");</code>
+<code>	printf(&#34;&#92;n&#34;);</code>
+<code>for(i1=0;i1&lt;=i;&plus;&plus;i1){</code>
+<code>	printf("%c",line[i1]);</code>
+<code>	}</code>
+<code>printf(&#34;&#92;n&#34;);</code>
+<code></code>
+<code>	printf("New");</code>
+<code>	</code>
+<code>	printf(&#34;&#92;n&#34;);</code>
+<code>for(i1=0;i1&lt;=i;&plus;&plus;i1){</code>
+<code>	printf("%c",line2[i1]);</code>
+<code>	}</code>
+<code>printf(&#34;&#92;n&#34;);</code>
+<code></code>
+<code>/*</code>
+<code>dflkdsjflkj</code>
+<code>dsjklfjkd</code>
+<code>lkjdlfjk</code>
+<code>*/</code>
+<code>return 0;	</code>
+<code>}		</code>
+<code>			</code>
+<code>	&#47;&#47;printf("%c", line[j]);		</code>
+<code>printf(&#34;&#92;n&#34;);</code>
+<code>return 0;	</code>
+<code>}</code>    			
+</p>
+<div class="p8 align-center"></div>
+<h3 class="h3mTop">1.24</h3>
+    <p class="p1">
+    #include&lt;stdio.h&gt;<br>
+    #define maxline 5000<br>
+    main()<br>
+    {<br>
+    int c,i,j,j1,j2;<br>
+    int round; &#47;&#47;проверка круглых скобок<br>
+    int fig; &#47;&#47;figure<br>
+    int quad;<br>
+    int line[maxline];<br>
+    i=round=fig=quad=0;<br>
+    
+    while((c=getchar())&#33;&#61;EOF)<br>
+    {	<br>
+    	
+    	line[i]=c;<br>
+    	&plus;&plus;i;<br>
+    	}	<br>
+    
+    <br>
+    for(j=0;j &lt; i;&plus;&plus;j)<br>
+    {<br>
+    	
+    	if(line[j]&#61;&#61;&#39;&#47;&#39;){<br>
+    		j1=j+1;<br>
+    		if(line[j1]&#61;&#61;&#39;&#47;&#39;){<br>
+    			for(j=j;j &lt; i &amp;&amp; line[j]&#33;&#61;&#39;\n&#39;;&plus;&plus;j){	<br>				
+    				}	<br>		
+    			}	<br>
+    		else if(line[j1]&#61;&#61;&#39;&#42;&#39;){<br>
+    			for(j2=j;j2 &lt; i;&plus;&plus;j2,&plus;&plus;j){<br>
+    				<br>
+    				if(line[j]&#61;&#61;&#39;&#42;&#39;){<br>
+    					j1=j+1;<br>
+    					if(line[j1]&#61;&#61;&#39;&#47;&#39;){<br>
+    						&plus;&plus;j;<br>
+    						j2=i;		<br>				
+    						}		<br>			
+    					}	<br>			
+    				}<br>			
+    			}<br>		
+    		}	<br>
+    		<br>
+    		
+    	else if (line[j]==&#39;(&#39;){<br>
+    		&plus;&plus;round;	<br>	
+    		}<br>
+    	else if (line[j]&#61;&#61;&#39;)&#39;)&#123;<br>
+    		--round;		<br>
+    		}<br>
+    	else if (line[j]==&#39;{&#39;){<br>
+    		&plus;&plus;fig;		<br>
+    		}<br>
+    	else if (line[j]&#61;&#61;&#39;&#125;&#39;)&#123;<br>
+    		--fig;		<br>
+    		}	<br>
+    }<br>
+    <br>
+    if(round == 0){<br>
+    	printf("round ok");<br>
+    		}<br>
+    else if(round &gt; 0){<br>
+    	printf("round mistake to many (");	<br>
+    	}<br>
+    else if(round &lt; 0){<br>
+    	printf("round mistake not enought (");	<br>
+    	}	<br>
+    	printf(&#34;&#92;n&#34;);<br>
+    	
+    	if(fig == 0){<br>
+    	printf("fig ok");<br>
+    		}
+    else if(fig &gt; 0){<br>
+    	printf("fig mistake to many {");	<br>
+    	}<br>
+    else if(fig &lt; 0){<br>
+    	printf("fig mistake not enought {");	<br>
+    	}	<br>
+    	printf(&#34;&#92;n&#34;);<br>
+    return 0;<br>
+    }</p>
+    	
+    	<h3 class="h3mTop">2.1</h3>
+    <p class="p1">
+    	#include &lt;stdio.h&gt;<br>
+    #include &lt;limits.h&gt;<br>
+    #include &lt;float.h&gt;<br>
+    <br>
+    /* Когда прочитал задания слегка выпал в осадок. Как имея знания на уровне первой главы К и Р <br>
+    (из которой я сделал сам все упражнения) понять каким образом можно обратиться к файлам. Синий<br>
+    сказал, что заголовочные файлы (на инопланетном - headers) лежат в папке /usr/includes   */<br>
+    int main()<br>
+    {<br>
+    	<br>
+    	return 0;<br>
+    }<br>
+    	<br><br>
+    
+    <br><br>
+    Долго мучался с примером 1.9. Нужно было написать программу, которая выводит то, что вводится с клавиатуры, при этом игнорируя все пробелы, кроме самых первых.
+    
+    <br><br>
+    #include&lt;stdio.h&gt;<br>
+    main()<br>
+    {<br>
+    int c, c1;<br>
+    c1 == 0;<br>
+    while ((c=getchar()) &#33;&#61;EOF){<br>
+    if (c==&#39; &#39;)<br>
+    &plus;&plus;c1;<br>
+    else<br>
+    c1 = 0;<br>
+    if (c1 &lt;=1)<br>
+    putchar(c) ; <br>
+    else <br>
+    {<br>
+    ;<br>
+    c1 = 1;<br>
+    }<br>
+    }<br>
+    }<br>
+</p>
+<p class='p5'>Автор статьи: <a href='https://andreyolegovich.ru'>Андрей Олегович</a></p><div id="related_articles_footer" class="p20 anchor"></div><table class="tcont"><caption>Похожие статьи</caption><tbody><tr><td><td><a href="basics/index.html">Основы Си</a><tr><td><td><a href="lessons.php.html">Учебник по Си</a><tr><td><td><a href="boolean.php.html">Boolean в Си</a><tr><td><td><a href="sockets.php.html">Сокеты в Си</a><tr><td><td><a href="kernigan_ritchie.php.html">К и Р</a><tr><td><td><a href="argc_argv.php.html">Что такое <b>argc</b>, <b>char * argv[]</b></a><tr><td><td><a href="scanf.php.html">Функция <b>scanf()</b></a><tr><td><td><a href="pointers.php.html">Указатели</a><tr><td><td><a href="structures.php.html">Структуры в Си</a><tr><td><td><a href="rest/index.html">Запросы к REST API на Си</a><tr><td><td><a href="member_selection_operator.php.html">Оператор &laquo;стрелка&raquo; указатель на член структуры</a></tbody></table></main>
+            <!-- footer _lessons_bottom_navigator_inc -->
+            <nav class="wrapper font-size0 mt12">
+                <div class="previous font1">
+                    <a class="" href="pointers.php.html">
+                        Указатели
+                    </a>
+                </div>
+                <div class="next font1">
+                    <a class="" href="structures.php.html">
+                        Структуры
+                    </a>
+                </div>
+            </nav>
+            <!-- footer /_lessons_bottom_navigator end -->
+        <div class="count"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-11806655-6"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-11806655-6');</script><!-- /Global site tag (gtag.js) - Google Analytics --><!-- Yandex.Metrika counter --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");ym(86097190, "init", {clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script><noscript><div><img src="https://mc.yandex.ru/watch/86097190" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter --></div>
+            <div class="wrapper align-center mt10">
+            <p class="p1 font1">
+                <a class="bbutton100" id="website_search2" href="https://devhops.ru/search/">
+                    Поиск по сайту
+                </a>
+            </p>
+            <p class="p8 font1">
+                Подпишитесь на <a href="https://t.me/aofeed">Telegram канал @aofeed</a> чтобы следить 
+                за выходом новых статей и обновлением старых
+                <br><br>
+                <a class="bbutton100" href="https://t.me/aofeed">Перейти на канал</a>
+                <br><br>
+                <a href="https://t.me/aofeed">@aofeed</a>
+            </p>
+            <p class="p8 font1">
+                <a class="bbutton100" href="https://t.me/aofeedchat">
+                    Задать вопрос в Телеграм-группе
+                </a>
+                <br><br>
+                <a href="https://t.me/aofeedchat">@aofeedchat</a>
+            </p>
+            </div>
+        
+        <div class="wrapper mt10">
+            <table class="tab11">
+            <caption>Контакты и сотрудничество:</caption>
+            <tr><td>Рекомендую наш хостинг <a href="https://www.beget.com/p3421">beget.ru</a>
+            <tr><td>Пишите на
+                    <span class="tt">info@urn.su</span> если Вы:
+            <tr><td>1. Хотите написать статью для нашего сайта или перевести статью на свой родной язык.
+            <tr><td>2. Хотите разместить на сайте рекламу, подходящую по тематике.
+            <tr><td>3. Реклама на моём сайте имеет максимальный уровень цензуры. Если Вы увидели
+                    рекламный блок недопустимый для просмотра детьми школьного возраста, вызывающий шок
+                    или вводящий в заблуждение - пожалуйста свяжитесь с нами по электронной почте
+            <tr><td>4. Нашли на сайте ошибку, неточности, баг и т.д. 
+                    <span class="width_a">.</span><span class="width_b">..</span>
+                    <span class="width_c">...</span><span class="width_d">....</span>
+            <tr><td>5. Статьи можно расшарить в соцсетях, нажав на иконку сети:
+                    <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                    <script src="https://yastatic.net/share2/share.js"></script>
+                    <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter,reddit,lj,viber,whatsapp,skype,telegram">
+                    </div>
+            </table> 
+        </div><div id="bottomid"></div></body></html>

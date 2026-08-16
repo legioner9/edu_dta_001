@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция malloc - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#17">Содержание</a> | <a href="17.htm#00">Глава 17</a><hr>
+<h1>Функция malloc</h1>
+<pre>
+#include &lt;stdlib&gt;
+void *malloc(size_t <em>size</em>);
+</pre>
+<p class="tj">Функция <kbd>malloc()</kbd> возвращает указатель на первый байт области памяти размером <em>size</em>, которая была выделена из динамически распределяемой области памяти. Если для удовлетворения запроса в динамически распределяемой области памяти нет достаточного объема памяти, возвращается нулевой указатель. Перед попыткой использовать выделенную память всегда проверяйте, что возвращаемое значение не является нулевым указателем. Попытка использовать нулевой указатель обычно приводит к полному отказу системы.
+<h2>Пример</h2>
+<p class="tj">Эта функция выделяет память для структуры типа <kbd>addr</kbd>:
+<pre>
+struct addr {
+  char name[40];
+  char street[40];
+  char city[40];
+  char state[3];
+  char zip[10];
+};
+struct addr *get_struct(void)
+{
+  struct addr *p;
+  if((p = malloc(sizeof(struct addr)))==NULL) {
+    printf("Ошибка при распределении памяти\n");
+    exit(1);
+  }
+  return p;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="free.htm">free()</a>  <a href="realloc.htm">realloc()</a>  <a href="calloc.htm">calloc()</a>
+<hr><a href="../main.htm#17">Содержание</a> | <a href="17.htm#00">Глава 17</a>
+
+
+</body>
+</html>

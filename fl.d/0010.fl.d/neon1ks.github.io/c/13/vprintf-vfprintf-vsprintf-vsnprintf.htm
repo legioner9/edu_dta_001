@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция vprintf, vfprintf, vsprintf, vsnprintf - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция vprintf, vfprintf, vsprintf, vsnprintf</h1>
+<pre>
+#include &lt;stdarg.h&tg;
+#include &lt;stdio.h&gt;
+int vprintf(char *<em>format</em>, va_list <em>arg_ptr</em>);
+int vfprintf(FILE *<em>stream</em>, const char *<em>format</em>, va_list <em>arg_ptr</em>);
+int vsprintf(char *<em>buf</em>, const char *<em>format</em>, va_list <em>arg_ptr</em>);
+int vsnprintf(char * restrict <em>buf</em>, size_t <em>num</em>, const char * restrict <em>format</em>, va_list <em>arg_ptr</em>);
+</pre>
+<p class="tj">Действия функций <kbd>vprintf()</kbd>, <kbd>vfprintf()</kbd>, <kbd>vsprintf()</kbd> и <kbd>vsnprintf()</kbd> эквивалентны действиям функций <kbd>printf()</kbd>, <kbd>fprintf()</kbd>, <kbd>sprintf()</kbd> и <kbd>snprintf()</kbd> соответственно, но список аргументов заменяется указателем на список аргументов. Этот указатель должен иметь тип <kbd>va_list</kbd>, который определен в заголовке <kbd>&lt;stdarg.h&gt;</kbd>.
+<p class="tj">В версии C99 к параметрам <em>buf</em> и <em>format</em> применен квалификатор <kbd>restrict</kbd>. Функция <kbd>vsnprintf()</kbd> добавлена в версии C99.
+<h2>Пример</h2>
+<p class="tj">Данный фрагмент программы иллюстрирует, как нужно вызывать функцию <kbd>vprintf()</kbd>. Вызов функции <kbd>va_start()</kbd> приводит к созданию указателя на список аргументов переменной длины, причем этот указатель указывает на начало списка аргументов. Этот указатель должен быть использован при вызове функции <kbd>vprintf()</kbd>. Вызов функции <kbd>va_end()</kbd> очищает указатель на список аргументов переменной длины.
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdarg.h&gt;
+void print_message(char *format, ...);
+int main(void)
+{
+  print_message("Не удается открыть файл %s.", "test");
+  return 0;
+}
+void print_message(char *format, ...)
+{
+  va_list ptr; /* извлечение аргумента ptr */
+  /* инициализация ptr, он становится указателем на первый аргумент,
+     следующий за строкой форматирования
+  */
+  va_start(ptr, format);
+  /* вывод сообщения */
+  vprintf(format, ptr);
+  va_end(ptr);
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="vscanf-vfscanf-vsscanf.htm">vscanf()</a>  <a href="vscanf-vfscanf-vsscanf.htm">vfscanf()</a>  <a href="vscanf-vfscanf-vsscanf.htm">vsscanf()</a>  <a href="../18/va_arg-va_start-va_end-va_copy.htm">va_arg()</a>  <a href="../18/va_arg-va_start-va_end-va_copy.htm">va_start()</a>  <a href="../18/va_arg-va_start-va_end-va_copy.htm">va_end()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

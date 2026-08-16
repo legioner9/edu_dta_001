@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция remove - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция remove</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int remove(const char *<em>fname</em>);
+</pre>
+<p class="tj">Функция <kbd>remove()</kbd> удаляет файл, заданный параметром <em>fname</em>. При успешном удалении файла функция возвращает нуль, а в случае ошибки — ненулевое значение.
+<h2>Пример</h2>
+<p class="tj">Данная программа удаляет файл, имя которого задается в командной строке.
+<pre>
+#include &lt;stdio.h&gt;
+int main(int argc, char *argv[])
+{
+  if(remove(argv[1])) printf("Ошибка при удалении");
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="rename.htm">rename()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

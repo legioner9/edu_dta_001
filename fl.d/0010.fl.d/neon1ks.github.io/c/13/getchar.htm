@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция getchar - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция getchar</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int getchar(void);
+</pre>
+<p class="tj">Функция <kbd>getchar()</kbd> возвращает из стандартного потока <em>stdin</em> следующий символ. При чтении символа предполагается, что символ имеет тип <kbd>unsigned char</kbd>, который потом преобразуется в целый.
+<p class="tj">При достижении конца файла, как и при обнаружении ошибки, функция <kbd>getchar()</kbd> возвращает значение <kbd>EOF</kbd>.
+<p class="tj">Функция <kbd>getchar()</kbd> чаще всего реализована как макрос.
+<h2>Пример</h2>
+<p class="tj">Данная программа считывает в массив <kbd>s</kbd> символы из стандартного входного потока <kbd>stdin</kbd>, пока пользователь не нажмет клавишу <kbd>ENTER</kbd>. Затем введенная строка выводится на экран.
+<pre>
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char s[256], *p;
+  p = s;
+  while((*p++ = getchar())!= '\n') ;
+  *p = '\0'; /* добавляем символ конца строки */
+  printf(s);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="fputc.htm">fputc()</a>  <a href="fgetc.htm">fgetc()</a>  <a href="putc.htm">putc()</a>  <a href="fopen.htm">fopen()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

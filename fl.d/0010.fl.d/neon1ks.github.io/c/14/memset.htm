@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция memset - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция memset</h1>
+<pre>
+#include &lt;string.h&gt;
+void *memset(void *<em>buf</em>, int <em>ch</em>, size_t <em>count</em>);
+</pre>
+<p class="tj">Функция <kbd>memset()</kbd> копирует младший байт параметра <em>ch</em> в первые <em>count</em> символов массива, адресуемого параметром <em>buf</em>. Функция возвращает значение указателя <em>buf</em>.
+<p class="tj">Чаще всего функция <kbd>memset()</kbd> используется для инициализации области памяти некоторым известным значением.
+<h2>Пример</h2>
+<p class="tj">Данный фрагмент инициализирует первые 100 байтов массива, адресуемого указателем <kbd>buf</kbd>, нулями. Затем он помещает символы <kbd>X</kbd> в первые 10 байтов этого массива и выводит строку XXXXXXXXXX.
+<pre>
+memset(buf, '\0', 100);
+memset(buf, 'X', 10);
+printf(buf);
+</pre>
+<h2>Зависимые функции</h2>
+<a href="memcmp.htm">memcmp()</a>  <a href="memcpy.htm">memcpy()</a>  <a href="memmove.htm">memmove()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

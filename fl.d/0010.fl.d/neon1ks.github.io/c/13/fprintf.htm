@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция fprintf - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция fprintf</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int fprintf(FILE *<em>stream</em>, const char *<em>format</em>, ...);
+</pre>
+<p class="tj">Функция <kbd>fprintf()</kbd>  выводит в поток, адресуемый параметром <em>stream</em>, значения аргументов, составляющих список аргументов, в соответствии с заданной строкой формата <em>format</em>. Возвращаемое значение равно количеству реально выведенных символов. Если при выводе возникла ошибка, возвращается отрицательное число.
+<p class="tj">В версии C99 к параметрам <em>stream</em> и <em>format</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">Операции преобразования, заданные в строке формата, и команды вывода аналогичны операциям и командам, используемым в функции <kbd>printf()</kbd>; их полное описание приводится в разделе, посвященном функции <kbd>printf</kbd>.
+<h2>Пример</h2>
+<p class="tj">Приведенная программа создает файл с названием TEST и записывает в него стpoку
+<pre>это тест  10  20. 01</pre>
+в формате, заданном функцией <kbd>fprintf()</kbd>.
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main(void)
+{
+  FILE *fp;
+  if((fp=fopen("test", "wb"))==NULL) {
+    printf("He удается открыть файл.\n");
+    exit(1);
+  }
+  fprintf(fp, "Это тест %d %f", 10, 20.01);
+  fclose(fp);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="printf.htm">printf()</a>  <a href="fscanf.htm">fscanf()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

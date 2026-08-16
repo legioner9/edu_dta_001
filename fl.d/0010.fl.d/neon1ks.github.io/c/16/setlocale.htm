@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция setlocale - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#16">Содержание</a> | <a href="16.htm#00">Глава 16</a><hr>
+<h1>Функция setlocale</h1>
+<pre>
+#include &lt;locale.h&gt;
+char *setlocale(int <em>type</em>, const char *<em>locale</em>);
+</pre>
+<p class="tj">Функция <kbd>setlocale()</kbd> позволяет получить или установить некоторые параметры, которые зависят от геополитической среды выполнения программы. Если указатель <em>locale</em> является нулем, функция <kbd>setlocale()</kbd> возвращает указатель на строку текущей локализации. В противном случае функция <kbd>setlocale()</kbd> попытается использовать строку <em>locale</em> для установки локальных параметров в соответствии с параметром <em>type</em>. Для задания стандартных С-параметров региональной привязки используйте строку "С", а для задания собственных параметров среды — пустую строку (""). Чтобы получить подробную информацию о строках локализации, поддерживаемых конкретным компилятором, обратитесь к документации.
+<p class="tj">При вызове функции <kbd>setlocale()</kbd> в качестве параметра <em>type</em> должен быть использован один из следующих макросов (определенных в заголовке <kbd>&lt;locale.h&gt;</kbd>).
+<pre>
+LC_ALL
+LC_COLLATE
+LC_CTYFE
+LC_MONETARY
+LC_NUMERIC
+LC_TIME
+</pre>
+<p class="tj">Макрос <kbd>LC_ALL</kbd> относится ко всем категориям локализации. Макрос <kbd>LC_COLLATE</kbd> оказывает влияние на выполнение функции <kbd>strcoll()</kbd>. Макрос <kbd>LC_CTYPE</kbd> изменяет характер работы символьных функций. Макрос <kbd>LC_MONETARY</kbd> определяет денежный формат. Макрос <kbd>LC_NUMERIC</kbd> изменяет символ десятичной точки для функций форматированного ввода-вывода. Наконец, макрос <kbd>LC_TIME</kbd> определяет поведение функции <kbd>strftime()</kbd>.
+<p class="tj">Функция <kbd>setlocale()</kbd> возвращает указатель на строку, связанную с параметром <em>type</em>.
+<h2>Пример</h2>
+<p class="tj">Эта программа отображает текущую установку локализации:
+<pre>
+#include &lt;locale.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  printf(setlocale(LC_ALL, ""));
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="localeconv.htm">localeconv()</a>  <a href="time.htm">time()</a>  <a href="setlocale.htm">strcoll()</a>  <a href="strftime.htm">strftime()</a>
+<hr><a href="../main.htm#16">Содержание</a> | <a href="16.htm#00">Глава 16</a>
+
+
+</body>
+</html>

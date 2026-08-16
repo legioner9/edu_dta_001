@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция putchar - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция putchar</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int putchar(int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>putchar()</kbd> записывает символ, содержащийся в младшем байте параметра <em>ch</em>, в стандартный поток вывода <kbd>stdout</kbd>. По выполняемому действию она эквивалентна <kbd>putc(ch, stdout)</kbd>. Поскольку в момент вызова символьные аргументы преобразуются к целому типу, их вполне можно использовать в качестве аргументов функции <kbd>putchar()</kbd>.
+<p class="tj">При успешном выполнении функция <kbd>putchar()</kbd> возвращает записанный символ, а в случае ошибки — значение <kbd>EOF</kbd>.
+<h2>Пример</h2>
+<p class="tj">Следующий цикл записывает символы в строку <kbd>str</kbd> стандартного потока вывода <kbd>stdout</kbd>. Символ конца строки не записывается.
+<pre>
+for( ; *str; str++) putchar(*str);
+</pre>
+<h2>Зависимые функции</h2>
+<a href="putc.htm">putc()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

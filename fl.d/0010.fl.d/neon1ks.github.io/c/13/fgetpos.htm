@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция fgetpos - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция fgetpos</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int fgetpos(FILE *<em>stream</em>, fpos_t *<em>position</em>);
+</pre>
+<p class="tj">Функция <kbd>fgetpos()</kbd> сохраняет в объекте, на который указывает параметр <em>position</em>, текущее значение указателя позиции файла из заданного потока. Объект, адресуемый элементом <em>position</em>, должен иметь тип <kbd>fpos_t</kbd>. Сохраняемое значение может быть полезно только для последующего обращения к функции <kbd>fsetpos()</kbd>.
+<p class="tj">Отметим, что в версии C99 к параметрам <em>stream</em> и <em>position</em> применяется квалификатор <kbd>restrict</kbd>.
+<p class="tj">При возникновении ошибки функция <kbd>fgetpos()</kbd> возвращает ненулевое значение; в противном случае возврашается нуль.
+<h2>Пример</h2>
+<p class="tj">Следующий фрагмент программы присваивает переменной <kbd>file_loc</kbd> текущее знамение положения файла.
+<pre>
+FILE *fp;
+fpos_t file_loc;
+.
+.
+.
+fgetpos(fp, &file_loc);
+</pre>
+<h2>Зависимые функции</h2>
+<a href="fsetpos.htm">fsetpos()</a>  <a href="fseek.htm">fseek()</a>  <a href="ftell.htm">ftell()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

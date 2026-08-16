@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция time - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#16">Содержание</a> | <a href="16.htm#00">Глава 16</a><hr>
+<h1>Функция time</h1>
+<pre>
+#include &lt;time.h&gt;
+time_t time(time_t *<em>time</em>);
+</pre>
+<p class="tj">Функция <kbd>time()</kbd> возвращает текущее календарное время системы. Если в системе отсчет времени не производится, возвращается значение -1.
+<p class="tj">Функцию <kbd>time()</kbd> можно вызывать либо с нулевым указателем, либо с указателем на переменную типа <kbd>time_t</kbd>. В последнем случае этой переменной будет присвоено календарное время.
+<h2>Пример</h2>
+<p class="tj">Эта программа отображает местное время, определенное системой:
+<pre>
+#include &lt;time.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  struct tm *ptr;
+  time_t lt;
+  lt = time(NULL);
+  ptr = localtime(&amp;lt);
+  printf(asctime(ptr));
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="localtime.htm">localtime()</a>  <a href="gmtime.htm">gmtime()</a>  <a href="strftime.htm">strftime()</a>  <a href="ctime.htm">ctime()</a>
+<hr><a href="../main.htm#16">Содержание</a> | <a href="16.htm#00">Глава 16</a>
+
+
+</body>
+</html>

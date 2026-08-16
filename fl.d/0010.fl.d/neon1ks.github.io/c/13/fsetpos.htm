@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция fsetpos - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a><hr>
+<h1>Функция fsetpos</h1>
+<pre>
+#include &lt;stdio.h&gt;
+int fsetpos(FILE *<em>stream</em>, const fpos_t *<em>position</em>);
+</pre>
+<p class="tj">Функция <kbd>fsetpos()</kbd> перемещает указатель текущей позиции файла в место, заданное объектом, к которому отсылает указатель <em>position</em>. Это значение должно быть предварительно получено путем обращения к функции <kbd>fgetpos()</kbd>. После выполнения функции <kbd>fsetpos()</kbd> признак конца файла сбрасывается. Кроме того, аннулируется любой предыдущий результат обращения к функции <kbd>ungetc()</kbd>.
+<p class="tj">При неудачном выполнении функции <kbd>fsetpos()</kbd> возврашается ненулевое значение, а при успешном — нуль.
+<h2>Пример</h2>
+<p class="tj">Данный фрагмент программы устанавливает указатель текущей позиции файла в новое положение, соответствующее значению переменной <kbd>file_loc</kbd>.
+<pre>
+fsetpos(fp, &file_loc);
+</pre>
+<h2>Зависимые функции</h2>
+<a href="fgetpos.htm">fgetpos()</a>  <a href="fseek.htm">fseek()</a>  <a href="ftell.htm">ftell()</a>
+<hr><a href="../main.htm#13">Содержание</a> | <a href="13.htm#00">Глава 13</a>
+
+
+</body></html>

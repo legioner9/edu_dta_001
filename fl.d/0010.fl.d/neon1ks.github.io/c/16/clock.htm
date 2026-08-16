@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция clock - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#16">Содержание</a> | <a href="16.htm#00">Глава 16</a><hr>
+<h1>Функция clock</h1>
+<pre>
+#include &lt;time.h&gt;
+clock_t clock(void);
+</pre>
+<p class="tj">Функция <kbd>clock()</kbd> возвращает значение, которое приблизительно соответствует времени работы вызывающей программы. Для преобразования этого значения в секунды нужно разделить его на значение <kbd>CLOCKS_PER_SEC</kbd>. Если системный таймер недоступен, возвращается значение -1.
+<h2>Пример</h2>
+<p class="tj">Следующая функция отображает время выполнения вызывающей программы в секундах:
+<pre>
+void elapsed_time(void)
+{
+  printf("Прошло: %u секунд.\n", clock()/CLOCKS_PER_SEC);
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="time.htm">time()</a>  <a href="asctime.htm">asctime()</a>  <a href="ctime.htm">ctime()</a>
+<hr><a href="../main.htm#16">Содержание</a> | <a href="16.htm#00">Глава 16</a>
+
+
+</body>
+</html>

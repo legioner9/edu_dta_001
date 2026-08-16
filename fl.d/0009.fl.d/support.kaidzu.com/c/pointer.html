@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Указатели в языке Си</title>
+<meta name='description' content='Указатели в языке Си'><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='../cpp/main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='../python/main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='../milandr/keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='atof.html' class = "row_a">atof()</a><br><a href='atoi.html' class = "row_a">atoi()</a><br><a href='atoll.html' class = "row_a">atoll()</a><br><a href='auto.html' class = "row_a">auto</a><br><a href='bool.html' class = "row_a">bool</a><br><a href='break.html' class = "row_a">break</a><br><a href='callback.html' class = "row_a">callback</a><br><a href='case.html' class = "row_a">case</a><br><a href='char.html' class = "row_a">char</a><br><a href='clock.html' class = "row_a">clock()</a><br><a href='const.html' class = "row_a">const</a><br><a href='continue.html' class = "row_a">continue</a><br><a href='default.html' class = "row_a">default</a><br><a href='do.html' class = "row_a">do while</a><br><a href='double.html' class = "row_a">double</a><br><a href='else.html' class = "row_a">else</a><br><a href='enum.html' class = "row_a">enum</a><br><a href='extern.html' class = "row_a">extern</a><br><a href='fclose.html' class = "row_a">fclose()</a><br><a href='feof.html' class = "row_a">feof()</a><br><a href='fgets.html' class = "row_a">fgets()</a><br><a href='float.html' class = "row_a">float</a><br><a href='fopen.html' class = "row_a">fopen()</a><br><a href='for.html' class = "row_a">for</a><br><a href='fread.html' class = "row_a">fread()</a><br><a href='free.html' class = "row_a">free()</a><br><a href='fwrite.html' class = "row_a">fwrite()</a><br><a href='gets.html' class = "row_a">gets()</a><br><a href='goto.html' class = "row_a">goto</a><br><a href='hello_world.html' class = "row_a">hello world</a><br><a href='if.html' class = "row_a">if</a><br><a href='inline.html' class = "row_a">inline</a><br><a href='int.html' class = "row_a">int</a><br><a href='long.html' class = "row_a">long (long)</a><br><a href='main.html' class = "row_a">main()</a><br><a href='malloc.html' class = "row_a">malloc()</a><br><a href='memccpy.html' class = "row_a">memccpy()</a><br><a href='memcpy.html' class = "row_a">memcpy()</a><br><a href='memmove.html' class = "row_a">memmove()</a><br><a href='printf.html' class = "row_a">printf()</a><br><a href='register.html' class = "row_a">register</a><br><a href='restrict.html' class = "row_a">restrict</a><br><a href='return.html' class = "row_a">return</a><br><a href='scanf.html' class = "row_a">scanf()</a><br><a href='short.html' class = "row_a">short</a><br><a href='signed.html' class = "row_a">signed</a><br><a href='sizeof.html' class = "row_a">sizeof</a><br><a href='size_t.html' class = "row_a">size_t</a><br><a href='sprintf_s.html' class = "row_a">sprintf_s()</a><br><a href='static.html' class = "row_a">static</a><br><a href='strcat.html' class = "row_a">strcat()</a><br><a href='strchr.html' class = "row_a">strchr()</a><br><a href='strcpy.html' class = "row_a">strcpy()</a><br><a href='strdup.html' class = "row_a">strdup()</a><br><a href='strlen.html' class = "row_a">strlen()</a><br><a href='strncat.html' class = "row_a">strncat()</a><br><a href='strncpy.html' class = "row_a">strncpy()</a><br><a href='strstr.html' class = "row_a">strstr()</a><br><a href='strtod.html' class = "row_a">strtod()</a><br><a href='struct_.html' class = "row_a">struct</a><br><a href='switch.html' class = "row_a">switch</a><br><a href='typedef.html' class = "row_a">typedef</a><br><a href='union.html' class = "row_a">union</a><br><a href='unsigned.html' class = "row_a">unsigned</a><br><a href='void.html' class = "row_a">void</a><br><a href='volatile.html' class = "row_a">volatile</a><br><a href='while.html' class = "row_a">while</a><br><a href='_bool.html' class = "row_a">_Bool</a><br><a href='reservirovannie_imena.html' class = "row_a">Зарезервированные имена</a><br><a href='inkapsulyaciya.html' class = "row_a">Инкапсуляция</a><br><a href='keywords.html' class = "row_a">Ключевые слова</a><br><a href='macros.html' class = "row_a">Макросы</a><br><a href='array.html' class = "row_a">Массивы</a><br><a href='thread.html' class = "row_a">Многопоточность</a><br><a href='main_page.html' class = "row_a">Плюсы и минусы Си</a><br><a href='string.html' class = "row_a">Строки</a><br><a href='struct.html' class = "row_a">Структуры</a><br><a href='types.html' class = "row_a">Типы данных</a><br><a href='pointer.html' class = "row_a sel">Указатели</a><br><a href='file.html' class = "row_a">Файлы</a><br></div>
+<div id=storage_content>
+<h1>Указатели в языке Си</h1>
+<ul>
+<li> Указатель - это переменная содержащая адрес. В 32 битных системах она занимает 32 бита (4 байт), а в 64 битных системах она занимает 64 бита (8 байт). Тип указателя говорит какой тип данных размещен по адресу который содержит указатель.
+<li> Указатель типа void может ссылаться на любую переменную, структуру или функцию (независимо от размера).
+<li> Указатель без адреса инициализируется <b>NULL</b>, но это не делается автоматически. Хорошая практика сразу инициализировать указатель адресом переменной, либо присваивать ему <b>NULL</b>.
+<li> Адрес переменной получается использованием оператора взятия адреса <b>&</b> (знак амперсанда).
+<li> Оператор разыменования указателя (звездочка перед указателем) возвращает значение переменной на которую ссылается указатель.
+<li> Перед использованием указатель должен быть инициализирован - указывать на адекватный адрес. Иначе запись или чтение могут быть произведены по произвольному адресу с непредсказуемым результатом (вплоть до краха программы).
+<li> Знак звездочка может быть отделен от имени переменной пробелом <b>* p</b>, а может и быть слитно <b>*p</b>, никакой разницы - оформляйте код как Вам удобно.<br>
+</ul>
+<pre class='language-C'><code>
+int a; // Объявление переменной a типа int
+int *p; // Объявление указателя p на int 
+*p = 5; // Ошибка! Указатель указывает на случайную память
+p = &amp;a; // Присваиваем указателю адрес переменной a
+*p = 5; // Верно (теперь a = 5 и *p = 5)     
+</code></pre>
+
+<pre class='language-C'><code>
+#include &lt;stdio.h&gt; //printf()
+#include &lt;stdio.h&gt; //printf()
+int main(){
+    int a = 7; // Целочисленная переменная a
+    int *p = &amp;a; // Указатель p на целочисленную переменную a
+    printf(&quot;*p = %d \n&quot;, *p); // Разыменование указателя (*p = 7)
+    printf(&quot;&amp;a = %p \n&quot;, &amp;a); // Оператор взятия адреса &amp; (&amp;a = 000000000061FE1C)
+    printf(&quot;p = %p \n&quot;, p); // Указатель - это адрес (p = 000000000061FE1C)
+    printf(&quot;&amp;p = %p \n&quot;, &amp;p); // Указатель тоже размещен в памяти и имеет адрес (&amp;p = 000000000061FE10)
+}   
+</code></pre>
+
+<h2>Константные указатели</h2>
+<p> Существует мнемоническое правило, позволяющее легко запомнить, к чему относится <b>const</b>. Надо провести черту через <b>*</b>, если <b>const</b> слева, то оно относится к значению данных; если справа — к значению указателя. <br>
+Ключевое слово <b>const</b> может стоять и до типа (например <b>int</b>) и после (главное чтобы до <b>*</b>, если после - это уже другое поведение указателя) - разницы никакой<br>
+
+<pre class='language-C'><code>
+const int * p = &amp;a; // Можно p = &amp;b но нельзя *p = b  (аналогично int const * p = &amp;a;)
+int const * p = &amp;a; // Аналогично предыдущей записи
+int * const p = &amp;a; // Можно *p = b но нельзя p = &amp;b
+const int * const p = &amp;a; // Нельзя *p = b и нельзя p = &amp;b (аналогично  int const * const p = &amp;a;)   
+</code></pre>
+
+<h2>Указатель на функцию</h2>
+1) Код функции располагается в памяти и на него тоже можно сделать указатель - это будет указатель на функцию (на первый байт исполняемого кода функции).<br>
+2) Можно создавать массив указателей на функции
+<pre class='language-C'><code>
+#include &lt;stdio.h&gt; // prinf()
+#include &lt;string.h&gt; // strlen()
+int my_print_1(const char *str, int num){ // Функция 1
+    printf(&quot;str = %s, num = %d\n&quot;, str, num); // Печатаем переданные параметры
+    return strlen(str); // Возвращаем длину строки
+}
+int my_print_2(const char *str, int num){ // Функция 2
+    printf(&quot;text = %s, digit = %d\n&quot;, str, num); // Печатаем переданные параметры
+    return strlen(str); // Возвращаем длину строки
+}
+int main(){
+    int (*p_func)(const char *, int); // Указатель на функцию
+    p_func = my_print_1; // Присваиваем указателю адрес функции
+    int size = p_func(&quot;Hi Victor!&quot;, 123); // &quot;str = Hi Victor!, num = 123&quot; Вызываем my_print_1() через указатель
+    printf(&quot;my_print_return = %d \n&quot;, size);  // &quot;my_print_return = 10&quot; Выводим длину строки
+
+    int (*func_ar[2])(const char *, int) = {my_print_1, my_print_2}; // Массив указателей на функции
+    int num_1 = func_ar[0](&quot;my_print_1 text&quot;, 10);   // &quot;str = my_print_1 text, num = 10&quot; Вызываем my_print_1() через указатель
+    int num_2 = func_ar[1](&quot;my_print_2 strint&quot;, 20);   // &quot;text = my_print_2 strint, digit = 20&quot; Вызываем my_print_2() через указатель
+    printf(&quot;func_ar[0] return = %d \n&quot;, num_1);  // &quot;func_ar[0] return = 15&quot; Выводим длину строки
+    printf(&quot;func_ar[1] return = %d \n&quot;, num_2);  // &quot;func_ar[1] return = 17&quot; Выводим длину строки
+}   
+</code></pre>
+
+3) Можно создавать динамические массивы указателей на функции
+
+<pre class='language-C'><code>
+int (**func_ar)(const char *, int) = malloc(2 * sizeof(&amp;my_print_1)); // Динамический массив для 2х указателей на функцию
+free(func_ar); // Освобождение памяти   
+</code></pre>
+
+<h2>Возврат указателя или массива из функции</h2>
+<p>При выходе из функции, выделенная в блоке память под локальные переменные освобождается.
+<p>Можно завести статическую переменную и вернуть ее адрес. Минус такого подхода что можно только один экземпляр указателя иметь, так как при повторном вызове функции новая статическая переменная не будет создаваться.
+<p>Если нужно иметь много экземпляров указателей, например, при инициализации указателя на структуру, которая потом будет передаваться в функцию. Нужно выделять память через <b>malloc()</b>, в этом случае память будет освобождаться не при выходе из блока а вручную (через <b>free()</b>)
+
+<pre class='language-C'><code>
+#include &lt;stdio.h&gt; // printf()
+#include &lt;stdlib.h&gt; // malloc(), free()
+
+struct st_array{ // Структура массива
+    int *ar; // Указатель на массив
+    int size; // Размер массива
+};
+
+struct st_array * ar_create(int size, int initial_value){ // Возвращает структура с массивом size элементов со значениями от initial_value
+    struct st_array *st = malloc(sizeof(struct st_array)); // Создаем указатель на структуру и выделяем под нее память
+    st-&gt;size = size; // Размер массива
+    st-&gt;ar = malloc(size * sizeof (initial_value)); // Выделяем память под массив
+    for(int i = 0; i &lt; size; i++){ // Заполняем массив
+        st-&gt;ar[i] = initial_value + i;
+    }
+    return st; // Возвращаем структуру массива
+}
+
+void print_array(struct st_array *st){ // Выводим значения массива
+    for(int i = 0; i &lt; st-&gt;size; i++){
+        printf(&quot;%d &quot;, st-&gt;ar[i]);
+    }
+    printf(&quot;\n&quot;);
+}
+
+void delete_ar(struct st_array *st){ // Освобождение памяти структуры массива
+    free(st-&gt;ar); // Освобождаем память занятую массивом
+    free(st); // Освобождаем память занятую структурой
+}
+
+int main(){
+    struct st_array *st1 = ar_create(10, 5); // Создаем структуру массива
+    struct st_array *st2 = ar_create(5, 1); // Создаем структуру массива
+    struct st_array *st3 = ar_create(13, 7); // Создаем структуру массива
+    print_array(st1); // &quot;5 6 7 8 9 10 11 12 13 14&quot; Печатаем значения массива
+    print_array(st2); // &quot;1 2 3 4 5&quot;
+    print_array(st3); // &quot;7 8 9 10 11 12 13 14 15 16 17 18 19&quot;
+    delete_ar(st1); // Освобождаем память
+    delete_ar(st2); // Освобождаем память
+    delete_ar(st3); // Освобождаем память
+}
+</code></pre>
+
+<div id=storage_date>  2023-03-13</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="pointer.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="auto.html" class = "row_a">auto ключевое слово языка Си.</a> <br><a href="break.html" class = "row_a">break оператор языка Си. Завершает выполнение операторов do, while, for, switch.</a> <br><a href="case.html" class = "row_a">case ключевое слово языка Си. Используется в операторе switch для задания одной из веток ветвления.</a> <br><a href="clock.html" class = "row_a">Время выполнения программы на языке Си. Функция clock().</a> <br><a href="const.html" class = "row_a">const ключевое слово языка Си. Сделать переменную или указатель неизменяемым.</a> <br><a href="continue.html" class = "row_a">continue оператор языка Си. Пропускает текущую итерацию цикла.</a> <br><a href="default.html" class = "row_a">default ключевое слово языка Си.</a> <br><a href="do.html" class = "row_a">do while ключевые слова Си.</a> <br><a href="else.html" class = "row_a">else ключевое слово языка Си.</a> <br><a href="file.html" class = "row_a">Функции работы с файлами в языке Си</a> <br><a href="for.html" class = "row_a">for оператор языка Си.</a> <br><a href="if.html" class = "row_a">if оператор языка Си.</a> <br><a href="keywords.html" class = "row_a">Ключевые слова языка Си</a> <br><a href="pointer.html" class = "row_a sel">Указатели в языке Си</a> <br><a href="register.html" class = "row_a">register  Си, размещение переменных в регистрах процессора</a> <br><a href="reservirovannie_imena.html" class = "row_a">Зарезервированные имена языка Си</a> <br><a href="signed.html" class = "row_a">signed ключевое слово языка Си.</a> <br><a href="struct.html" class = "row_a">Структуры в языке Си. Примеры различного использования.</a> <br><a href="switch.html" class = "row_a">switch оператор языка Си. </a> <br><a href="typedef.html" class = "row_a">typedef ключевое слово языка Си.  Задание псевдонимов для типов данных.</a> <br><a href="types.html" class = "row_a">Типы данных языка Си</a> <br><a href="unsigned.html" class = "row_a">unsigned ключевое слово Си. </a> <br><a href="void.html" class = "row_a">void ключевое слово языка Си.</a> <br><a href="volatile.html" class = "row_a">volatile ключевое слово языка Си.</a> <br><a href="while.html" class = "row_a">while оператор цикла языка Си.</a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/c/pointer' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

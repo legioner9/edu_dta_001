@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция sinh - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#15">Содержание</a> | <a href="15.htm#00">Глава 15</a><hr>
+<h1>Функция sinh</h1>
+<pre>
+#include &lt;math.h&gt;
+float sinhf(float <em>arg</em>);
+double sinh(double <em>arg</em>);
+long double sinhl(long double <em>arg</em>);
+</pre>
+<p class="tj">Функции <kbd>sinhf()</kbd> и <kbd>sinhl()</kbd> добавлены в версии С99.
+<p class="tj">Каждая функция семейства <kbd>sinh()</kbd> возвращает значение гиперболического синуса от аргумента <em>arg</em>.
+<h2>Пример</h2>
+<p class="tj">Данная программа выводит гиперболические синусы последовательности значений, лежащих в пределах от -1 до 1 и изменяющихся с шагом одна десятая, т.е. составляет таблицу гиперболических синусов чисел от -1 до 1.
+<pre>
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  double val = -1.0;
+  do {
+    printf("Гиперболический синус %f равен %f.\n", val, sinh(val));
+    val += 0.1;
+  } while(val&lt;=1.0);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="asin.htm">asin()</a>  <a href="acos.htm">acos()</a>  <a href="atan2.htm">atan2()</a>  <a href="atan.htm">atan()</a>  <a href="tan.htm">tan()</a>  <a href="cos.htm">cos()</a>  <a href="cosh.htm">cosh()</a>  <a href="sin.htm">sin()</a>
+<hr><a href="../main.htm#15">Содержание</a> | <a href="15.htm#00">Глава 15</a>
+
+
+</body>
+</html>

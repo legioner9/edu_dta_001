@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция raise - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a><hr>
+<h1>Функция raise</h1>
+<pre>
+#include &lt;signal.h&gt;
+int raise(int <em>signal</em>);
+</pre>
+<p class="tj">Функция <kbd>raise()</kbd> посылает выполняемой программе сигнал, заданный параметром <em>signal</em>. При успешном выполнении возвращается нуль, в противном случае — ненулевое значение. Заметьте: функция использует заголовок <kbd>&lt;signal.h&gt;</kbd>.
+<p class="tj">Стандартом языка С определены следующие сигналы (не исключено, что конкретный компилятор поддерживает и некоторые дополнительные сигналы).</p>
+<table class="table table-bordered">
+<tr><th><em>Макрос</em><th><em>Значение</em>
+<tr><td><kbd>SIGABRT</kbd><td>Аномальное завершение работы программы
+<tr><td><kbd>SIGFPE</kbd><td>Ошибка при выполнении действий над вещественными числами
+<tr><td><kbd>SIGILL</kbd><td>Недопустимая инструкция
+<tr><td><kbd>SIGINT</kbd><td>Пользователь нажал комбинацию клавиш &lt;Ctrl+C&gt;
+<tr><td><kbd>SIGSEGV</kbd><td>Неразрешенный доступ к памяти
+<tr><td><kbd>SIGTERM</kbd><td>Прекратить выполнение программы
+</table>
+<h2>Зависимые функции</h2>
+<a href="signal.htm">signal()</a>
+<hr><a href="../main.htm#18">Содержание</a> | <a href="18.htm#00">Глава 18</a>
+
+
+</body>
+</html>

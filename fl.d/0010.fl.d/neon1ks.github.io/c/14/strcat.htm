@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция strcat - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция strcat</h1>
+<pre>
+#include &lt;string.h&gt;
+char *strcat(char *<em>str1</em>, const char *<em>str2</em>);
+</pre>
+<p class="tj">Функция <kbd>strcat()</kbd> присоединяет к строке <em>str1</em> копию строки <em>str2</em> и завершает строку <em>str1</em> нулевым символом. Конечный нуль-символ, первоначально завершающий строку <em>str1</em>, перезаписывается первым символом строки <em>str2</em>. Строка <em>str2</em> при этом не изменяется. Если заданные массивы перекрываются, поведение функции <kbd>strcat()</kbd> не определено.
+<p class="tj">В версии С99 к параметрам <em>str1</em> и <em>str2</em> применен квалификатор <kbd>restrict</kbd>.
+<p class="tj">Функция <kbd>strcat()</kbd> возвращает значение указателя <em>str1</em>.
+<p class="tj">Помните, что при выполнении операций с массивами символов контроль нарушения их границ не выполняется, поэтому программист должен сам позаботиться о достаточном размере массива <em>str1</em>, позволяющем вместить как его исходное содержимое, так и содержимое массива <em>str2</em>.
+<h2>Пример</h2>
+<p class="tj">Данная программа дописывает первую строку, прочитанную из стандартного входного потока <kbd>stdin</kbd>, ко второй строке. Например, если пользователь введет строки <pre>привет</pre> и <pre>всем</pre>, то программа выведет сообщение <pre>всемпривет</pre>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(void)
+{
+  char s1[80], s2[80];
+  gets(s1);
+  gets(s2);
+  strcat(s2, s1);
+  printf(s2);
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="strchr.htm">strchr()</a>  <a href="strcmp.htm">strcmp()</a>  <a href="strcpy.htm">strcpy()</a>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

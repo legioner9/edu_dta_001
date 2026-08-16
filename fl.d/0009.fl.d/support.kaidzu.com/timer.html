@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='public/css/timer.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+
+<script>
+var data_lang = [
+'Старт',
+'Стоп',
+'Пауза',
+'Пауза в',
+'Начало в',
+'продолжение в',
+'завершение в',
+'Продолжить',
+'Введите название задачи для сохранения',
+'Рисунок задачи',
+'Прямой отсчет',
+'Обратный отсчет',
+'<td>Час<td>Мин<td>Сек<td>Шрифт<td>Напр<td>Рис<td>Звук<td>Стук<td>Назв<td>Упр<td>Повтор<td>Кругов',
+'Мой таймер',
+'Вы уверены что хотите удалить безвозвратно таймер?',
+'Добавить задачу',
+'Нет',
+'Переместить ниже',
+'Переместить выше',
+'Удалить задачу',
+'Применить к задаче',
+];
+</script> 
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='public/js/jscolor.js'></script>
+<script src='public/js/timer.js%3Fv=1.079'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Онлайн таймер для спорта</title>
+<meta name='description' content='Онлайн таймер для спорта'><link href='favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='index.html'><img src='public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='timer.html'><img src='public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='c/main_page.html'><img src='public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='cpp/main_page.html'><img src='public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='python/main_page.html'><img src='public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='milandr/keil.html'><img src='public/img/chip.svg' alt='Чип'>Миландр</a><a id='menu_en' title='Английская версия сайта' href='timer/en.html'><img src='public/img/flag_en.svg' alt='Британский флаг'>En</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><h2>Шаблоны</h2><div class=a_btn><table><tr><td><a href = 'timer/dyhanie-treugolnikom-pyat-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 5 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-shest-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 6 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-sem-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 7 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-vosem-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 8 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-devyat-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 9 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-desyat-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 10 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-odinadcat-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 11 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-dvenadcat-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 12 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-trinadcat-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 13 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-chetyrnadcat-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 14 секунд.</a><td><td><tr><td><a href = 'timer/dyhanie-treugolnikom-pyatnadcat-sekund.html' class = template_name>Дыхание по треугольнику онлайн с интервалом 15 секунд.</a><td><td><tr><td><a href = 'timer/rabota-s-bokserskim-meshkom.html' class = template_name>Циклическая работа с боксерским мешком, с тенью или лапами.</a><td><td><tr><td><a href = 'timer/uprazhnenie-planka.html' class = template_name>Планка</a><td><td><tr><td><a href = 'timer/count5.html' class = template_name>Отсчет по 5 секунд</a><td><td></table></div><h1>Онлайн таймер для спорта</h1>Онлайн таймер для спорта и фитнеса<div id='task_image_container'></div>
+<form id='timer_form'>
+<input type='hidden' id='timer_id' name='timer_id' value='0'><table id='timeset'>
+    <tr>
+        <td><input id='hour_value' name='hour' type='number' max='24' min='0'  value='00' title='Установка значения часов таймера'><br>
+            Часы<br>
+            <input id='hour_visible' name='hour_visible' type='checkbox' title='Показывать час'><br><br>
+        <td><input id='minute_value' name='minutes' type='number' max='60' min='0'  value='00' title='Установка значения минут таймера'>
+            <br>Минуты<br>
+            <input id='minute_visible' type='checkbox' checked title='Показывать минуты'><br><br>
+        <td><input id='second_value' name='second' type='number' max='60' min='0'  value='04' title='Установка значения секунд таймера'>
+            <br>Секунды<br>
+            <input id='second_visible' type='checkbox' checked title='Показывать секунды'><br><br>
+        <td><input id='font_size' name='font_size' type='number' max='3000' min='10'  value='700' title='Размер шрифта таймера'> 
+            <br>Шрифт %<br>
+            <input type='checkbox' name='forward' checked id='forward' title='Прямой или обратный отсчет'>
+            <label for='forward' id='forward_text'>Прямой отсчет</label>
+	<tr>
+		<td><input class='jscolor' id='hour_color' value='b00000' title='Цвет часов'>
+		<td><input class='jscolor' id='minute_color' value='00b000' title='Цвет минут'>
+		<td><input class='jscolor' id='second_color' value='0000b0' title='Цвет секунд'>
+        <td id='timer_btn_add_picture'>Рисунок задачи	<tr>
+		<td>
+            <input id='tick_repeat' name='flick' type='number' max='1000' min='0' value='2' title='Количество стуков перед завершением задачи'>
+        <td>Количество стуков		<td>
+			<select id='tick_sound' class='flick' title='Sound tick'>
+				<option value='Tick'>Стук</option>
+				<option value='Tick1'>Стук1</option>
+				<option value='Tick2'>Стук2</option>
+				<option value='Tick3'>Стук3</option>
+				<option value='Whistle'>Свист</option>
+				<option value='Whistle2'>Свист1</option>
+			</select>
+        <td><img src='public/img/play.svg' id='flick_btn' class='icon' title='Прослушать стук'>
+			<label for='tick_sound' class='flick'>Стук перед завершением</label>	
+	<tr>
+		<td><input id='task_name' title='Название задачи' value=''><br>
+		<td>Название задачи        <td id='sound_container' title='Alarm'>
+			<select id='sound' name='sound'>
+				<option value='0'>Без звука</option>
+				<option value='Clock' >Часы</option>
+				<option value='Message'>Сообщение</option>
+				<option value='Ring' >Звонок</option>
+				<option value='Ring1' >Звонок1</option>
+				<option value='Ring3' >Гонг</option>
+				<option value='Ring2' >Гонг1</option>
+				<option value='Sound' >Мелодия</option>
+				<option value='Sound1' >Мелодия1</option>
+				<option value='Sound2' >Мелодия2</option>
+				<option value='Sound3' >Мелодия3</option>
+				<option value='Sound4' >Мелодия4</option>
+				<option value='Tweeters'>Щебет</option>
+				<option value='Whistle1' selected>Свисток</option>
+				<option value='Count'>Счет</option>
+				<option value='Count5'>Счет х5</option>
+				<option value='Count10'>Счет х10</option>
+			</select>
+		<td><img src='public/img/play.svg' id='sound_btn' class='icon' title='Звук завершения задачи'>
+            <span id='tick_player_container'><audio id='tick_player' src='public/sound/Tick.mp3'></audio></span>
+        <label for='sound'>Звук завершения задачи</label>
+    <tr>
+        <td id='task_repetitions_container'>
+            <input id='task_repeat' name='task_repeat' type='number' max='1000' min='1'  value='1' title='Число повторов задачи'>      
+        <td>Повторы задачи        <td><select  id='task_group' name='task_group' title='Группировать предыдущие задачи'>
+            <option value='0' selected>Без группировки</option>
+            </select>
+		<td>Группировать предыдущие задачи    <tr>
+		<td colspan='4'><input type='button' id='task_btn' value='Добавить задачу' title='Добавляет задачу в таблицу для выполнения'>	
+    <tr><td id="all_repetitions_container">
+            <input id='all_repeat' name='all_repeat' type="number" max="1000" min="1"  value="1" title="Кругов">       
+        <td><label for='all_repeat'>Кругов</label> 
+        <td>
+        <td>
+    <tr><td colspan='3'><input type='text' id='timers_name_input' value='Мой таймер'>
+    <td>Имя таймера    <tr><td colspan='4'><span id='save_img_container' title='Сохранить задачи в вашем профиле'>
+        <img src='public/img/save.svg' class='icon' alt='save_picture'>Сохранить        </span>
+</table>
+    <span id="timer_save_msg"></span>
+    <div id="task_table_container"></div>
+	<input type=hidden id=hid value='498687879'>    <div id="timer_text_container"></div>
+	<div id="timer_img_container"></div>
+	<div id="time">
+		<span id='hour_digit'></span><span id='minute_digit'></span><span id='second_digit'></span>
+	</div>
+    <div id="bar_container"><div id="bar"></div></div>
+	<input type="button" value='Старт' class='time_control' id='start_btn' title='Запустить таймер'>
+	<audio id='end_player' src='public/sound/Whistle1.mp3'></audio>
+</form>
+	<div id='endform'></div>
+	<div id='info'></div>
+	<br><br><hr>
+<div id ='description'>
+</div>
+    
+
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/timer' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

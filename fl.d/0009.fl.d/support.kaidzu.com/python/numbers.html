@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Целые, вещественные и комплексные числа в Python</title>
+<meta name='description' content=''><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='../c/main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='../cpp/main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='../milandr/keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='time.html' class = "row_a">Время выполнения программы</a><br><a href='outtext.html' class = "row_a">Вывод текста</a><br><a href='exception.html' class = "row_a">Исключения</a><br><a href='tuple.html' class = "row_a">Кортежи</a><br><a href='set.html' class = "row_a">Множества</a><br><a href='oop.html' class = "row_a">ООП</a><br><a href='main_page.html' class = "row_a">Плюсы и минусы Python</a><br><a href='syntax.html' class = "row_a">Синтаксис</a><br><a href='dict.html' class = "row_a">Словари</a><br><a href='list.html' class = "row_a">Списки</a><br><a href='string.html' class = "row_a">Строки</a><br><a href='types.html' class = "row_a">Типы данных</a><br><a href='file.html' class = "row_a">Файлы</a><br><a href='function.html' class = "row_a">Функции</a><br><a href='loop.html' class = "row_a">Циклы</a><br><a href='numbers.html' class = "row_a sel">Числа</a><br></div>
+<div id=storage_content>
+<h1>Целые, вещественные и комплексные числа в Python</h1>
+<p>Числа в Python бывают целые, вещественные, комплексные
+
+<h2>Целые числа</h2>
+
+<p>Целые числа - это тип int в Python.
+
+<p>Диапазон целых чисел простирается от минус бесконечности до плюс бесконечности, включая ноль.
+
+<p>Интервал между двумя соседними целыми числами равен единице.
+
+<p>Задавать целые числа можно в десятичной, двоичной, восьмеричной и шестнадцатеричной форме в явном виде.
+
+<pre class='language-Python'><code>
+x = 18       # x = 18    Обычное задание числа (в десятичной форме)
+x = 0b10010  # x = 18    Задание числа в двоичной форме
+x = 0o22     # x = 18    Задание числа в восьмеричной форме
+x = 0x12     # x = 18    Задание числа в шестнадцатеричной форме
+</code></pre>
+
+<h3>Операции над целыми числами</h3>
+
+<table>
+<tr><th>Операции над числами <th>Назначение операции <th> x = 2, y = 5. Результат операции
+<tr><td>x + y <td>Сложение <td>7
+<tr><td>x - y  <td>Вычитание  <td>-3
+<tr><td>x * y  <td>Умножение  <td>10
+<tr><td>x / y  <td>Деление  <td>0.4
+<tr><td>y // x  <td>Получение целой части от деления  <td>2
+<tr><td>x % y  <td>Остаток от деления  <td>2
+<tr><td>-x  <td>Смена знака числа  <td>-2
+<tr><td>abs(x)  <td>Модуль числа  <td>2
+<tr><td>int(x)  <td>Преобразование числа в целочисленное (тип int). Отбрасывается дробная часть.  <td>2
+<tr><td>float(x)  <td>Преобразование числа в число с плавающей точкой (тип float)  <td>2.0
+<tr><td>complex(x) <br> complex(x, y)  <td>Преобразование числа в комплексное число (тип complex)  <td>(2+0j) <br>  (2+5j)
+<tr><td>divmod(x, y)  <td>Возвращает пару целочисленного деления и остатка (x // y, x % y)  <td>(0, 2)
+<tr><td>x ** y  <td>Возведение в степень  <td>32
+<tr><td>pow(x, y[, z])  <td>x в степени y по модулю (если модуль задан)  <td>32
+</table>
+
+<h3>Битовые операции над целыми числами</h3>
+
+<table>
+<tr><th>Битовая операция <th> Назначение операции <th> x = 21 (0b10101), y = 2 (0b10). Результат операции  
+<tr><td>x | y <td> Побитовое ИЛИ <td> 0b10111
+<tr><td>x ^ y <td> Побитовое  исключающее ИЛИ <td> 0b10111
+<tr><td>x & y <td> Побитовое И <td> 0b0
+<tr><td>x << n <td> Битовый сдвиг влево <td> 0b1010100
+<tr><td>x >> y <td> Битовый сдвиг вправо <td> 0b101
+<tr><td>~x <td> Инверсия битов <td> -0b10110
+</table>
+
+<h3>Системы счисления</h3>
+
+<p><b>int([object], [основание системы счисления])</b> - преобразование к целому числу в десятичной системе счисления. По умолчанию система счисления десятичная, но можно задать любое основание от 2 до 36 включительно.
+
+<p><b>bin(x)</b> - преобразование целого числа в двоичную строку.
+
+<p><b>hex(х)</b> - преобразование целого числа в шестнадцатеричную строку.
+
+<p><b>oct(х)</b> - преобразование целого числа в восьмеричную строку.
+
+<pre class='language-Python'><code>
+a = int('1001', 2) # a = 9      Перевод из двоичной системы.           a - int
+a = int('ff', 16)  # a = 255    Перевод из шестнадцатеричной системы.  a - int
+a = int('12', 8)   # a = 10     Перевод из восьмеричной системы.       a - int
+a = bin(10)        # a = 0b1010 Перевод из двоичной системы.           a - строка
+a = hex(15)        # a = 0xf    Перевод из шестнадцатеричной системы.  a - строка
+a = oct(10)        # a = 0o12   Перевод из восьмеричной системы.       a - строка
+</code></pre>
+
+<h3>Вещественные числа</h3>
+
+<p>Вещественные числа или числа с плавающей точкой - это тип <b>float</b> в Python.
+
+<p>Вещественные числа записываются как целая часть точка дробная часть (например 1.7).
+
+<p>Преобразование вещественных чисел к целым идет с округлением в сторону нуля (например int()).
+
+<p>К вещественным числам те же операции что и к целым числам.
+
+<pre class='language-Python'><code>
+print(int(3.95))  #  3
+print(int(3.35))  #  3
+print(int(-3.35)) # -3
+print(int(-3.95)) # -3
+</code></pre>
+
+<h3>Комплексные числа</h3>
+
+<p>Комплексные числа относятся к типу <b>complex</b> в языке Python.
+
+<pre class='language-Python'><code>
+x = 1 + 2j        # x = 1 + 2j  Создание комплексного числа.
+y = complex(2, 3) # y = 2 + 3j  Создание комплексного числа 
+z = x + y         # z = 3 + 5j  Сложение комплексных чисел
+z = x.conjugate() # z = 1-2j    Получение сопряженного комплексного числа
+z = x.imag        # z = 2.0     Получение мнимой части комплексного числа
+z = x.real        # z = 1.0     Получение реальной части комплексного числа
+z = pow(x, 3)     # z = -11-2j  Возведение комплексного числа в степень
+</code></pre>
+<div id=storage_date>  2024-06-28</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="numbers.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="dict.html" class = "row_a">Словари</a> <br><a href="exception.html" class = "row_a">Исключения</a> <br><a href="file.html" class = "row_a">Файлы</a> <br><a href="function.html" class = "row_a">Функции в Python</a> <br><a href="list.html" class = "row_a">Списки</a> <br><a href="loop.html" class = "row_a">Циклы</a> <br><a href="main_page.html" class = "row_a">Достоинства и недостатки языка Python</a> <br><a href="numbers.html" class = "row_a sel">Целые, вещественные и комплексные числа в Python</a> <br><a href="oop.html" class = "row_a">ООП</a> <br><a href="outtext.html" class = "row_a">Вывод текста</a> <br><a href="set.html" class = "row_a">Множества</a> <br><a href="string.html" class = "row_a">Строки</a> <br><a href="syntax.html" class = "row_a">Синтаксис языка Python</a> <br><a href="time.html" class = "row_a">Время выполнения программы на Python</a> <br><a href="tuple.html" class = "row_a">Кортежи в Python</a> <br><a href="types.html" class = "row_a">Типы данных</a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/python/numbers' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

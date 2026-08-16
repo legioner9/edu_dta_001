@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<title>Функция isspace - cправочник по Си</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../work/css.css">
+</head>
+<body>
+
+
+<a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a><hr>
+<h1>Функция isspace</h1>
+<pre>
+#include &lt;ctype.h&gt;
+int isspace(int <em>ch</em>);
+</pre>
+<p class="tj">Функция <kbd>isspace()</kbd> возвращает ненулевое значение, если аргумент <em>ch</em> является пробельным символом. (К пробельным символам, помимо пробела, относятся символы горизонтальной и вертикальной табуляции, перевода страницы, возврата каретки и новой строки<sup><a href="isspace.htm#11" id="1">[1]</a></sup>.) В противном случае возвращается нуль.
+<h2>Пример</h2>
+<p class="tj">Данная программа проверяет все символы, прочитанные из стандартного входного потока <kbd>stdin</kbd>, и выдает сообщение о каждом пробельном символе.
+<pre>
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+  char ch;
+  for(;;) {
+  ch = getchar();
+  if(isspace(ch)) printf("%c является пробельным символом\n", ch);
+  if(ch == '.') break;
+  }
+  return 0;
+}
+</pre>
+<h2>Зависимые функции</h2>
+<a href="isalnum.htm">isalnum()</a>  <a href="isalpha.htm">isalpha()</a>  <a href="isblank.htm">isblank()</a>  <a href="iscntrl.htm">iscntrl()</a>  <a href="isdigit.htm">isdigit()</a>  <a href="https://neon1ks.github.io/c/14/isgarph.htm">isgarph()</a>  <a href="ispunct.htm">ispunct()</a>
+<p><img src="../work/sup.bmp" alt="----------">
+<blockquote><p class="tj"><sup><a href="isspace.htm#1" id="11">[1]</a></sup>При локализации к этому списку могут быть добавлены и другие символы..</blockquote>
+<hr><a href="../main.htm#14">Содержание</a> | <a href="14.htm#00">Глава 14</a>
+
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta  http-equiv='Content-Type' content='text/html; charset=utf-8'><link type='text/css' href='../public/css/style.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/comments.css%3Fv=1.079.css' rel='stylesheet'>
+<link type='text/css' href='../public/css/prism.css%3Fv=1.079.css' rel='stylesheet'>
+<script>is_admin=false;</script>
+<script src="https://vk.com/js/api/openapi.js?169"></script><script src='../public/js/prism.js'></script>
+<script>var is_login = false;</script><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Управление тактовой частотой микроконтроллера Миландр К1986ВЕ92QI (MDR32F9Q2I) </title>
+<meta name='description' content='Управление тактовой частотой микроконтроллера Миландр К1986ВЕ92QI (MDR32F9Q2I) '><link href='../favicon.svg' rel='shortcut icon' type='image/x-icon'></head>
+<body class='line-numbers'>
+<!-- Yandex.Metrika counter -->
+<script>
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(95810089, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><img src="https://mc.yandex.ru/watch/95810089" style="position:absolute; left:-9999px;" alt=""></noscript>
+<!-- /Yandex.Metrika counter -->
+<div id=menu>
+<a id='menu_home' title='Главная страница' href='../index.html'><img src='../public/img/home.svg' alt='home'>Kaidzu.com</a><a id='menu_timer' title='Таймеры' href='../timer.html'><img src='../public/img/timer.svg' alt='timer'>Таймеры</a><a id='menu_c' title='Язык программирования Си' href='../c/main_page.html'><img src='../public/img/c.svg' alt='язык Си'>Си</a><a id='menu_cpp' title='Язык программирования C++' href='../cpp/main_page.html'><img src='../public/img/cpp.svg' alt='язык C++'>C++</a><a id='menu_python' title='Язык программирования Python' href='../python/main_page.html'><img src='../public/img/python.svg' alt='язык Python'>Python</a><a id='menu_milandr' title='Программирование микроконтроллеров Миландр CMSIS' href='keil.html'><img src='../public/img/chip.svg' alt='Чип'>Миландр</a></div>
+<script>
+      VK.init({
+        apiId: 3202640,
+        onlyWidgets: true
+      });
+</script>
+<div id=content_container><div id=storage_container><div id=storage_left_menu><a href='keil.html' class = "row_a">1 Настройка Keil</a><br><a href='program.html' class = "row_a">2 Прошивка МК</a><br><a href='bit_operation.html' class = "row_a">3 Битовые операции</a><br><a href='gpio.html' class = "row_a">4 GPIO</a><br><a href='interrupt.html' class = "row_a">5 Прерывания</a><br><a href='clock.html' class = "row_a sel">6 Тактирование</a><br><a href='uart.html' class = "row_a">7 UART</a><br></div>
+<div id=storage_content>
+<h1>Управление тактовой частотой микроконтроллера Миландр К1986ВЕ92QI (MDR32F9Q2I) </h1>
+<p>На примере микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) и отладочной платы <a href='https://ldm-systems.ru/product/19002' target = _blank >LDM-K1986BE92QI</a> рассмотрим задание тактовой частоты, в соответствии с пунктом 14 <a href='https://ldm-systems.ru/f/doc/catalog/LDM-K1986BE92QI-H/Spec_Seriya_1986BE9x.pdf' target = _blank >спецификации на МК</a>. 
+<p>По умолчанию, в созданном проекте Keil, тактирование МК осуществляется от внутреннего RC генератора 8 МГц. Встроенные (внутренние) RC генераторы МК обладают низкой стабильностью частоты и могут использоваться только в самых нетребовательных приложениях, зато не требуют внешних кварцев или генераторов.
+<p>Приведем расшифровку некоторых используемых аббревиатур:
+<ul>
+<li>LSI - Low Speed Internal, внутренний RC генератор МК с частотой около 40 кГц;
+<li>LSE - Low Speed External, внешний генератор с частотой около 32768 Гц, применяемый для часов реального времени;
+<li>HSI - High Speed Internal, внутренний RC генератор МК с частотой около 8 МГц;
+<li>HSE - High Speed External, внешний генератор с частотой около 2-16 МГц. На плате LDM-K1986BE92QI-H установлен генератор на 8 МГц.
+</ul>
+<p>Требуемая тактовая частота МК и периферии настраивается в достаточно широких пределах с помощью делителей, умножителей и коммутаторов частот.
+<p> Минимальный код для тактирования МК от внешнего генератора HSE  8 МГц.
+
+<pre class='language-C'><code>
+#include &quot;MDR32F9Q2I.h&quot; // Заголовок с наименованиями CMSIS
+
+#define PIN_LED 3	// Номер вывода светодиода
+#define PORT_LED MDR_PORTB	// Порт светодиода
+
+static void CPU_init (void){ // Включаем тактирование от внешнего генератора 8 МГц (HSE). Умножители и делители не используем 
+  MDR_RST_CLK-&gt;HS_CONTROL = 0x01; // Вкл. HSE внешний генератор (8 Мгц) (п.14.7.3)
+  MDR_RST_CLK-&gt;CPU_CLOCK |= (2 &lt;&lt; 0); // Источник для CPU_C1 = HSE (п.14.7.4)
+  MDR_RST_CLK-&gt;CPU_CLOCK |= (1 &lt;&lt; 8);// Источник для HCLK = CPU_C3
+}
+
+static void init_GPIO(void){ // Инициализация порта
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 22); // Разрешение тактирования порта B (п.14.7.8)
+
+  PORT_LED-&gt;OE |= (1 &lt;&lt; PIN_LED); // Вход или выход. 0 - вход, 1 - выход (п.16.1.2)
+  PORT_LED-&gt;ANALOG |= (1 &lt;&lt; PIN_LED); // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_LED-&gt;PWR |= (1 &lt;&lt; PIN_LED * 2); // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+}
+
+int main (void){
+  CPU_init(); // Запускаем тактирование от HSE. Если закомментировать эту строчку, то будет тактирование от HSI.
+  init_GPIO(); // Инициализация порта светодиода
+  
+  while(1){
+    for(int i = 0; i &lt; 100000; i++){} // Задержка	
+    PORT_LED-&gt;RXTX ^= (1 &lt;&lt; PIN_LED); // Инвертировать значение бита (п.16.1.1) Мигаем светодиодом
+  }
+}
+</code></pre>
+
+<p> Пример тактирования на максимальную для МК  К1986ВЕ92QI (MDR32F9Q2I) частоту 80 МГц от внешнего генератора 8 МГц (HSE)
+
+<pre class='language-C'><code>
+#include &quot;MDR32F9Q2I.h&quot; // Заголовок с наименованиями CMSIS
+
+#define PIN_LED 0	// Номер вывода светодиода
+#define PORT_LED MDR_PORTB	// Порт светодиода
+
+static void CPU_init (void){ // Включаем тактирование от внешнего генератора 8 МГц (HSE). Умножители и делители не используем 
+  MDR_RST_CLK-&gt;HS_CONTROL = 0x01; // Вкл. HSE внешний кварц (8 МГц) (п.14.7.3)
+  while(!(MDR_RST_CLK-&gt;CLOCK_STATUS &amp; (1 &lt;&lt; 2))); // Ждем пока HSE выйдет в рабочий режим (п.14.7.1)
+
+  MDR_RST_CLK-&gt;PLL_CONTROL = ((1 &lt;&lt; 2) | (9 &lt;&lt; 8)); // Вкл. CPU PLL | коэф. умножения = 10 (п.14.7.2)
+  while(!(MDR_RST_CLK-&gt;CLOCK_STATUS &amp; (1 &lt;&lt; 1))); // Ждем когда PLL выйдет в раб. режим (п.14.7.1)
+
+  MDR_RST_CLK-&gt;CPU_CLOCK = (
+    (2 &lt;&lt; 0x00)   // Источник для CPU_C1 = HSE (п.14.7.4)
+  | (1 &lt;&lt; 0x02)   // Источник для CPU_C2 = CPU PLL
+  | (0 &lt;&lt; 0x04)   // Предделитель для CPU_C3 = 1
+  | (1 &lt;&lt; 0x08)); // Источник для HCLK = CPU_C3
+  
+  MDR_RST_CLK-&gt;PLL_CONTROL |= (1 &lt;&lt; 0); // Включить USB PLL  (п.14.7.1)
+  MDR_RST_CLK-&gt;PLL_CONTROL |= (7 &lt;&lt; 4); // Коэфициент умножения для USB PLL = 8 (п.14.7.1)
+  while(!(MDR_RST_CLK-&gt;CLOCK_STATUS &amp; (1 &lt;&lt; 0))); // Ждем пока USB PLL выйдет в рабочий режим (п.14.7.1)
+}
+
+static void init_GPIO(void){ // Инициализация порта
+  MDR_RST_CLK-&gt;PER_CLOCK |= (1 &lt;&lt; 22); // Разрешение тактирования порта B (п.14.7.8)
+
+  PORT_LED-&gt;OE |= (1 &lt;&lt; PIN_LED); // Вход или выход. 0 - вход, 1 - выход (п.16.1.2)
+  PORT_LED-&gt;ANALOG |= (1 &lt;&lt; PIN_LED); // Аналог или цифра. 0 - аналоговый, 1 - цифровой (п.16.1.4) (п.4 т.2)
+  PORT_LED-&gt;PWR |= (1 &lt;&lt; PIN_LED * 2); // Передатчик. 0 - отключен, 1 - медленный, 2 - средний, 3 - быстрый (п.16.1.7)
+}
+
+int main (void){
+  CPU_init(); // Запускаем тактирование от HSE. Если закомментировать эту строчку, то будет тактирование от HSI.
+  init_GPIO(); // Инициализация порта светодиода
+  
+  while(1){
+    for(int i = 0; i &lt; 1000000; i++){} // Задержка	
+    PORT_LED-&gt;RXTX ^= (1 &lt;&lt; PIN_LED); // Инвертировать значение бита (п.16.1.1) Мигаем светодиодом
+  }
+}
+</code></pre><div id=storage_date>  2024-04-27</div><br><br>
+<br><b><i>Понравилась страница? <br><a href="clock.html" class=calca rel=sidebar onclick="add_bookmark();return false;">Добавить в закладки</a> <br><span id=bookmark_container></span>Или поделиться!</i></b><script src='https://yastatic.net/share2/share.js'></script>
+<span class='ya-share2' data-curtain data-shape='round' data-services='messenger,vkontakte,odnoklassniki,telegram,viber,whatsapp' data-lang=ru></span><br>
+<script>
+function add_bookmark() {
+  var title = document.title,
+    url = document.location,
+    UA = navigator.userAgent.toLowerCase();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        bookmark_container.innerHTML = "<img src='../public/img/add_mobile.jpg' id=add_bookmark_img>";
+    }else{
+        bookmark_container.innerHTML = "Нажмите Ctrl + D для добавления страницы в закладки";
+    }
+    
+    var i = 10;
+    var timer_id = setTimeout(function run() {
+        bookmark_container.style.width = i + '%'; // PC
+        if(typeof add_bookmark_img !== 'undefined'){ // mobile
+            add_bookmark_img.style.width = i + '%';
+        }
+        var timer_id2 = setTimeout(run, 10);
+        i++;
+        if(i == 100){
+            clearTimeout(timer_id);
+            clearTimeout(timer_id2);
+            return;
+        }
+    }, 100);
+    
+    return false;
+}
+</script>
+<h2>Связанные темы</h2><a href="clock.html" class = "row_a sel">Управление тактовой частотой микроконтроллера Миландр К1986ВЕ92QI (MDR32F9Q2I) </a> <br><a href="gpio.html" class = "row_a">Работа с портами ввода-вывода (GPIO) микроконтроллера Миландр на CMSIS</a> <br><a href="interrupt.html" class = "row_a">Прерывания в микроконтроллерах Миландр. Системный таймер.</a> <br><a href="keil.html" class = "row_a">Настройка среды разработки для микроконтроллеров Миландр (К1986ВЕ92QI)</a> <br><a href="program.html" class = "row_a">Прошивка микроконтроллера К1986ВЕ92QI на отладочной плате LDM-K1986BE92QI через UART и SWD с использованием ST-LINK</a> <br><a href="uart.html" class = "row_a">Работа с UART микроконтроллера К1986ВЕ92QI (MDR32F9Q2I) </a> <br><div id="vk_comments"></div>
+<script>
+  VK.Widgets.Comments("vk_comments");
+</script>
+
+</div></div>
+<script>
+els = document.getElementsByClassName('delete_page'); // Выбираем все ссылки
+if(els.length){
+    els[0].onclick = function(evt){ // Обрабатываем нажатие
+        var res = confirm("Удалить страницу " + this.getAttribute('data-page-name') + "?"); // Подтверждение удаления
+        if(!res){
+            return false;
+        }
+    }
+}
+</script>
+<div id=mailto_link><a href='mailto:admin@kaidzu.com?subject=Сообщение&nbsp;со&nbsp;страницы&nbsp;/milandr/clock' title='Написать письмо по адресу admin@kaidzu.com'>Написать администратору kaidzu.com</a></div><!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licntB46D" width="31" height="31" style="border:0" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""></a><script>(function(d,s){d.getElementById("licntB46D").src=
+"https://counter.yadro.ru/hit?t44.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script><!--/LiveInternet-->
+
+</div>
+</body>

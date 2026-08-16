@@ -1,0 +1,502 @@
+<!-- SHOWRB 1 --><!-- INFO: b2 --><!DOCTYPE html>
+        <html lang="ru">
+        <head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-109068906-1"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "UA-109068906-1");</script><!-- AD sense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-7881721879502382", enable_page_level_ads: true});</script><!-- AD sense ends --><title>GCC</title>
+            <meta name="keywords" content="Установка gcc в Windows 10, установка gcc, установка gcc в linux,">
+            <meta name="description" content="Компилятор GCC">
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta property="og:image" content="https://devhops.ru/code/c/gcc/img/mingw_00100--small.jpg">
+            <link rel="stylesheet" type="text/css" href="../../../.css/devhops.css">
+            <link rel="icon" type="image/png" href="../../../img/favicon/favicon.png">
+            <!-- Yandex.RTB -->
+            <script>window.yaContextCb=window.yaContextCb||[]</script>
+            <script src="https://yandex.ru/ads/system/context.js" async></script>
+        </head>
+        <body><div id="startid"></div>
+        <nav id="topmenu" class="topmenu">
+        <div class="topmenu-text-block">
+        <div class="topmenu-text">
+            DevHops.ru
+        </div>
+        </div>
+        <div class="topmenu-items"><a class="width_bcd" href="https://t.me/aofeed">Telegram</a>
+        <a href="https://devhops.ru/about/">О Проекте</a>
+        </div></nav><nav id="breadcrumbs" class="breadcrumbs"><a class="width_bcd" href="https://devhops.ru/">&#128187;</a><a href="https://devhops.ru/code/"><span class="width_bcd">&#124;</span></a><a href="https://devhops.ru/code/"><span class="width_a">Code</span><span class="width_bcd">Программирование</span></a><a href="../index.html"><span class="width_bcd">&#124;</span></a><a href="../index.html"><span class="width_a">C</span><span class="width_bcd">C</span></a><a href="index.html"><span class="width_bcd">&#124;</span></a><a href="index.html"><span class="width_a">GCC</span><span class="width_bcd">GCC</span></a><a href="index.html"><span class="width_bcd">&#124;</span></a></nav><script src="../../../.js/breadcrumbs_script.js"></script><aside id="aside_left_block"><!-- display_aside_tcont_block() --><!-- show_aside_tcont() --><div class="aside_tcont_grid"><!-- content_show() -->
+    <div id="aside_content_articles">
+    <nav class="aside_tcont_block_nav mt5">
+    <a class="aside_tcont_topic" href="index.html#tableOfContent">СОДЕРЖАНИЕ:</a><a href="index.html#intro">Введение</a><a href="index.html#beforeInstall">Проверить наличие</a><a href="index.html#install">Установка MinGW</a><a href="index.html#wsl">Установка в WSL</a><a href="index.html#cygwin">Установка Cygwin</a><a href="index.html#install_linux">Установка в Linux</a><a href="index.html#related_articles_footer">Другие статьи о Си</a></nav></div><!-- /content_show() --></div><!-- /show_aside_tcont() --><!-- /display_aside_tcont_block() --><div class="p2"><!-- display_advert_one() -->
+        <div id="advert_one" class="align-center w100">
+            <div id="advert_one_ads">
+                
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/beget/beget_cloud_infra1080x1080.webp">  
+            <source type="image/png" srcset="../../../aa_img/beget/beget_cloud_infra1080x1080.png">   
+            <img class="w100" src="../../../aa_img/beget/beget_cloud_infra1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    
+            </div>
+            <button id="remove_advert_one_button">Убрать рекламу</button>
+            <button id="show_advert_one_button">Показать рекламу</button>
+            <script src="../../../.js/advert_one_script.js"></script>
+        </div><!-- /display_advert_one() --></div><script src="../../../.js/aside_left_block_script.js"></script>
+        <!-- left nav buttons -->
+        <div id="totopbuttons" class="verticalNavButtonsDiv">
+        <a class="toTopButton" href="index.html#startid" title="Наверх">
+            <span class="arrow up"></span>
+        </a>
+        <a class="toBottomButton" href="index.html#bottomid" title="Вниз">
+            <span class="arrow down"></span>
+        </a>
+        </div>
+        <script src="../../../.js/to_top_buttons_script.js"></script>
+        </aside><aside id="aside_right_block"><!-- display_aside_related_block() --><!-- aside_related show --><div id="aside_related_articles">
+        <nav class="aside_related_block_nav mt5">
+        <a class="aside_related_topic" href="index.html#tableOfContent">ПОХОЖИЕ СТАТЬИ</a><a href="../index.html">Программирование на C</a><a href="../lessons.php.html">Учебник по Си</a><a href="../boolean.php.html">Boolean в Си</a><a href="../sockets.php.html">Сокеты в Си</a><a href="../kernigan_ritchie.php.html">К и Р</a><a href="../argc_argv.php.html">Что такое <b>argc</b>, <b>char * argv[]</b></a><a href="../scanf.php.html">Функция <b>scanf()</b></a><a href="../pointers.php.html">Указатели</a><a href="../structures.php.html">Структуры в Си</a><a href="../member_selection_operator.php.html">Оператор &laquo;стрелка&raquo; указатель на член структуры</a></nav></div><!-- /display_aside_tcont_block() --><div class="p2"><!-- display_advert_two() -->
+        <!-- www.devhops.ru Advert Two -->
+        <div id="advert_two">
+        <div id="advert_two_ads">
+        
+                <!-- RS0 -->
+                <div id="advert_two_slider_0" class="BlinkingBanner">
+                    <div class="align-center w100 mt2"><!-- Yandex.RTB R-A-1583746-2 --><div id='yandex_rtb_R-A-1583746-2'></div><script>window.yaContextCb.push(()=>{Ya.Context.AdvManager.render({renderTo: 'yandex_rtb_R-A-1583746-2', blockId: 'R-A-1583746-2'})})</script></div>
+                </div><!-- RSLIDER 1 i=0 -->
+                <div id="advert_two_slider_1" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://t.me/aofeed" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/banners/aofeed1.webp">  
+            <source type="image/png" srcset="../../../aa_img/banners/aofeed1.png">   
+            <img class="w100" src="../../../aa_img/banners/aofeed1.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 2 i=3 -->
+                <div id="advert_two_slider_2" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://t.me/aofeed" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/banners/aofeed2.webp">  
+            <source type="image/png" srcset="../../../aa_img/banners/aofeed2.png">   
+            <img class="w100" src="../../../aa_img/banners/aofeed2.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 3 i=6 -->
+                <div id="advert_two_slider_3" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://ad.admitad.com/g/xhberu6jwc5b523e94aa4bfa9a7f2b/?i=4" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/admitad_wikium500x500.webp">  
+            <source type="image/png" srcset="../../../aa_img/admitad/admitad_wikium500x500.png">   
+            <img class="w100" src="../../../aa_img/admitad/admitad_wikium500x500.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 4 i=9 -->
+                <div id="advert_two_slider_4" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://ad.admitad.com/g/hw12tyatxl5b523e94aa1ac5a4392d/?i=4" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/admitad_puzzle-english500x500.webp">  
+            <source type="image/png" srcset="../../../aa_img/admitad/admitad_puzzle-english500x500.png">   
+            <img class="w100" src="../../../aa_img/admitad/admitad_puzzle-english500x500.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 5 i=12 -->
+                <div id="advert_two_slider_5" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/o6Vfek" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/book24/do_not_make_me_think.webp">  
+            <source type="image/jpeg" srcset="../../../aa_img/admitad/book24/do_not_make_me_think.jpg">   
+            <img class="w100" src="../../../aa_img/admitad/book24/do_not_make_me_think.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 6 i=15 -->
+                <div id="advert_two_slider_6" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://tp.media/r?marker=201961.rb&trs=38807&p=4268&u=https%3A%2F%2Ftezeks.com%2F" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/travelpouts/tekez_russia.webp">  
+            <source type="image/jpeg" srcset="../../../aa_img/travelpouts/tekez_russia.jpg">   
+            <img class="w100" src="../../../aa_img/travelpouts/tekez_russia.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 7 i=18 -->
+                <div id="advert_two_slider_7" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/kwork/kwork_refactor_website600x600.webp">  
+            <source type="image/jpeg" srcset="../../../aa_img/admitad/kwork/kwork_refactor_website600x600.jpg">   
+            <img class="w100" src="../../../aa_img/admitad/kwork/kwork_refactor_website600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 8 i=21 -->
+                <div id="advert_two_slider_8" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/kwork/kwork_all600x600.webp">  
+            <source type="image/jpeg" srcset="../../../aa_img/admitad/kwork/kwork_all600x600.jpg">   
+            <img class="w100" src="../../../aa_img/admitad/kwork/kwork_all600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 9 i=24 -->
+                <div id="advert_two_slider_9" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/kwork/kwork_banners600x600.webp">  
+            <source type="image/jpeg" srcset="../../../aa_img/admitad/kwork/kwork_banners600x600.jpg">   
+            <img class="w100" src="../../../aa_img/admitad/kwork/kwork_banners600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 10 i=27 -->
+                <div id="advert_two_slider_10" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/kwork/kwork_logos600x600.webp">  
+            <source type="image/jpeg" srcset="../../../aa_img/admitad/kwork/kwork_logos600x600.jpg">   
+            <img class="w100" src="../../../aa_img/admitad/kwork/kwork_logos600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 11 i=30 -->
+                <div id="advert_two_slider_11" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/kwork/kwork_scripts600x600.webp">  
+            <source type="image/jpeg" srcset="../../../aa_img/admitad/kwork/kwork_scripts600x600.jpg">   
+            <img class="w100" src="../../../aa_img/admitad/kwork/kwork_scripts600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 12 i=33 -->
+                <div id="advert_two_slider_12" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://fas.st/gq_LxG" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/admitad/kwork/kwork_social_media600x600.webp">  
+            <source type="image/jpeg" srcset="../../../aa_img/admitad/kwork/kwork_social_media600x600.jpg">   
+            <img class="w100" src="../../../aa_img/admitad/kwork/kwork_social_media600x600.jpg" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 13 i=36 -->
+                <div id="advert_two_slider_13" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/beget/beget_hosting_as_it_should1080x1080.webp">  
+            <source type="image/png" srcset="../../../aa_img/beget/beget_hosting_as_it_should1080x1080.png">   
+            <img class="w100" src="../../../aa_img/beget/beget_hosting_as_it_should1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 14 i=39 -->
+                <div id="advert_two_slider_14" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/beget/beget_virt_serv7_1080x1080.webp">  
+            <source type="image/png" srcset="../../../aa_img/beget/beget_virt_serv7_1080x1080.png">   
+            <img class="w100" src="../../../aa_img/beget/beget_virt_serv7_1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 15 i=42 -->
+                <div id="advert_two_slider_15" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/beget/beget_cloud_db1080x1080.webp">  
+            <source type="image/png" srcset="../../../aa_img/beget/beget_cloud_db1080x1080.png">   
+            <img class="w100" src="../../../aa_img/beget/beget_cloud_db1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div><!-- RSLIDER 16 i=45 -->
+                <div id="advert_two_slider_16" class="BlinkingBanner">
+                <div class="align-center w100 mt2">
+    <a href="https://beget.com/p3421" rel="nofollow">
+        <picture>                                                                                                                  
+            <source type="image/webp" srcset="../../../aa_img/beget/beget_cloud_infra1080x1080.webp">  
+            <source type="image/png" srcset="../../../aa_img/beget/beget_cloud_infra1080x1080.png">   
+            <img class="w100" src="../../../aa_img/beget/beget_cloud_infra1080x1080.png" alt="Изображение баннера">
+        </picture>
+    </a>
+    </div></div>
+            </div>
+            <button id="remove_advert_two_button">Убрать рекламу</button>
+            <button id="show_advert_two_button">Показать рекламу</button>
+        <script src="../../../.js/advert_two_script.js"></script></div><!-- /display_advert_two() --></div><script src="../../../.js/aside_right_block_script.js"></script></aside><main class="wrapper mt5">
+        <h1>GCC</h1><div id="tableOfContent"></div><table class="tcont"><caption>Содержание</caption><tbody><tr><td><td><a href="index.html#intro">Введение</a></td><tr><td><td><a href="index.html#beforeInstall">Проверить наличие</a></td><tr><td><td><a href="index.html#install">Установка MinGW</a></td><tr><td><td><a href="index.html#wsl">Установка в WSL</a></td><tr><td><td><a href="index.html#cygwin">Установка Cygwin</a></td><tr><td><td><a href="index.html#install_linux">Установка в Linux</a></td><tr><td><td><a href="index.html#related_articles_footer">Другие статьи о Си</a></td></tbody></table><!-- 3 -->
+<div id="intro" class="anchor"></div>
+<h2 class="h2mTop">
+    Введение
+</h2>
+<p class="p2">
+    GNU Compiler Collection (обычно используется сокращение GCC) — набор компиляторов для различных языков программирования, разработанный
+    в рамках проекта GNU. GCC является свободным программным обеспечением, распространяется фондом свободного программного обеспечения (FSF)
+    на условиях GNU GPL и GNU LGPL и является ключевым компонентом GNU toolchain.
+    <br><br>
+    Он используется как стандартный компилятор для свободных UNIX-подобных операционных систем.
+    <br><br>
+    Изначально названный GNU C Compiler поддерживал только язык Си. Позднее GCC был расширен для компиляции исходных кодов на таких
+    языках программирования, как 
+    <a href="https://devhops.ru/code/cpp/">C++</a>, Objective-C, 
+    <a href="https://devhops.ru/code/java/">Java</a>, Фортран, Ada,
+    <a href="https://devhops.ru/code/go/">Go</a>, GAS и D.
+    <br><br>
+    С версии 4.2.2 GCC перешёл на лицензию GPLv3.     
+</p>
+<div id="beforeInstall" class="anchor"></div>
+<h2 class="h2mTop">
+    Перед установкой
+</h2>
+<p class="p2">
+    Проверить, установлен ли gcc можно в cmd командой
+</p>
+<p class="cmd1">
+    <span class="violet">gcc</span> --version
+</p>
+<p class="p2">
+    Если gcc установлени, Вы увидите версию
+    <br><br>
+    Если gcc не установлен, Вы увидите следующее сообщение
+</p>
+<p class="cout1 wspw">
+Microsoft Windows [Version 10.0.18363.720]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\Andrei>gcc --version
+&#39;gcc&#39; is not recognized as an internal or external command,
+operable program or batch file.
+</p>
+<div id="install" class="anchor"></div>
+<h2 class="h2mTop">
+    Установка
+</h2>
+<p class="p2">
+    Для работы в Windows нужен MinGW скачать его можно на сайте
+    <a href="https://nuwen.net/mingw.html" rel="nofollow">
+        nuwen.net/mingw.html
+    </a>
+    <br><br>
+    Для этой статьи использовался mingw-17.1.exe
+</p>
+<p class="p2">
+    Далее действуйте по инструкции
+    <br><br>
+    Двойной клик на mingw-17.1.exe
+</p>
+<picture itemscope itemtype="http://schema.org/ImageObject">
+    <source media="(max-width: 1000px)" srcset="img/mingw_00100--small.jpg">
+    <source media="(min-width: 1001px)" srcset="img/mingw_00100--big.jpg">
+    <img class="w100 mt8" src="img/mingw_00100--small.jpg"
+    alt="Установка gcc Windows10 MinGW изображение с сайта www.eth1.ru" itemprop="contentUrl"/>
+</picture>
+<picture itemscope itemtype="http://schema.org/ImageObject">
+    <source media="(max-width: 1000px)" srcset="img/mingw_00102--small.jpg">
+    <source media="(min-width: 1001px)" srcset="img/mingw_00102--big.jpg">
+    <img class="w100 mt8" src="img/mingw_00102--small.jpg"
+    alt="Установка gcc Windows10 MinGW изображение с сайта www.eth1.ru" itemprop="contentUrl"/>
+</picture>
+<p class="p2">
+    После установки нужно добавить C:\MinGW\bin в системную переменную среды PATH.
+    <br><br>
+    Если Вы не знаете как это сделать, прочитайте мою статью
+    <a href="https://devhops.ru/PC/it-helpdesk/path.php">
+        &laquo;Системная переменная PATH&raquo;
+    </a>
+    <br><br>
+    Теперь команда gcc --version должна возвращать версию компилятора.
+</p>
+<p class="cmd1">
+    <span class="violet">gcc</span> --version
+</p>
+<p class="cout1 wspw">    
+Microsoft Windows [Version 10.0.18363.720]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\Andrei>gcc --version
+gcc (GCC) 9.2.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</p>
+<p class="p2">
+    Если этого не происходит - перезапустите консоль. Если не помогло - перезапустите 
+    <a href="https://devhops.ru/windows/">Windows</a>.
+</p>
+<div id="afterInstall" class="anchor"></div>
+<h2 class="h2mTop">
+    После установки
+</h2>
+<p class="p2">
+    Итак, Вы установили MinGW написали простейшую программу 3.cpp, компилируете с помощью gcc
+</p>
+<p class="cmd1">
+    <span class="violet">gcc</span> 3.cpp
+</p>
+<p class="p2">
+    А в ответ
+</p>
+<p class="cout1 wspw">
+c:/mingw/bin/../lib/gcc/x86_64-w64-mingw32/9.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\Andrei\AppData\Local\Temp\ccuoNssB.o:3.cpp:(.text+0x28): undefined reference to `std::ios_base::Init::~Init()&#39;
+c:/mingw/bin/../lib/gcc/x86_64-w64-mingw32/9.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\Users\Andrei\AppData\Local\Temp\ccuoNssB.o:3.cpp:(.text+0x58): undefined reference to `std::ios_base::Init::Init()&#39;
+collect2.exe: error: ld returned 1 exit status
+</p>
+<p class="p2">
+    Мой совет - попробуйте g&plus;&plus;
+</p>
+<p class="cmd1">
+    <span class="violet">g&plus;&plus;</span> 3.cpp
+</p>
+<p class="p2">
+    Если Вы планируете писать софт, который должен будет работать под
+    UNIX-подобными ОС, например 
+    <a href="https://devhops.ru/linux/">
+        Linux
+    </a>
+    или
+    <a href="https://devhops.ru/unix/openbsd/">
+        OpenBSD
+    </a>
+    то устанавливать MinGW не стоит.
+    <br><br>
+    Попробуйте добавить в Ваш Windows подсистему для Linux и установить gcc там.
+    <br><br>
+</p>
+<div id="wsl" class="anchor"></div>
+<h2 class="h2mTop">
+    Установка gcc в подсистеме Linux для Windows
+</h2>
+<p class="p2">
+    <a href="https://devhops.ru/windows/wsl/">
+       подсистеме Linux для Windows
+    </a>
+</p>
+<p class="cmd1">
+    <span class="violet">sudo</span> apt-update
+</p>
+<p class="cmd1">
+    <span class="violet">sudo</span> apt install build-essentials
+</p>
+<p class="cmd1">
+    <span class="violet">gcc</span> -v
+</p>
+<div id="cygwin" class="anchor"></div>
+<h2 class="h2mTop">
+    Установка Cygwin
+</h2>
+<p class="p2">
+    Если по каким-то причинам Вам не подходят перечисленные выше варианты - установите cygwin
+    <a href="https://cygwin.com/packages/summary/gcc-g++.html" rel="nofollow">
+        cygwin.com
+    </a>
+    <br><br>
+    У меня пока что только негативный опыт работы с ним, но у Вас может получиться лучше.
+</p>
+<p class="p2">
+    ISOCPP
+    <a href="https://isocpp.org/get-started">
+        isocpp.org
+    </a>
+</p>
+<div class="p8 align-center"><!-- Yandex.RTB R-A-1583746-4 --><div id="yandex_rtb_R-A-1583746-4"></div><script>window.yaContextCb.push(()=>{Ya.Context.AdvManager.render({"blockId": "R-A-1583746-4","renderTo": "yandex_rtb_R-A-1583746-4"})})</script></div>
+<div id="install_linux" class="anchor"></div>
+<h2 class="h2mTop">
+    Установка GCC в Linux
+</h2>
+<p class="p2">
+    В зависимости от типа Linux выполните
+</p>
+<p class="cmd1">
+    <span class="violet">sudo</span> apt -y install gcc
+</p>
+<p class="p1">
+    Для 
+    <a href="https://devhops.ru/linux/debian/">
+        Debian
+    </a>,
+    <a href="https://devhops.ru/linux/ubuntu/">
+        Ubuntu
+    </a>
+    и других deb
+</p>
+<p class="p2">
+    Или
+</p>
+<p class="cmd1">
+    <span class="violet">sudo</span> yum -y install gcc
+</p>
+<p class="p1">
+    Для 
+    <a href="https://devhops.ru/linux/centos/">
+        CentOS
+    </a>,
+    <a href="https://devhops.ru/linux/rocky/">
+        Rocky
+    </a>,
+    <a href="https://devhops.ru/linux/rhel/">
+        RHEL
+    </a>
+    и других rpm
+</p>
+<p class='p5'>Автор статьи: <a href='https://andreyolegovich.ru'>Андрей Олегович</a></p><div id="related_articles_footer" class="p20 anchor"></div><table class="tcont"><caption>Похожие статьи</caption><tbody><tr><td><td><a href="../index.html">Программирование на C</a><tr><td><td><a href="../lessons.php.html">Учебник по Си</a><tr><td><td><a href="../boolean.php.html">Boolean в Си</a><tr><td><td><a href="../sockets.php.html">Сокеты в Си</a><tr><td><td><a href="../kernigan_ritchie.php.html">К и Р</a><tr><td><td><a href="../argc_argv.php.html">Что такое <b>argc</b>, <b>char * argv[]</b></a><tr><td><td><a href="../scanf.php.html">Функция <b>scanf()</b></a><tr><td><td><a href="../pointers.php.html">Указатели</a><tr><td><td><a href="../structures.php.html">Структуры в Си</a><tr><td><td><a href="../member_selection_operator.php.html">Оператор &laquo;стрелка&raquo; указатель на член структуры</a></tbody></table></main>
+            <!-- footer _lessons_bottom_navigator_inc -->
+            <nav class="wrapper font-size0 mt12">
+                <div class="previous font1">
+                    <a class="" href="../index.html">
+                        C
+                    </a>
+                </div>
+                <div class="next font1">
+                    <a class="" href="../argc_argv.php.html">
+                        argc argv
+                    </a>
+                </div>
+            </nav>
+            <!-- footer /_lessons_bottom_navigator end -->
+        <div class="count"><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-11806655-6"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-11806655-6');</script><!-- /Global site tag (gtag.js) - Google Analytics --><!-- Yandex.Metrika counter --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");ym(86097190, "init", {clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script><noscript><div><img src="https://mc.yandex.ru/watch/86097190" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter --></div>
+            <div class="wrapper align-center mt10">
+            <p class="p1 font1">
+                <a class="bbutton100" id="website_search2" href="https://devhops.ru/search/">
+                    Поиск по сайту
+                </a>
+            </p>
+            <p class="p8 font1">
+                Подпишитесь на <a href="https://t.me/aofeed">Telegram канал @aofeed</a> чтобы следить 
+                за выходом новых статей и обновлением старых
+                <br><br>
+                <a class="bbutton100" href="https://t.me/aofeed">Перейти на канал</a>
+                <br><br>
+                <a href="https://t.me/aofeed">@aofeed</a>
+            </p>
+            <p class="p8 font1">
+                <a class="bbutton100" href="https://t.me/aofeedchat">
+                    Задать вопрос в Телеграм-группе
+                </a>
+                <br><br>
+                <a href="https://t.me/aofeedchat">@aofeedchat</a>
+            </p>
+            </div>
+        
+        <div class="wrapper mt10">
+            <table class="tab11">
+            <caption>Контакты и сотрудничество:</caption>
+            <tr><td>Рекомендую наш хостинг <a href="https://www.beget.com/p3421">beget.ru</a>
+            <tr><td>Пишите на
+                    <span class="tt">info@urn.su</span> если Вы:
+            <tr><td>1. Хотите написать статью для нашего сайта или перевести статью на свой родной язык.
+            <tr><td>2. Хотите разместить на сайте рекламу, подходящую по тематике.
+            <tr><td>3. Реклама на моём сайте имеет максимальный уровень цензуры. Если Вы увидели
+                    рекламный блок недопустимый для просмотра детьми школьного возраста, вызывающий шок
+                    или вводящий в заблуждение - пожалуйста свяжитесь с нами по электронной почте
+            <tr><td>4. Нашли на сайте ошибку, неточности, баг и т.д. 
+                    <span class="width_a">.</span><span class="width_b">..</span>
+                    <span class="width_c">...</span><span class="width_d">....</span>
+            <tr><td>5. Статьи можно расшарить в соцсетях, нажав на иконку сети:
+                    <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                    <script src="https://yastatic.net/share2/share.js"></script>
+                    <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter,reddit,lj,viber,whatsapp,skype,telegram">
+                    </div>
+            </table> 
+        </div><div id="bottomid"></div></body></html>

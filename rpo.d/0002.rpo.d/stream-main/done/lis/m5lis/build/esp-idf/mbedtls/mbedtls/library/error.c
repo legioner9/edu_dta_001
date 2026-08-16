@@ -1,0 +1,1 @@
+/home/st/edu_dta/rpo.d/0002.rpo.d/home/op/esp/esp-idf/components/mbedtls/mbedtls/library/error.c
